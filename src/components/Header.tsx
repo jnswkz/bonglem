@@ -1,17 +1,19 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Instagram, ShoppingCart, Menu, X, Heart } from 'lucide-react';
+import { Instagram, ShoppingCart, Menu, X } from 'lucide-react';
+
+type Page = 'home' | 'story' | 'products' | 'detail' | 'feedback' | 'contact' | 'cart' | 'checkout';
 
 interface HeaderProps {
-  onNavigate: (page: string) => void;
-  currentPage: string;
+  onNavigate: (page: Page) => void;
+  currentPage: Page;
   cartCount: number;
 }
 
 export const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage, cartCount }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-  const navItems = [
+  const navItems: { name: string; id: Page }[] = [
     { name: 'Trang chủ', id: 'home' },
     { name: 'Câu chuyện', id: 'story' },
     { name: 'Sản phẩm', id: 'products' },

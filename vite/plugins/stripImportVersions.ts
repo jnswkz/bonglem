@@ -6,7 +6,7 @@ export default function stripImportVersions(): Plugin {
     name: 'strip-import-versions',
     enforce: 'pre',
 
-    resolveId(source, importer, options) {
+    resolveId(source, importer) {
       const match = source.match(/^([\w\-@\/]+)@([\d.]+)$/);
       if (match) {
         const [_, pkg, _version] = match;

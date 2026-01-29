@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, Facebook, Instagram } from 'lucide-react';
+import { Facebook, Instagram } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
