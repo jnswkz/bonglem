@@ -4,7 +4,7 @@ import { Footer } from './components/Footer';
 import { Button } from './components/Button';
 import { ProductCard } from './components/ProductCard';
 import { CollectionCard } from './components/CollectionCard';
-import { FeedbackCard } from './components/FeedbackCard';
+import { FeedbackCard, type FeedbackCardProps } from './components/FeedbackCard';
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
 import { SplashScreen } from './components/SplashScreen';
 import { MapPin, Phone, Mail, Instagram, Facebook, ChevronLeft, Heart, Share2, Filter, MessageCircle } from 'lucide-react';
@@ -15,7 +15,6 @@ const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<'home' | 'story' | 'products' | 'detail' | 'feedback' | 'contact' | 'cart' | 'checkout'>('home');
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
   const [cart, setCart] = useState<{ id: number; name: string; price: string; image: string; qty: number }[]>([]);
 
   useEffect(() => {
@@ -40,7 +39,7 @@ const App: React.FC = () => {
     { id: 6, title: 'Set Đặc Biệt', image: 'https://images.unsplash.com/photo-1701943896527-334158c81021?q=80&w=1080' },
   ];
 
-  const feedbacks = [
+  const feedbacks: FeedbackCardProps[] = [
     { type: 'text', content: 'Gói quà cực kỳ xinh và có tâm luôn. Người nhận rất thích, cảm ơn Bông Lém nhiều!', author: 'Mai Anh' },
     { type: 'chat', content: 'Shop ơi mình nhận được nến rồi, mùi thơm cực kỳ dễ chịu luôn ạ!' },
     { type: 'image', image: 'https://images.unsplash.com/photo-1701943896527-334158c81021?q=80&w=1080' },
@@ -61,7 +60,6 @@ const App: React.FC = () => {
       }
       return [...prev, { ...product, qty: 1 }];
     });
-    setIsCartOpen(true);
     setCurrentPage('cart');
   };
 
@@ -613,10 +611,6 @@ const App: React.FC = () => {
         </div>
       </div>
     );
-  };
-
-  const renderCartDrawer = () => {
-    return null;
   };
 
   const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);

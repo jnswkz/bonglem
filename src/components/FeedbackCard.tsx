@@ -2,7 +2,7 @@ import React from 'react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { Quote } from 'lucide-react';
 
-interface FeedbackCardProps {
+export interface FeedbackCardProps {
   type: 'text' | 'image' | 'chat';
   content?: string;
   author?: string;
