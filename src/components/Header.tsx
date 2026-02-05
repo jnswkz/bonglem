@@ -18,7 +18,10 @@ interface HeaderProps {
   cartCount: number;
 }
 
-const ACCENT_PINK = '#F4A3B4'; // Maskottchen-Rosa
+/**
+ * Brand Tokens (easy to tweak)
+ */
+const ACCENT_PINK = '#F4A3B4'; // mascot pink
 const TEXT_BROWN = '#5C4033';
 const BG_CREAM = '#FDFBF7';
 
@@ -39,10 +42,14 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header className="sticky top-0 z-50 w-full">
-      {/* Tagline Bar – jetzt Rosa */}
+      {/* Tagline Bar (pink) */}
       <div
-        className="text-white text-sm md:text-base font-medium overflow-hidden whitespace-nowrap relative h-11 flex items-center"
-        style={{ backgroundColor: ACCENT_PINK }}
+        className="text-white font-medium overflow-hidden whitespace-nowrap relative flex items-center"
+        style={{
+          backgroundColor: ACCENT_PINK,
+          height: '48px', // bigger
+          fontSize: '14px',
+        }}
       >
         <motion.div
           animate={{ x: ['0%', '-50%'] }}
@@ -64,7 +71,7 @@ export const Header: React.FC<HeaderProps> = ({
         </motion.div>
       </div>
 
-      {/* Main Header */}
+      {/* Main Nav */}
       <div
         className="backdrop-blur-md border-b"
         style={{
@@ -78,52 +85,83 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="relative group">
               <button
                 onClick={() => onNavigate('home')}
-                className="cursor-pointer"
+                className="cursor-pointer select-none"
+                aria-label="Go to home"
               >
                 <span
-                  className="text-4xl md:text-5xl font-serif font-bold tracking-wider transition-colors"
-                  style={{ color: TEXT_BROWN }}
+                  className="font-serif font-bold tracking-wider transition-colors"
+                  style={{
+                    color: TEXT_BROWN,
+                    fontSize: '44px', // bigger logo
+                    lineHeight: 1,
+                  }}
                 >
                   BÔNG LÉM
                 </span>
               </button>
 
-              {/* Mascot on hover */}
+              {/* Mascot appears on hover (desktop) */}
               <img
                 src="/mascot.png"
                 alt="Bông Lém Mascot"
-                className="pointer-events-none absolute -right-16 -top-10 w-20 opacity-0 scale-95
-                           group-hover:opacity-100 group-hover:scale-100
-                           transition-all duration-300 ease-out"
+                className="
+                  pointer-events-none
+                  absolute
+                  opacity-0
+                  scale-95
+                  transition-all
+                  duration-300
+                  ease-out
+                  group-hover:opacity-100
+                  group-hover:scale-100
+                  hidden
+                  md:block
+                "
+                style={{
+                  width: '92px',
+                  top: '-56px',
+                  right: '-64px',
+                  filter: 'drop-shadow(0px 10px 18px rgba(0,0,0,0.18))',
+                }}
+                onError={() => {
+                  // If image path fails, you will still see the site.
+                  // Fix by ensuring public/mascot.png exists.
+                  // (No console visible on iPad usually, but it's safe.)
+                }}
               />
             </div>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex flex-1 justify-center">
-              <div className="flex items-center gap-2 px-3 py-3 rounded-full bg-white/70 border border-[#5C4033]/10 shadow-sm">
+              <div
+                className="flex items-center gap-2 px-3 py-3 rounded-full border shadow-sm"
+                style={{
+                  backgroundColor: 'rgba(255,255,255,0.75)',
+                  borderColor: `${TEXT_BROWN}1A`,
+                }}
+              >
                 {navItems.map((item, index) => {
                   const active = currentPage === item.id;
                   return (
                     <React.Fragment key={item.id}>
                       <button
                         onClick={() => onNavigate(item.id)}
-                        className={`relative px-6 py-3 rounded-full text-lg font-medium transition-all
-                          ${
-                            active
-                              ? 'text-white'
-                              : 'text-[#5C4033]/70 hover:text-[#F4A3B4]'
-                          }`}
+                        className="relative rounded-full font-medium transition-all"
                         style={{
-                          backgroundColor: active
-                            ? ACCENT_PINK
-                            : 'transparent',
+                          padding: '12px 22px',
+                          fontSize: '18px', // bigger
+                          color: active ? '#FFFFFF' : `${TEXT_BROWN}B3`,
+                          backgroundColor: active ? ACCENT_PINK : 'transparent',
                         }}
                       >
                         {item.name}
                       </button>
 
                       {index !== navItems.length - 1 && (
-                        <span className="h-7 w-px bg-[#5C4033]/10" />
+                        <span
+                          className="h-7 w-px"
+                          style={{ backgroundColor: `${TEXT_BROWN}1A` }}
+                        />
                       )}
                     </React.Fragment>
                   );
@@ -131,30 +169,65 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
             </div>
 
-            {/* Actions */}
-            <div className="flex items-center gap-4 text-[#5C4033]">
-              <a className="hidden sm:flex w-12 h-12 items-center justify-center rounded-full bg-white border border-[#5C4033]/10 hover:border-[#F4A3B4] transition">
-                <Instagram size={26} />
+            {/* Actions (bigger icons) */}
+            <div className="flex items-center gap-4" style={{ color: TEXT_BROWN }}>
+              <a
+                href="#"
+                className="hidden sm:flex items-center justify-center rounded-full border transition"
+                style={{
+                  width: '54px',
+                  height: '54px',
+                  backgroundColor: 'rgba(255,255,255,0.9)',
+                  borderColor: `${TEXT_BROWN}1A`,
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.borderColor = ACCENT_PINK)}
+                onMouseLeave={(e) => (e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`)}
+                aria-label="Instagram"
+              >
+                <Instagram size={30} />
               </a>
 
               <button
                 onClick={() => onNavigate('cart')}
-                className="relative w-12 h-12 flex items-center justify-center rounded-full bg-white border border-[#5C4033]/10 hover:border-[#F4A3B4] transition"
+                className="relative flex items-center justify-center rounded-full border transition"
+                style={{
+                  width: '54px',
+                  height: '54px',
+                  backgroundColor: 'rgba(255,255,255,0.9)',
+                  borderColor: `${TEXT_BROWN}1A`,
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.borderColor = ACCENT_PINK)}
+                onMouseLeave={(e) => (e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`)}
+                aria-label="Cart"
               >
-                <ShoppingCart size={26} />
+                <ShoppingCart size={30} />
                 <span
-                  className="absolute -top-1 -right-1 text-xs min-w-5 h-5 rounded-full flex items-center justify-center text-white"
-                  style={{ backgroundColor: ACCENT_PINK }}
+                  className="absolute text-xs min-w-6 h-6 rounded-full flex items-center justify-center text-white"
+                  style={{
+                    backgroundColor: ACCENT_PINK,
+                    top: '-6px',
+                    right: '-6px',
+                    padding: '0 6px',
+                    fontSize: '12px',
+                  }}
                 >
                   {Math.min(cartCount, 99)}
                 </span>
               </button>
 
               <button
-                className="lg:hidden w-12 h-12 flex items-center justify-center rounded-full border border-[#5C4033]/10"
+                className="lg:hidden flex items-center justify-center rounded-full border"
+                style={{
+                  width: '54px',
+                  height: '54px',
+                  borderColor: `${TEXT_BROWN}1A`,
+                  backgroundColor: 'rgba(255,255,255,0.9)',
+                  color: TEXT_BROWN,
+                }}
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Open menu"
               >
-                {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
+                {isMenuOpen ? <X size={30} /> : <Menu size={30} />}
               </button>
             </div>
           </div>
@@ -162,8 +235,8 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden border-t border-[#5C4033]/10 bg-[#FDFBF7]">
-            <div className="px-6 py-6 flex flex-col gap-3">
+          <div className="lg:hidden border-t" style={{ borderColor: `${TEXT_BROWN}1A` }}>
+            <div className="px-6 py-6 flex flex-col gap-3" style={{ backgroundColor: BG_CREAM }}>
               {navItems.map((item) => {
                 const active = currentPage === item.id;
                 return (
@@ -173,12 +246,12 @@ export const Header: React.FC<HeaderProps> = ({
                       onNavigate(item.id);
                       setIsMenuOpen(false);
                     }}
-                    className="text-xl font-medium py-4 px-5 rounded-2xl text-left"
+                    className="font-medium py-4 px-5 rounded-2xl text-left transition"
                     style={{
-                      color: active ? 'white' : TEXT_BROWN,
-                      backgroundColor: active
-                        ? ACCENT_PINK
-                        : 'transparent',
+                      fontSize: '20px',
+                      color: active ? '#FFFFFF' : TEXT_BROWN,
+                      backgroundColor: active ? ACCENT_PINK : 'rgba(255,255,255,0.7)',
+                      border: `1px solid ${TEXT_BROWN}1A`,
                     }}
                   >
                     {item.name}
