@@ -90,7 +90,7 @@ export const Header: React.FC<HeaderProps> = ({
 
               {/* Mascot on hover */}
               <img
-                src="/mascot.png"
+                src="/mascot.png.png"
                 alt="Bông Lém Mascot"
                 className="pointer-events-none absolute -right-16 -top-10 w-20 opacity-0 scale-95
                            group-hover:opacity-100 group-hover:scale-100
