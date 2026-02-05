@@ -46,11 +46,11 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage, cartCou
       </div>
 
       {/* Main Nav */}
-      <nav className="bg-[#FDFBF7]/80 backdrop-blur-md border-b border-[#5C4033]/5 px-6 py-4 md:px-12 flex items-center justify-between">
-        <div className="flex items-center gap-8">
+      <nav className="bg-[#FDFBF7]/90 backdrop-blur-md border-b border-[#5C4033]/10 px-6 py-5 md:py-6 md:px-12 flex items-center justify-between">
+        <div className="flex items-center gap-10 lg:gap-12">
           <button 
             onClick={() => onNavigate('home')}
-            className="text-2xl font-serif font-bold tracking-wider text-[#5C4033] cursor-pointer"
+            className="text-3xl  md:text-4x1 font-serif font-bold tracking-wider text-[#5C4033] cursor-pointer"
           >
             BÔNG LÉM
           </button>
@@ -60,7 +60,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage, cartCou
               <button
                 key={item.id}
                 onClick={() => onNavigate(item.id)}
-                className={`text-sm font-medium transition-colors hover:text-[#808000] cursor-pointer ${
+                className={`text-base md:text-lg font-medium transition-colors hover:text-[#808000] cursor-pointer ${
                   currentPage === item.id ? 'text-[#808000]' : 'text-[#5C4033]/70'
                 }`}
               >
@@ -71,9 +71,9 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage, cartCou
         </div>
 
         <div className="flex items-center gap-4 text-[#5C4033]">
-          <a href="#" className="hover:text-[#808000] transition-colors"><Instagram size={20} /></a>
+          <a href="#" className="hover:text-[#808000] transition-colors"><Instagram size={22} /></a>
           <button onClick={() => onNavigate('cart')} className="relative hover:text-[#808000] transition-colors">
-            <ShoppingCart size={20} />
+            <ShoppingCart size={22} />
             <span className="absolute -top-1.5 -right-1.5 bg-[#808000] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
               {Math.min(cartCount, 99)}
             </span>
