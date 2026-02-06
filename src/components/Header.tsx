@@ -81,12 +81,17 @@ export const Header: React.FC<HeaderProps> = ({
       >
         <div className="mx-auto max-w-7xl px-6 md:px-10 py-6">
           <div className="flex items-center justify-between gap-4">
-            {/* Logo (layout unchanged) + Mascot (static, responsive position/size) */}
+            {/* Logo (layout unchanged) + Mascot (desktop + mobile small) */}
             <div className="relative">
               <button
                 onClick={() => onNavigate('home')}
                 className="cursor-pointer select-none"
                 aria-label="Go to home"
+                style={{
+                  // ✅ Mobile only: give the text a bit of space so a small mascot fits on the left
+                  // md+: no padding so desktop stays identical
+                  paddingLeft: 'clamp(38px, 7vw, 0px)',
+                }}
               >
                 <span
                   className="font-serif font-bold tracking-wider transition-colors"
@@ -100,17 +105,30 @@ export const Header: React.FC<HeaderProps> = ({
                 </span>
               </button>
 
-              {/* Mascot: ALWAYS visible on md+, positioned left of text, responsive to avoid cutting */}
+              {/* ✅ Mobile mascot (small, only on < md) */}
               <img
-                src="/mascot.png" // keep exact filename/path as in your original
+                src="/mascot.png"
+                alt="Bông Lém Mascot"
+                className="pointer-events-none absolute md:hidden"
+                style={{
+                  width: '32px',
+                  height: '32px',
+                  top: '50%',
+                  left: '0px',
+                  transform: 'translateY(-50%)',
+                  filter: 'drop-shadow(0px 6px 12px rgba(0,0,0,0.18))',
+                }}
+              />
+
+              {/* ✅ Desktop/iPad mascot (md+) */}
+              <img
+                src="/mascot.png"
                 alt="Bông Lém Mascot"
                 className="pointer-events-none absolute hidden md:block"
                 style={{
-                  // Bigger on laptop, safe on iPad (no edge cutting)
                   width: 'clamp(66px, 6vw, 86px)',
                   height: 'clamp(66px, 6vw, 86px)',
                   top: '50%',
-                  // On smaller md screens (iPad), left becomes less negative => mascot moves inward
                   left: 'clamp(-72px, -6vw, -92px)',
                   transform: 'translateY(-50%)',
                   filter: 'drop-shadow(0px 10px 18px rgba(0,0,0,0.18))',
