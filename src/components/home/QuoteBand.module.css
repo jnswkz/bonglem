@@ -1,1 +1,58 @@
-/* QuoteBand styles placeholder */
+.wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 100%;
+  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(58, 43, 35, 0.08);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.08);
+  padding: 30px 18px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.watermark {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  transform: translateX(-50%);
+  width: 160px;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.quote {
+  margin: 0;
+  padding-top: 6px;
+  font-size: clamp(18px, 2.3vw, 28px);
+  line-height: 1.55;
+  color: var(--text);
+  font-style: italic;
+}
+
+.subRow {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--olive);
+  font-weight: 900;
+  font-size: 13px;
+}
+
+.line {
+  width: 56px;
+  height: 1px;
+  background: rgba(107, 118, 11, 0.35);
+}
+
+.sub {
+  letter-spacing: 0.2px;
+}
