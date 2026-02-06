@@ -7,8 +7,8 @@ import {
   Phone,
   ArrowRight,
   ShieldCheck,
-  RefreshCw,
   Sparkles,
+  Truck,
 } from 'lucide-react';
 
 /**
@@ -28,34 +28,36 @@ export const Footer: React.FC = () => {
     padding: '10px 12px',
     borderRadius: '999px',
     border: `1px solid ${TEXT_BROWN}1A`,
-    backgroundColor: 'rgba(255,255,255,0.70)',
+    backgroundColor: 'rgba(255,255,255,0.74)',
     color: `${TEXT_BROWN}CC`,
     fontSize: '14px',
+    boxShadow: '0 8px 18px rgba(0,0,0,0.04)',
   };
 
-  const iconBtnStyle: React.CSSProperties = {
-    width: '44px',
-    height: '44px',
+  const socialBtnStyle: React.CSSProperties = {
+    width: '48px', // bigger => more noticeable
+    height: '48px',
     borderRadius: '999px',
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    border: `1px solid ${TEXT_BROWN}1A`,
-    backgroundColor: 'rgba(255,255,255,0.72)',
+    border: `1px solid ${TEXT_BROWN}26`,
+    backgroundColor: 'rgba(255,255,255,0.9)',
     color: TEXT_BROWN,
     transition: 'all 0.2s ease',
+    boxShadow: '0 10px 22px rgba(0,0,0,0.06)',
   };
 
   const cardStyle: React.CSSProperties = {
     borderRadius: '22px',
     border: `1px solid ${TEXT_BROWN}1A`,
-    backgroundColor: 'rgba(255,255,255,0.65)',
-    boxShadow: '0 10px 28px rgba(0,0,0,0.05)',
+    backgroundColor: 'rgba(255,255,255,0.68)',
+    boxShadow: '0 12px 30px rgba(0,0,0,0.06)',
   };
 
   return (
     <footer className="w-full mt-16">
-      {/* Top divider band (gives the footer a strong "section" feel) */}
+      {/* Top divider band */}
       <div
         style={{
           height: '10px',
@@ -63,7 +65,7 @@ export const Footer: React.FC = () => {
         }}
       />
 
-      {/* Main Footer Panel */}
+      {/* Main footer background */}
       <div
         className="border-t"
         style={{
@@ -72,7 +74,7 @@ export const Footer: React.FC = () => {
         }}
       >
         <div className="mx-auto max-w-7xl px-6 md:px-10 py-12">
-          {/* A stronger header row inside footer (branding + quick trust chips) */}
+          {/* Brand row + chips */}
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-10">
             <div className="flex items-start gap-4">
               <img
@@ -100,7 +102,7 @@ export const Footer: React.FC = () => {
               </div>
             </div>
 
-            {/* Trust / value chips (business polish) */}
+            {/* Chips: removed return/exchange, replaced with "Giao nhanh" */}
             <div className="flex flex-wrap gap-2">
               <span style={chipStyle}>
                 <Sparkles size={16} />
@@ -111,15 +113,15 @@ export const Footer: React.FC = () => {
                 Hỗ trợ nhanh
               </span>
               <span style={chipStyle}>
-                <RefreshCw size={16} />
-                Đổi trả linh hoạt
+                <Truck size={16} />
+                Giao nhanh nội thành
               </span>
             </div>
           </div>
 
-          {/* Main Grid */}
+          {/* Main grid */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-            {/* Left: Social + Newsletter (carded) */}
+            {/* Left: social + newsletter */}
             <div className="md:col-span-5">
               <div className="p-6 md:p-7" style={cardStyle}>
                 <div className="flex items-center justify-between gap-4">
@@ -132,53 +134,60 @@ export const Footer: React.FC = () => {
                     </div>
                   </div>
 
+                  {/* Socials (more visible) */}
                   <div className="flex items-center gap-3">
                     <a
                       href="#"
                       aria-label="Instagram"
-                      style={iconBtnStyle}
+                      style={socialBtnStyle}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.borderColor = ACCENT_PINK;
                         e.currentTarget.style.transform = 'translateY(-1px)';
+                        e.currentTarget.style.boxShadow = '0 14px 26px rgba(244,163,180,0.28)';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`;
+                        e.currentTarget.style.borderColor = `${TEXT_BROWN}26`;
                         e.currentTarget.style.transform = 'translateY(0px)';
+                        e.currentTarget.style.boxShadow = '0 10px 22px rgba(0,0,0,0.06)';
                       }}
                     >
-                      <Instagram size={20} />
+                      <Instagram size={22} />
                     </a>
 
                     <a
                       href="#"
                       aria-label="Facebook"
-                      style={iconBtnStyle}
+                      style={socialBtnStyle}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.borderColor = ACCENT_PINK;
                         e.currentTarget.style.transform = 'translateY(-1px)';
+                        e.currentTarget.style.boxShadow = '0 14px 26px rgba(244,163,180,0.28)';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`;
+                        e.currentTarget.style.borderColor = `${TEXT_BROWN}26`;
                         e.currentTarget.style.transform = 'translateY(0px)';
+                        e.currentTarget.style.boxShadow = '0 10px 22px rgba(0,0,0,0.06)';
                       }}
                     >
-                      <Facebook size={20} />
+                      <Facebook size={22} />
                     </a>
 
                     <a
                       href="mailto:hello@bonglem.vn"
                       aria-label="Email"
-                      style={iconBtnStyle}
+                      style={socialBtnStyle}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.borderColor = ACCENT_PINK;
                         e.currentTarget.style.transform = 'translateY(-1px)';
+                        e.currentTarget.style.boxShadow = '0 14px 26px rgba(244,163,180,0.28)';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`;
+                        e.currentTarget.style.borderColor = `${TEXT_BROWN}26`;
                         e.currentTarget.style.transform = 'translateY(0px)';
+                        e.currentTarget.style.boxShadow = '0 10px 22px rgba(0,0,0,0.06)';
                       }}
                     >
-                      <Mail size={20} />
+                      <Mail size={22} />
                     </a>
                   </div>
                 </div>
@@ -204,7 +213,7 @@ export const Footer: React.FC = () => {
                       placeholder="Email của bạn"
                       className="w-full rounded-2xl border px-4 py-3 outline-none"
                       style={{
-                        backgroundColor: 'rgba(255,255,255,0.9)',
+                        backgroundColor: 'rgba(255,255,255,0.92)',
                         borderColor: `${TEXT_BROWN}1A`,
                         color: TEXT_BROWN,
                       }}
@@ -233,7 +242,7 @@ export const Footer: React.FC = () => {
               </div>
             </div>
 
-            {/* Middle: Contact (carded, better hierarchy) */}
+            {/* Middle: Contact (NO opening hours anymore) */}
             <div className="md:col-span-4">
               <div className="p-6 md:p-7" style={cardStyle}>
                 <div className="font-semibold mb-4" style={{ color: TEXT_BROWN, fontSize: '18px' }}>
@@ -307,26 +316,22 @@ export const Footer: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Hours */}
+                {/* Optional: short note instead of opening hours */}
                 <div
                   className="mt-6 rounded-2xl border p-4"
                   style={{
                     borderColor: `${TEXT_BROWN}1A`,
                     backgroundColor: 'rgba(244,163,180,0.10)',
+                    color: `${TEXT_BROWN}B3`,
+                    fontSize: '14px',
                   }}
                 >
-                  <div className="font-semibold" style={{ color: TEXT_BROWN }}>
-                    Giờ hoạt động
-                  </div>
-                  <div className="mt-2 text-sm" style={{ color: `${TEXT_BROWN}B3` }}>
-                    Mon–Fri: 09:00–18:00 <br />
-                    Sat–Sun: 10:00–16:00
-                  </div>
+                  Bạn cần hỗ trợ? Nhắn cho tụi mình qua Instagram hoặc Email — tụi mình phản hồi nhanh nhất có thể 🌼
                 </div>
               </div>
             </div>
 
-            {/* Right: Policies + big mascot card */}
+            {/* Right: Policies + NEW mascot card (cleaner, readable text) */}
             <div className="md:col-span-3">
               <div className="p-6 md:p-7" style={cardStyle}>
                 <div className="font-semibold mb-4" style={{ color: TEXT_BROWN, fontSize: '18px' }}>
@@ -342,11 +347,11 @@ export const Footer: React.FC = () => {
                     Chính sách mua hàng
                   </a>
                   <a
-                    href="#returns"
+                    href="#privacy"
                     className="hover:underline underline-offset-4 transition"
                     style={{ color: `${TEXT_BROWN}CC` }}
                   >
-                    Chính sách đổi trả
+                    Chính sách bảo mật
                   </a>
                   <a
                     href="#contact"
@@ -357,46 +362,67 @@ export const Footer: React.FC = () => {
                   </a>
                 </div>
 
-                {/* Bigger, more integrated mascot block */}
+                {/* New clean mascot + readable text */}
                 <div
                   className="mt-7 relative overflow-hidden"
                   style={{
                     borderRadius: '22px',
                     border: `1px solid ${TEXT_BROWN}1A`,
-                    background: `linear-gradient(135deg, rgba(244,163,180,0.18), rgba(255,255,255,0.65))`,
-                    height: '170px',
+                    background: `linear-gradient(135deg, rgba(244,163,180,0.20), rgba(255,255,255,0.78))`,
+                    height: '180px',
+                    padding: '14px',
                   }}
                 >
+                  {/* Text container with contrast so it is readable */}
                   <div
-                    className="absolute inset-0"
                     style={{
-                      background:
-                        'radial-gradient(circle at 25% 25%, rgba(255,255,255,0.85), transparent 55%)',
+                      position: 'absolute',
+                      left: '14px',
+                      top: '14px',
+                      right: '14px',
+                      maxWidth: '140px',
+                      padding: '10px 12px',
+                      borderRadius: '16px',
+                      border: `1px solid ${TEXT_BROWN}14`,
+                      backgroundColor: 'rgba(255,255,255,0.80)',
+                      color: TEXT_BROWN,
+                      boxShadow: '0 10px 22px rgba(0,0,0,0.06)',
+                      fontSize: '13px',
+                      fontWeight: 600,
+                      lineHeight: 1.25,
                     }}
-                  />
-                  <div
-                    className="absolute left-4 top-4 text-sm font-semibold"
-                    style={{ color: TEXT_BROWN }}
                   >
-                    “Cảm ơn bạn đã ghé chơi!”
-                  </div>
-                  <div
-                    className="absolute left-4 top-10 text-xs"
-                    style={{ color: `${TEXT_BROWN}B3` }}
-                  >
-                    See you again 🌼
+                    “Cảm ơn bạn đã ghé chơi!” <br />
+                    <span style={{ fontWeight: 500, color: `${TEXT_BROWN}B3` }}>
+                      Follow tụi mình nhé 🌼
+                    </span>
                   </div>
 
+                  {/* Mascot positioned so it NEVER covers the text */}
                   <img
                     src="/mascot.png"
                     alt="Mascot"
                     style={{
                       position: 'absolute',
-                      right: '10px',
+                      right: '6px',
                       bottom: '-10px',
-                      width: '140px',
+                      width: '150px',
                       filter: 'drop-shadow(0px 18px 26px rgba(0,0,0,0.14))',
-                      transform: 'rotate(-4deg)',
+                      transform: 'rotate(-3deg)',
+                    }}
+                  />
+
+                  {/* small decorative glow */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      right: '-40px',
+                      bottom: '-40px',
+                      width: '160px',
+                      height: '160px',
+                      background: 'rgba(244,163,180,0.25)',
+                      filter: 'blur(24px)',
+                      borderRadius: '999px',
                     }}
                   />
                 </div>
@@ -404,7 +430,7 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Bottom Bar (stronger separation) */}
+          {/* Bottom Bar */}
           <div
             className="mt-10 pt-6 border-t flex flex-col md:flex-row items-center justify-between gap-3 text-sm"
             style={{ borderColor: `${TEXT_BROWN}1A`, color: `${TEXT_BROWN}B3` }}
@@ -414,15 +440,27 @@ export const Footer: React.FC = () => {
               with love.
             </div>
             <div className="flex items-center gap-3">
-              <a href="#contact" className="hover:underline underline-offset-4" style={{ color: `${TEXT_BROWN}B3` }}>
+              <a
+                href="#contact"
+                className="hover:underline underline-offset-4"
+                style={{ color: `${TEXT_BROWN}B3` }}
+              >
                 Contact
               </a>
               <span style={{ opacity: 0.5 }}>•</span>
-              <a href="#products" className="hover:underline underline-offset-4" style={{ color: `${TEXT_BROWN}B3` }}>
+              <a
+                href="#products"
+                className="hover:underline underline-offset-4"
+                style={{ color: `${TEXT_BROWN}B3` }}
+              >
                 Shop
               </a>
               <span style={{ opacity: 0.5 }}>•</span>
-              <a href="#story" className="hover:underline underline-offset-4" style={{ color: `${TEXT_BROWN}B3` }}>
+              <a
+                href="#story"
+                className="hover:underline underline-offset-4"
+                style={{ color: `${TEXT_BROWN}B3` }}
+              >
                 Story
               </a>
             </div>
