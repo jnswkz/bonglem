@@ -1,12 +1,19 @@
-import React from "react";
 import styles from "./CategoryGrid.module.css";
 
-export default function CategoryGrid({ heading, viewAll, categories = [] }) {
+type ViewAll = { label?: string; href?: string };
+type Category = { title: string; image: string; href: string };
+
+export type CategoryGridProps = {
+  heading: string;
+  viewAll?: ViewAll;
+  categories?: Category[];
+};
+
+export default function CategoryGrid({ heading, viewAll, categories = [] }: CategoryGridProps) {
   return (
     <div className={styles.wrap}>
       <div className={styles.topRow}>
         <h2 className={styles.heading}>{heading}</h2>
-
         <a className={styles.viewAll} href={viewAll?.href || "/products"}>
           {viewAll?.label || "Xem tất cả"}
         </a>
@@ -20,11 +27,10 @@ export default function CategoryGrid({ heading, viewAll, categories = [] }) {
               src={c.image}
               alt={c.title}
               onError={(e) => {
-                e.currentTarget.style.display = "none";
+                (e.currentTarget as HTMLImageElement).style.display = "none";
               }}
             />
 
-            {/* Placeholder, falls Bild noch nicht vorhanden */}
             <div className={styles.fallback}>
               <div className={styles.fallbackSmall}>Category image</div>
               <div className={styles.fallbackTiny}>
