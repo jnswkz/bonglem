@@ -1,0 +1,1 @@
+// QuoteBand component placeholder
