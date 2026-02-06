@@ -1,7 +1,21 @@
-import React from "react";
 import styles from "./BestSellers.module.css";
 
-export default function BestSellers({ heading, subheading, items = [], primaryAction }) {
+type Item = { title: string; price: string; image: string; href: string };
+type Action = { label?: string; href?: string };
+
+export type BestSellersProps = {
+  heading: string;
+  subheading: string;
+  items?: Item[];
+  primaryAction?: Action;
+};
+
+export default function BestSellers({
+  heading,
+  subheading,
+  items = [],
+  primaryAction,
+}: BestSellersProps) {
   return (
     <div className={styles.wrap}>
       <div className={styles.header}>
@@ -23,7 +37,9 @@ export default function BestSellers({ heading, subheading, items = [], primaryAc
                 className={styles.img}
                 src={p.image}
                 alt={p.title}
-                onError={(e) => (e.currentTarget.style.display = "none")}
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).style.display = "none";
+                }}
               />
 
               <div className={styles.imageFallback}>
