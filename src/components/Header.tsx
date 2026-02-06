@@ -1,27 +1,22 @@
-import React from 'react';
-import { motion } from 'motion/react';
-import { Instagram, ShoppingCart, Menu, X } from 'lucide-react';
+import React from "react";
+import { motion } from "motion/react";
+import { Instagram, ShoppingCart, Menu, X } from "lucide-react";
 
 type Page =
-  | 'home'
-  | 'story'
-  | 'products'
-  | 'detail'
-  | 'feedback'
-  | 'contact'
-  | 'cart'
-  | 'checkout';
+  | "home"
+  | "story"
+  | "products"
+  | "detail"
+  | "feedback"
+  | "contact"
+  | "cart"
+  | "checkout";
 
 interface HeaderProps {
   onNavigate: (page: Page) => void;
   currentPage: Page;
   cartCount: number;
 }
-
-// Brand Tokens
-const ACCENT_PINK = '#F4A3B4'; // mascot pink
-const TEXT_BROWN = '#5C4033';
-const BG_CREAM = '#FDFBF7';
 
 export const Header: React.FC<HeaderProps> = ({
   onNavigate,
@@ -31,36 +26,29 @@ export const Header: React.FC<HeaderProps> = ({
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const navItems: { name: string; id: Page }[] = [
-    { name: 'Trang chủ', id: 'home' },
-    { name: 'Câu chuyện', id: 'story' },
-    { name: 'Sản phẩm', id: 'products' },
-    { name: 'Feedback', id: 'feedback' },
-    { name: 'Liên hệ', id: 'contact' },
+    { name: "Trang chủ", id: "home" },
+    { name: "Câu chuyện", id: "story" },
+    { name: "Sản phẩm", id: "products" },
+    { name: "Feedback", id: "feedback" },
+    { name: "Liên hệ", id: "contact" },
   ];
 
   return (
     <header className="sticky top-0 z-50 w-full">
-      {/* Tagline Bar (pink) */}
-      <div
-        className="text-white font-medium overflow-hidden whitespace-nowrap relative flex items-center"
-        style={{
-          backgroundColor: ACCENT_PINK,
-          height: '48px',
-          fontSize: '14px',
-        }}
-      >
+      {/* Tagline Bar (bleibt wie gehabt) */}
+      <div className="bg-[#C77B8F] text-[#FDFBF7] py-2 text-center text-xs md:text-sm font-medium overflow-hidden whitespace-nowrap relative h-10 flex items-center">
         <motion.div
-          animate={{ x: ['0%', '-50%'] }}
-          transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           className="flex whitespace-nowrap absolute"
         >
-          <div className="flex gap-14 items-center px-8">
+          <div className="flex gap-12 items-center px-6">
             <span>Bông Lém – những món quà nhỏ mang niềm vui to 🌼</span>
             <span>Bông Lém chào bạn 🌼</span>
             <span>Bông Lém – những món quà nhỏ mang niềm vui to 🌼</span>
             <span>Bông Lém chào bạn 🌼</span>
           </div>
-          <div className="flex gap-14 items-center px-8">
+          <div className="flex gap-12 items-center px-6">
             <span>Bông Lém – những món quà nhỏ mang niềm vui to 🌼</span>
             <span>Bông Lém chào bạn 🌼</span>
             <span>Bông Lém – những món quà nhỏ mang niềm vui to 🌼</span>
@@ -69,178 +57,100 @@ export const Header: React.FC<HeaderProps> = ({
         </motion.div>
       </div>
 
-      {/* Main Nav Wrapper */}
-      <div
-        className="backdrop-blur-md border-b"
-        style={{
-          backgroundColor: `${BG_CREAM}F5`,
-          borderColor: `${TEXT_BROWN}20`,
-        }}
-      >
-        <div className="mx-auto max-w-7xl px-6 md:px-10 py-6">
-          <div className="flex items-center justify-between gap-4">
-            {/* Logo with mascot (always visible) */}
+      {/* MAIN HEADER */}
+      <nav className="bg-[#FDFBF7]/80 backdrop-blur-md border-b border-[#5C4033]/10 px-6 md:px-12 py-5">
+        {/* 3-Spalten Layout: links (Brand), mitte (Nav), rechts (Icons) */}
+        <div className="grid grid-cols-[auto,1fr,auto] items-center">
+          {/* LEFT: Brand (ein Stück weiter nach links + mehr Platz) */}
+          <div className="flex items-center gap-4 justify-self-start -ml-1">
             <button
-              onClick={() => onNavigate('home')}
-              className="cursor-pointer select-none flex items-center gap-3"
+              onClick={() => onNavigate("home")}
+              className="flex items-center gap-3 cursor-pointer group"
               aria-label="Go to home"
             >
-              {/* Mascot permanently left of brand name */}
+              {/* Mascot: deutlich größer, aber mit Luft zu oben/unten */}
               <img
                 src="/mascot.png"
                 alt="Bông Lém Mascot"
-                className="shrink-0"
-                style={{
-                  width: '44px',
-                  height: '44px',
-                  objectFit: 'contain',
-                  filter: 'drop-shadow(0px 8px 14px rgba(0,0,0,0.18))',
-                }}
+                className="w-11 h-11 md:w-12 md:h-12 object-contain drop-shadow-sm"
               />
-
-              <span
-                className="font-serif font-bold tracking-wider transition-colors"
-                style={{
-                  color: TEXT_BROWN,
-                  fontSize: '44px',
-                  lineHeight: 1,
-                }}
-              >
+              <span className="text-3xl md:text-4xl font-serif font-bold tracking-wider text-[#5C4033] leading-none">
                 BÔNG LÉM
               </span>
             </button>
+          </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex flex-1 justify-center">
-              <div
-                className="flex items-center gap-2 px-3 py-3 rounded-full border shadow-sm"
-                style={{
-                  backgroundColor: 'rgba(255,255,255,0.75)',
-                  borderColor: `${TEXT_BROWN}1A`,
-                }}
-              >
-                {navItems.map((item, index) => {
-                  const active = currentPage === item.id;
-                  return (
-                    <React.Fragment key={item.id}>
-                      <button
-                        onClick={() => onNavigate(item.id)}
-                        className="relative rounded-full font-medium transition-all"
-                        style={{
-                          padding: '12px 22px',
-                          fontSize: '18px',
-                          color: active ? '#FFFFFF' : `${TEXT_BROWN}B3`,
-                          backgroundColor: active ? ACCENT_PINK : 'transparent',
-                        }}
-                      >
-                        {item.name}
-                      </button>
-
-                      {index !== navItems.length - 1 && (
-                        <span
-                          className="h-7 w-px"
-                          style={{ backgroundColor: `${TEXT_BROWN}1A` }}
-                        />
-                      )}
-                    </React.Fragment>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Actions (slightly bigger icons) */}
-            <div className="flex items-center gap-4" style={{ color: TEXT_BROWN }}>
-              <a
-                href="#"
-                className="hidden sm:flex items-center justify-center rounded-full border transition"
-                style={{
-                  width: '56px',
-                  height: '56px',
-                  backgroundColor: 'rgba(255,255,255,0.9)',
-                  borderColor: `${TEXT_BROWN}1A`,
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.borderColor = ACCENT_PINK)}
-                onMouseLeave={(e) => (e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`)}
-                aria-label="Instagram"
-              >
-                <Instagram size={32} />
-              </a>
-
-              <button
-                onClick={() => onNavigate('cart')}
-                className="relative flex items-center justify-center rounded-full border transition"
-                style={{
-                  width: '56px',
-                  height: '56px',
-                  backgroundColor: 'rgba(255,255,255,0.9)',
-                  borderColor: `${TEXT_BROWN}1A`,
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.borderColor = ACCENT_PINK)}
-                onMouseLeave={(e) => (e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`)}
-                aria-label="Cart"
-              >
-                <ShoppingCart size={32} />
-                <span
-                  className="absolute text-xs min-w-6 h-6 rounded-full flex items-center justify-center text-white"
-                  style={{
-                    backgroundColor: ACCENT_PINK,
-                    top: '-6px',
-                    right: '-6px',
-                    padding: '0 6px',
-                    fontSize: '12px',
-                  }}
+          {/* CENTER: Nav (mittiger, nicht gequetscht) */}
+          <div className="hidden md:flex justify-self-center">
+            <div className="flex items-center gap-10 px-8 py-3 rounded-full border border-[#5C4033]/10 bg-[#FDFBF7]/70 shadow-sm">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => onNavigate(item.id)}
+                  className={`text-base font-medium transition-colors hover:text-[#C77B8F] ${
+                    currentPage === item.id
+                      ? "text-[#C77B8F]"
+                      : "text-[#5C4033]/75"
+                  }`}
                 >
-                  {Math.min(cartCount, 99)}
-                </span>
-              </button>
-
-              <button
-                className="lg:hidden flex items-center justify-center rounded-full border"
-                style={{
-                  width: '56px',
-                  height: '56px',
-                  borderColor: `${TEXT_BROWN}1A`,
-                  backgroundColor: 'rgba(255,255,255,0.9)',
-                  color: TEXT_BROWN,
-                }}
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                aria-label="Open menu"
-              >
-                {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
-              </button>
+                  {item.name}
+                </button>
+              ))}
             </div>
+          </div>
+
+          {/* RIGHT: Icons (ein Stück weiter nach rechts + etwas größer) */}
+          <div className="flex items-center gap-5 justify-self-end pr-1">
+            <a
+              href="#"
+              className="hover:text-[#C77B8F] transition-colors text-[#5C4033]"
+              aria-label="Instagram"
+            >
+              <Instagram size={30} />
+            </a>
+
+            <button
+              onClick={() => onNavigate("cart")}
+              className="relative hover:text-[#C77B8F] transition-colors text-[#5C4033]"
+              aria-label="Cart"
+            >
+              <ShoppingCart size={30} />
+              <span className="absolute -top-2 -right-2 bg-[#C77B8F] text-white text-[11px] min-w-[18px] h-[18px] px-1 rounded-full flex items-center justify-center">
+                {Math.min(cartCount, 99)}
+              </span>
+            </button>
+
+            {/* Mobile menu */}
+            <button
+              className="md:hidden text-[#5C4033]"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
           </div>
         </div>
+      </nav>
 
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="lg:hidden border-t" style={{ borderColor: `${TEXT_BROWN}1A` }}>
-            <div className="px-6 py-6 flex flex-col gap-3" style={{ backgroundColor: BG_CREAM }}>
-              {navItems.map((item) => {
-                const active = currentPage === item.id;
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => {
-                      onNavigate(item.id);
-                      setIsMenuOpen(false);
-                    }}
-                    className="font-medium py-4 px-5 rounded-2xl text-left transition"
-                    style={{
-                      fontSize: '20px',
-                      color: active ? '#FFFFFF' : TEXT_BROWN,
-                      backgroundColor: active ? ACCENT_PINK : 'rgba(255,255,255,0.7)',
-                      border: `1px solid ${TEXT_BROWN}1A`,
-                    }}
-                  >
-                    {item.name}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        )}
-      </div>
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden absolute top-full left-0 w-full bg-[#FDFBF7] border-b border-[#5C4033]/10 py-6 px-6 flex flex-col gap-4 shadow-lg animate-in fade-in slide-in-from-top-4 duration-300">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => {
+                onNavigate(item.id);
+                setIsMenuOpen(false);
+              }}
+              className={`text-lg font-medium py-2 text-left ${
+                currentPage === item.id ? "text-[#C77B8F]" : "text-[#5C4033]"
+              }`}
+            >
+              {item.name}
+            </button>
+          ))}
+        </div>
+      )}
     </header>
   );
 };
