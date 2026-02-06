@@ -35,7 +35,7 @@ export const Footer: React.FC = () => {
   };
 
   const socialBtnStyle: React.CSSProperties = {
-    width: '48px', // bigger => more noticeable
+    width: '48px',
     height: '48px',
     borderRadius: '999px',
     display: 'inline-flex',
@@ -102,7 +102,6 @@ export const Footer: React.FC = () => {
               </div>
             </div>
 
-            {/* Chips: removed return/exchange, replaced with "Giao nhanh" */}
             <div className="flex flex-wrap gap-2">
               <span style={chipStyle}>
                 <Sparkles size={16} />
@@ -134,7 +133,6 @@ export const Footer: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Socials (more visible) */}
                   <div className="flex items-center gap-3">
                     <a
                       href="#"
@@ -192,7 +190,6 @@ export const Footer: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Newsletter */}
                 <div
                   className="mt-6 rounded-2xl border p-4 md:p-5"
                   style={{
@@ -242,7 +239,7 @@ export const Footer: React.FC = () => {
               </div>
             </div>
 
-            {/* Middle: Contact (NO opening hours anymore) */}
+            {/* Middle: Contact */}
             <div className="md:col-span-4">
               <div className="p-6 md:p-7" style={cardStyle}>
                 <div className="font-semibold mb-4" style={{ color: TEXT_BROWN, fontSize: '18px' }}>
@@ -316,7 +313,6 @@ export const Footer: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Optional: short note instead of opening hours */}
                 <div
                   className="mt-6 rounded-2xl border p-4"
                   style={{
@@ -326,12 +322,13 @@ export const Footer: React.FC = () => {
                     fontSize: '14px',
                   }}
                 >
-                  Bạn cần hỗ trợ? Nhắn cho tụi mình qua Instagram hoặc Email — tụi mình phản hồi nhanh nhất có thể 🌼
+                  Bạn cần hỗ trợ? Nhắn cho tụi mình qua Instagram hoặc Email — tụi mình phản hồi
+                  nhanh nhất có thể 🌼
                 </div>
               </div>
             </div>
 
-            {/* Right: Policies + NEW mascot card (cleaner, readable text) */}
+            {/* Right: Policies + NEW clean mascot tile */}
             <div className="md:col-span-3">
               <div className="p-6 md:p-7" style={cardStyle}>
                 <div className="font-semibold mb-4" style={{ color: TEXT_BROWN, fontSize: '18px' }}>
@@ -362,69 +359,128 @@ export const Footer: React.FC = () => {
                   </a>
                 </div>
 
-                {/* New clean mascot + readable text */}
+                {/* ✅ Rebuilt tile: clean split layout (no overlap) */}
                 <div
-                  className="mt-7 relative overflow-hidden"
+                  className="mt-7 border overflow-hidden"
                   style={{
                     borderRadius: '22px',
-                    border: `1px solid ${TEXT_BROWN}1A`,
-                    background: `linear-gradient(135deg, rgba(244,163,180,0.20), rgba(255,255,255,0.78))`,
-                    height: '180px',
-                    padding: '14px',
+                    borderColor: `${TEXT_BROWN}1A`,
+                    background: `linear-gradient(135deg, rgba(244,163,180,0.18), rgba(255,255,255,0.82))`,
                   }}
                 >
-                  {/* Text container with contrast so it is readable */}
                   <div
+                    className="grid"
                     style={{
-                      position: 'absolute',
-                      left: '14px',
-                      top: '14px',
-                      right: '14px',
-                      maxWidth: '140px',
-                      padding: '10px 12px',
-                      borderRadius: '16px',
-                      border: `1px solid ${TEXT_BROWN}14`,
-                      backgroundColor: 'rgba(255,255,255,0.80)',
-                      color: TEXT_BROWN,
-                      boxShadow: '0 10px 22px rgba(0,0,0,0.06)',
-                      fontSize: '13px',
-                      fontWeight: 600,
-                      lineHeight: 1.25,
+                      gridTemplateColumns: '1fr 140px',
+                      minHeight: '170px',
                     }}
                   >
-                    “Cảm ơn bạn đã ghé chơi!” <br />
-                    <span style={{ fontWeight: 500, color: `${TEXT_BROWN}B3` }}>
-                      Follow tụi mình nhé 🌼
-                    </span>
+                    {/* Left: clean text + CTA */}
+                    <div style={{ padding: '14px 14px 14px 14px' }}>
+                      <div
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '8px',
+                          padding: '8px 10px',
+                          borderRadius: '999px',
+                          border: `1px solid ${TEXT_BROWN}14`,
+                          backgroundColor: 'rgba(255,255,255,0.85)',
+                          color: TEXT_BROWN,
+                          fontSize: '12px',
+                          fontWeight: 700,
+                        }}
+                      >
+                        🌼 Bông Lém
+                      </div>
+
+                      <div
+                        style={{
+                          marginTop: '10px',
+                          color: TEXT_BROWN,
+                          fontWeight: 800,
+                          fontSize: '14px',
+                          lineHeight: 1.25,
+                        }}
+                      >
+                        Cảm ơn bạn đã ghé chơi!
+                      </div>
+
+                      <div
+                        style={{
+                          marginTop: '6px',
+                          color: `${TEXT_BROWN}B3`,
+                          fontSize: '13px',
+                          lineHeight: 1.35,
+                          maxWidth: '210px',
+                        }}
+                      >
+                        Follow tụi mình để xem sản phẩm mới & ưu đãi nhé.
+                      </div>
+
+                      <a
+                        href="#"
+                        className="inline-flex items-center gap-2 mt-4"
+                        style={{
+                          color: TEXT_BROWN,
+                          fontWeight: 700,
+                          fontSize: '13px',
+                          textDecoration: 'none',
+                          width: 'fit-content',
+                          padding: '10px 12px',
+                          borderRadius: '14px',
+                          border: `1px solid ${TEXT_BROWN}1A`,
+                          backgroundColor: 'rgba(255,255,255,0.85)',
+                          boxShadow: '0 10px 22px rgba(0,0,0,0.05)',
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.borderColor = ACCENT_PINK;
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`;
+                        }}
+                      >
+                        Xem Instagram <ArrowRight size={16} />
+                      </a>
+                    </div>
+
+                    {/* Right: mascot zone (separate, clean) */}
+                    <div
+                      style={{
+                        position: 'relative',
+                        borderLeft: `1px solid ${TEXT_BROWN}14`,
+                        background:
+                          'radial-gradient(circle at 30% 20%, rgba(255,255,255,0.9), rgba(244,163,180,0.12) 55%, rgba(244,163,180,0.18) 100%)',
+                      }}
+                    >
+                      {/* subtle badge behind */}
+                      <div
+                        style={{
+                          position: 'absolute',
+                          top: '14px',
+                          right: '14px',
+                          width: '44px',
+                          height: '44px',
+                          borderRadius: '999px',
+                          backgroundColor: 'rgba(244,163,180,0.25)',
+                          filter: 'blur(0px)',
+                        }}
+                      />
+
+                      <img
+                        src="/mascot.png"
+                        alt="Mascot"
+                        style={{
+                          position: 'absolute',
+                          left: '50%',
+                          bottom: '-8px',
+                          transform: 'translateX(-50%)',
+                          width: '120px',
+                          filter: 'drop-shadow(0px 18px 24px rgba(0,0,0,0.14))',
+                        }}
+                      />
+                    </div>
                   </div>
-
-                  {/* Mascot positioned so it NEVER covers the text */}
-                  <img
-                    src="/mascot.png"
-                    alt="Mascot"
-                    style={{
-                      position: 'absolute',
-                      right: '6px',
-                      bottom: '-10px',
-                      width: '150px',
-                      filter: 'drop-shadow(0px 18px 26px rgba(0,0,0,0.14))',
-                      transform: 'rotate(-3deg)',
-                    }}
-                  />
-
-                  {/* small decorative glow */}
-                  <div
-                    style={{
-                      position: 'absolute',
-                      right: '-40px',
-                      bottom: '-40px',
-                      width: '160px',
-                      height: '160px',
-                      background: 'rgba(244,163,180,0.25)',
-                      filter: 'blur(24px)',
-                      borderRadius: '999px',
-                    }}
-                  />
                 </div>
               </div>
             </div>
