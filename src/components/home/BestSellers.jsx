@@ -1,0 +1,1 @@
+// BestSellers component placeholder
