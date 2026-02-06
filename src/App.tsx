@@ -9,6 +9,7 @@ import { ImageWithFallback } from './components/figma/ImageWithFallback';
 import { SplashScreen } from './components/SplashScreen';
 import { MapPin, Phone, Mail, Instagram, Facebook, ChevronLeft, Heart, Share2, Filter, MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import HomePage from "./pages/HomePage";
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -75,96 +76,7 @@ const App: React.FC = () => {
     setCart((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const renderHome = () => (
-    <div className="space-y-24 pb-24">
-      {/* Section A: Hero */}
-      <section className="px-6 md:px-12 pt-12 md:pt-20">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-24">
-          <div className="flex-1 space-y-8 order-2 md:order-1 text-center md:text-left">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h1 className="text-6xl md:text-8xl font-serif font-bold text-[#5C4033] tracking-tighter mb-6">
-                BÔNG LÉM
-              </h1>
-              <p className="text-lg md:text-xl text-[#5C4033]/80 font-medium leading-relaxed max-w-md mx-auto md:mx-0">
-                Bông Lém chào bạn, hãy cùng tìm hiểu Bông Lém nhé 🌼
-              </p>
-            </motion.div>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Button onClick={() => setCurrentPage('story')}>Tìm hiểu Bông Lém</Button>
-              <Button variant="secondary" onClick={() => setCurrentPage('products')}>Xem sản phẩm</Button>
-            </div>
-          </div>
-          <motion.div 
-            className="flex-1 order-1 md:order-2 w-full"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
-          >
-            <div className="relative aspect-[4/5] rounded-[48px] overflow-hidden shadow-2xl">
-              <ImageWithFallback 
-                src="https://images.unsplash.com/photo-1701943896527-334158c81021?q=80&w=1080" 
-                alt="Bông Lém Hero" 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-[48px]" />
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Section B: Intro Text */}
-      <section className="px-6 py-20 bg-[#F5F1E9]/50 text-center space-y-8 relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 opacity-10 pointer-events-none">
-           <span className="text-[200px] leading-none select-none">🌼</span>
-        </div>
-        <div className="max-w-2xl mx-auto relative z-10">
-          <p className="text-2xl md:text-3xl font-serif text-[#5C4033] leading-relaxed italic">
-            “Bông Lém là những món quà nhỏ xinh, được làm ra để dành tặng cho những người bạn thương.”
-          </p>
-          <div className="mt-8 flex justify-center items-center gap-4">
-            <div className="h-[1px] w-12 bg-[#808000]/30" />
-            <span className="text-[#808000]">Handmade with Love</span>
-            <div className="h-[1px] w-12 bg-[#808000]/30" />
-          </div>
-        </div>
-      </section>
-
-      {/* Section C: Collections */}
-      <section className="px-6 md:px-12 max-w-7xl mx-auto">
-        <div className="flex justify-between items-end mb-12">
-          <h2 className="text-4xl font-serif font-bold text-[#5C4033]">Sản phẩm của Bông Lém</h2>
-          <button 
-            onClick={() => setCurrentPage('products')}
-            className="hidden md:block text-sm font-bold text-[#808000] border-b border-[#808000] pb-1 hover:opacity-70 transition-opacity"
-          >
-            Xem tất cả
-          </button>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {collections.map((col) => {
-            const linkedProduct = products.find(p => p.id === col.id);
-            return (
-              <CollectionCard 
-                key={col.id} 
-                title={col.title} 
-                image={col.image} 
-                onClick={() => {
-                  if (linkedProduct) {
-                    setSelectedProduct(linkedProduct);
-                    setCurrentPage('detail');
-                  }
-                }}
-              />
-            );
-          })}
-        </div>
-      </section>
-    </div>
-  );
+const renderHome = () => <HomePage />;
 
   const renderStory = () => (
     <div className="pb-24">
