@@ -1,1 +1,111 @@
-/* CategoryGrid styles placeholder */
+.wrap {
+  width: 100%;
+}
+
+.topRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.heading {
+  margin: 0;
+  font-size: clamp(24px, 2.6vw, 40px);
+  font-weight: 800;
+  color: var(--text);
+}
+
+.viewAll {
+  text-decoration: none;
+  color: var(--olive);
+  font-weight: 800;
+  border-bottom: 1px solid rgba(107, 118, 11, 0.35);
+  padding-bottom: 2px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+/* alle Karten exakt gleiche Höhe */
+.card {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(
+    135deg,
+    rgba(243, 167, 183, 0.22),
+    rgba(255, 255, 255, 0.95)
+  );
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  transform: translateZ(0);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.14);
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay für lesbaren Text */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.55),
+    rgba(0, 0, 0, 0.12),
+    rgba(0, 0, 0, 0)
+  );
+}
+
+.title {
+  position: absolute;
+  left: 18px;
+  bottom: 16px;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 900;
+  text-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+}
+
+/* Bild fehlt: wir zeigen Placeholder, aber Overlay/Title liegt darüber */
+.fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  padding: 18px;
+  color: rgba(58, 43, 35, 0.72);
+}
+
+.fallbackSmall {
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+
+.fallbackTiny {
+  font-size: 12px;
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .card {
+    aspect-ratio: 16 / 10;
+  }
+}
