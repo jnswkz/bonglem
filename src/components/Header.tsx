@@ -18,9 +18,7 @@ interface HeaderProps {
   cartCount: number;
 }
 
-/**
- * Brand Tokens (easy to tweak)
- */
+// Brand Tokens
 const ACCENT_PINK = '#F4A3B4'; // mascot pink
 const TEXT_BROWN = '#5C4033';
 const BG_CREAM = '#FDFBF7';
@@ -47,7 +45,7 @@ export const Header: React.FC<HeaderProps> = ({
         className="text-white font-medium overflow-hidden whitespace-nowrap relative flex items-center"
         style={{
           backgroundColor: ACCENT_PINK,
-          height: '48px', // bigger
+          height: '48px',
           fontSize: '14px',
         }}
       >
@@ -71,7 +69,7 @@ export const Header: React.FC<HeaderProps> = ({
         </motion.div>
       </div>
 
-      {/* Main Nav */}
+      {/* Main Nav Wrapper */}
       <div
         className="backdrop-blur-md border-b"
         style={{
@@ -81,55 +79,36 @@ export const Header: React.FC<HeaderProps> = ({
       >
         <div className="mx-auto max-w-7xl px-6 md:px-10 py-6">
           <div className="flex items-center justify-between gap-4">
-            {/* Logo + Mascot Hover */}
-            <div className="relative group">
-              <button
-                onClick={() => onNavigate('home')}
-                className="cursor-pointer select-none"
-                aria-label="Go to home"
-              >
-                <span
-                  className="font-serif font-bold tracking-wider transition-colors"
-                  style={{
-                    color: TEXT_BROWN,
-                    fontSize: '44px', // bigger logo
-                    lineHeight: 1,
-                  }}
-                >
-                  BÔNG LÉM
-                </span>
-              </button>
-
-              {/* Mascot appears on hover (desktop) */}
+            {/* Logo with mascot (always visible) */}
+            <button
+              onClick={() => onNavigate('home')}
+              className="cursor-pointer select-none flex items-center gap-3"
+              aria-label="Go to home"
+            >
+              {/* Mascot permanently left of brand name */}
               <img
                 src="/mascot.png"
                 alt="Bông Lém Mascot"
-                className="
-                  pointer-events-none
-                  absolute
-                  opacity-0
-                  scale-95
-                  transition-all
-                  duration-300
-                  ease-out
-                  group-hover:opacity-100
-                  group-hover:scale-100
-                  hidden
-                  md:block
-                "
+                className="shrink-0"
                 style={{
-                  width: '92px',
-                  top: '-56px',
-                  right: '-64px',
-                  filter: 'drop-shadow(0px 10px 18px rgba(0,0,0,0.18))',
-                }}
-                onError={() => {
-                  // If image path fails, you will still see the site.
-                  // Fix by ensuring public/mascot.png exists.
-                  // (No console visible on iPad usually, but it's safe.)
+                  width: '44px',
+                  height: '44px',
+                  objectFit: 'contain',
+                  filter: 'drop-shadow(0px 8px 14px rgba(0,0,0,0.18))',
                 }}
               />
-            </div>
+
+              <span
+                className="font-serif font-bold tracking-wider transition-colors"
+                style={{
+                  color: TEXT_BROWN,
+                  fontSize: '44px',
+                  lineHeight: 1,
+                }}
+              >
+                BÔNG LÉM
+              </span>
+            </button>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex flex-1 justify-center">
@@ -149,7 +128,7 @@ export const Header: React.FC<HeaderProps> = ({
                         className="relative rounded-full font-medium transition-all"
                         style={{
                           padding: '12px 22px',
-                          fontSize: '18px', // bigger
+                          fontSize: '18px',
                           color: active ? '#FFFFFF' : `${TEXT_BROWN}B3`,
                           backgroundColor: active ? ACCENT_PINK : 'transparent',
                         }}
@@ -169,14 +148,14 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
             </div>
 
-            {/* Actions (bigger icons) */}
+            {/* Actions (slightly bigger icons) */}
             <div className="flex items-center gap-4" style={{ color: TEXT_BROWN }}>
               <a
                 href="#"
                 className="hidden sm:flex items-center justify-center rounded-full border transition"
                 style={{
-                  width: '54px',
-                  height: '54px',
+                  width: '56px',
+                  height: '56px',
                   backgroundColor: 'rgba(255,255,255,0.9)',
                   borderColor: `${TEXT_BROWN}1A`,
                 }}
@@ -184,15 +163,15 @@ export const Header: React.FC<HeaderProps> = ({
                 onMouseLeave={(e) => (e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`)}
                 aria-label="Instagram"
               >
-                <Instagram size={30} />
+                <Instagram size={32} />
               </a>
 
               <button
                 onClick={() => onNavigate('cart')}
                 className="relative flex items-center justify-center rounded-full border transition"
                 style={{
-                  width: '54px',
-                  height: '54px',
+                  width: '56px',
+                  height: '56px',
                   backgroundColor: 'rgba(255,255,255,0.9)',
                   borderColor: `${TEXT_BROWN}1A`,
                 }}
@@ -200,7 +179,7 @@ export const Header: React.FC<HeaderProps> = ({
                 onMouseLeave={(e) => (e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`)}
                 aria-label="Cart"
               >
-                <ShoppingCart size={30} />
+                <ShoppingCart size={32} />
                 <span
                   className="absolute text-xs min-w-6 h-6 rounded-full flex items-center justify-center text-white"
                   style={{
@@ -218,8 +197,8 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 className="lg:hidden flex items-center justify-center rounded-full border"
                 style={{
-                  width: '54px',
-                  height: '54px',
+                  width: '56px',
+                  height: '56px',
                   borderColor: `${TEXT_BROWN}1A`,
                   backgroundColor: 'rgba(255,255,255,0.9)',
                   color: TEXT_BROWN,
@@ -227,7 +206,7 @@ export const Header: React.FC<HeaderProps> = ({
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label="Open menu"
               >
-                {isMenuOpen ? <X size={30} /> : <Menu size={30} />}
+                {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
               </button>
             </div>
           </div>
