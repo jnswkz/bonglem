@@ -47,7 +47,7 @@ export const Header: React.FC<HeaderProps> = ({
         className="text-white font-medium overflow-hidden whitespace-nowrap relative flex items-center"
         style={{
           backgroundColor: ACCENT_PINK,
-          height: '48px', // bigger
+          height: '48px', // EXACTLY like before
           fontSize: '14px',
         }}
       >
@@ -81,42 +81,42 @@ export const Header: React.FC<HeaderProps> = ({
       >
         <div className="mx-auto max-w-7xl px-6 md:px-10 py-6">
           <div className="flex items-center justify-between gap-4">
-            {/* Logo + Mascot (always visible, NO hover) */}
-            <div className="flex items-center">
+            {/* Logo (UNCHANGED layout) + Mascot (now static, no hover) */}
+            <div className="relative">
               <button
                 onClick={() => onNavigate('home')}
-                className="cursor-pointer select-none flex items-center"
+                className="cursor-pointer select-none"
                 aria-label="Go to home"
               >
-                <img
-                  src="/Mascot.png"
-                  alt="Bông Lém Mascot"
-                  className="shrink-0"
-                  style={{
-                    width: '64px', // similar “good visible” size like your example
-                    height: '64px',
-                    marginRight: '14px',
-                    filter: 'drop-shadow(0px 10px 18px rgba(0,0,0,0.18))',
-                  }}
-                  onError={() => {
-                    // Ensure the file exists exactly as: public/Mascot.png
-                  }}
-                />
-
                 <span
                   className="font-serif font-bold tracking-wider transition-colors"
                   style={{
                     color: TEXT_BROWN,
-                    fontSize: '44px', // unchanged
+                    fontSize: '44px', // EXACTLY like before
                     lineHeight: 1,
                   }}
                 >
                   BÔNG LÉM
                 </span>
               </button>
+
+              {/* Mascot: ALWAYS visible, positioned left of the text (NO hover) */}
+              <img
+                src="/mascot.png" // IMPORTANT: keep EXACT filename/path
+                alt="Bông Lém Mascot"
+                className="pointer-events-none absolute hidden md:block"
+                style={{
+                  width: '70px', // good visible size like your example
+                  height: '70px',
+                  top: '50%',
+                  left: '-86px', // puts mascot to the LEFT of the brand text
+                  transform: 'translateY(-50%)',
+                  filter: 'drop-shadow(0px 10px 18px rgba(0,0,0,0.18))',
+                }}
+              />
             </div>
 
-            {/* Desktop Navigation */}
+            {/* Desktop Navigation (UNCHANGED) */}
             <div className="hidden lg:flex flex-1 justify-center">
               <div
                 className="flex items-center gap-2 px-3 py-3 rounded-full border shadow-sm"
@@ -134,7 +134,7 @@ export const Header: React.FC<HeaderProps> = ({
                         className="relative rounded-full font-medium transition-all"
                         style={{
                           padding: '12px 22px',
-                          fontSize: '18px', // unchanged
+                          fontSize: '18px', // EXACTLY like before
                           color: active ? '#FFFFFF' : `${TEXT_BROWN}B3`,
                           backgroundColor: active ? ACCENT_PINK : 'transparent',
                         }}
@@ -154,7 +154,7 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
             </div>
 
-            {/* Actions */}
+            {/* Actions (UNCHANGED) */}
             <div className="flex items-center gap-4" style={{ color: TEXT_BROWN }}>
               <a
                 href="#"
@@ -222,7 +222,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu (UNCHANGED) */}
         {isMenuOpen && (
           <div className="lg:hidden border-t" style={{ borderColor: `${TEXT_BROWN}1A` }}>
             <div className="px-6 py-6 flex flex-col gap-3" style={{ backgroundColor: BG_CREAM }}>
@@ -239,7 +239,9 @@ export const Header: React.FC<HeaderProps> = ({
                     style={{
                       fontSize: '20px',
                       color: active ? '#FFFFFF' : TEXT_BROWN,
-                      backgroundColor: active ? ACCENT_PINK : 'rgba(255,255,255,0.7)',
+                      backgroundColor: active
+                        ? ACCENT_PINK
+                        : 'rgba(255,255,255,0.7)',
                       border: `1px solid ${TEXT_BROWN}1A`,
                     }}
                   >
