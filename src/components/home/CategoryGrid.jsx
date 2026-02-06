@@ -1,0 +1,1 @@
+// CategoryGrid component placeholder
