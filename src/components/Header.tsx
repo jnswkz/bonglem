@@ -111,9 +111,9 @@ export const Header: React.FC<HeaderProps> = ({
                 alt="Bông Lém Mascot"
                 className="pointer-events-none absolute md:hidden"
                 style={{
-                  width: '32px',
-                  height: '32px',
-                  top: '50%',
+                  width: '40px',
+                  height: '40px',
+                  top: '52%', // minimal nach unten für bessere Balance
                   left: '0px',
                   transform: 'translateY(-50%)',
                   filter: 'drop-shadow(0px 6px 12px rgba(0,0,0,0.18))',
