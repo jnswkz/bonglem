@@ -1,7 +1,21 @@
-import React from "react";
 import styles from "./SocialProof.module.css";
 
-export default function SocialProof({ heading, subheading, reviews = [], socials = [] }) {
+type Review = { name: string; text: string };
+type Social = { label: string; href: string };
+
+export type SocialProofProps = {
+  heading: string;
+  subheading: string;
+  reviews?: Review[];
+  socials?: Social[];
+};
+
+export default function SocialProof({
+  heading,
+  subheading,
+  reviews = [],
+  socials = [],
+}: SocialProofProps) {
   return (
     <div className={styles.wrap}>
       <div className={styles.header}>
@@ -12,13 +26,7 @@ export default function SocialProof({ heading, subheading, reviews = [], socials
 
         <div className={styles.socials}>
           {socials.map((s) => (
-            <a
-              key={s.label}
-              className={styles.socialBtn}
-              href={s.href}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a key={s.label} className={styles.socialBtn} href={s.href} target="_blank" rel="noreferrer">
               {s.label}
             </a>
           ))}
