@@ -2,10 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import { Button } from './components/Button';
-import { ProductCard } from './components/ProductCard';
-import { CollectionCard } from './components/CollectionCard';
-import { FeedbackCard, type FeedbackCardProps } from './components/FeedbackCard';
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
 import { SplashScreen } from './components/SplashScreen';
 import HomePage from './pages/HomePage';
