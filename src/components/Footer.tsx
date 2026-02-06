@@ -21,6 +21,7 @@ const BG_CREAM = '#FDFBF7';
 export const Footer: React.FC = () => {
   const year = new Date().getFullYear();
 
+  // ---- styles ----
   const chipStyle: React.CSSProperties = {
     display: 'inline-flex',
     alignItems: 'center',
@@ -54,6 +55,23 @@ export const Footer: React.FC = () => {
     backgroundColor: 'rgba(255,255,255,0.68)',
     boxShadow: '0 12px 30px rgba(0,0,0,0.06)',
   };
+
+  // TikTok icon (Lucide does not ship a TikTok icon by default)
+  const TikTokIcon: React.FC<{ size?: number }> = ({ size = 22 }) => (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 48 48"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path
+        d="M30.8 6c.4 4.2 3 7.9 6.9 9.8 1.8.9 3.7 1.4 5.6 1.5v6.3c-2.4 0-4.8-.6-7-1.6-1.2-.6-2.3-1.3-3.3-2.1v14.6c0 6.8-5.5 12.3-12.3 12.3S8.4 41.3 8.4 34.5c0-6.8 5.5-12.3 12.3-12.3.8 0 1.6.1 2.4.2v6.7c-.7-.3-1.5-.5-2.4-.5-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6V6h4.1Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
 
   return (
     <footer className="w-full mt-16">
@@ -118,11 +136,11 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Main grid */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+          {/* Main grid: force equal card heights on md+ */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
             {/* Left: social + newsletter */}
-            <div className="md:col-span-5">
-              <div className="p-6 md:p-7" style={cardStyle}>
+            <div className="md:col-span-5 h-full">
+              <div className="p-6 md:p-7 h-full flex flex-col" style={cardStyle}>
                 <div className="flex items-center justify-between gap-4">
                   <div>
                     <div className="font-semibold" style={{ color: TEXT_BROWN, fontSize: '18px' }}>
@@ -133,6 +151,7 @@ export const Footer: React.FC = () => {
                     </div>
                   </div>
 
+                  {/* Socials: Mail -> TikTok */}
                   <div className="flex items-center gap-3">
                     <a
                       href="#"
@@ -171,8 +190,8 @@ export const Footer: React.FC = () => {
                     </a>
 
                     <a
-                      href="mailto:hello@bonglem.vn"
-                      aria-label="Email"
+                      href="#"
+                      aria-label="TikTok"
                       style={socialBtnStyle}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.borderColor = ACCENT_PINK;
@@ -185,7 +204,7 @@ export const Footer: React.FC = () => {
                         e.currentTarget.style.boxShadow = '0 10px 22px rgba(0,0,0,0.06)';
                       }}
                     >
-                      <Mail size={22} />
+                      <TikTokIcon size={22} />
                     </a>
                   </div>
                 </div>
@@ -236,12 +255,15 @@ export const Footer: React.FC = () => {
                     </button>
                   </div>
                 </div>
+
+                {/* spacer so the card can stretch nicely */}
+                <div className="flex-1" />
               </div>
             </div>
 
             {/* Middle: Contact */}
-            <div className="md:col-span-4">
-              <div className="p-6 md:p-7" style={cardStyle}>
+            <div className="md:col-span-4 h-full">
+              <div className="p-6 md:p-7 h-full flex flex-col" style={cardStyle}>
                 <div className="font-semibold mb-4" style={{ color: TEXT_BROWN, fontSize: '18px' }}>
                   Thông tin liên hệ
                 </div>
@@ -322,15 +344,17 @@ export const Footer: React.FC = () => {
                     fontSize: '14px',
                   }}
                 >
-                  Bạn cần hỗ trợ? Nhắn cho tụi mình qua Instagram hoặc Email — tụi mình phản hồi
+                  Bạn cần hỗ trợ? Nhắn cho tụi mình qua Instagram hoặc TikTok — tụi mình phản hồi
                   nhanh nhất có thể 🌼
                 </div>
+
+                <div className="flex-1" />
               </div>
             </div>
 
-            {/* Right: Policies + NEW clean mascot tile */}
-            <div className="md:col-span-3">
-              <div className="p-6 md:p-7" style={cardStyle}>
+            {/* Right: Policies + NEW TikTok tile (no clipping, centered mascot) */}
+            <div className="md:col-span-3 h-full">
+              <div className="p-6 md:p-7 h-full flex flex-col" style={cardStyle}>
                 <div className="font-semibold mb-4" style={{ color: TEXT_BROWN, fontSize: '18px' }}>
                   Chính sách
                 </div>
@@ -359,24 +383,18 @@ export const Footer: React.FC = () => {
                   </a>
                 </div>
 
-                {/* ✅ Rebuilt tile: clean split layout (no overlap) */}
+                {/* ---- NEW tile: TikTok CTA with centered mascot (never clipped) ---- */}
                 <div
                   className="mt-7 border overflow-hidden"
                   style={{
                     borderRadius: '22px',
                     borderColor: `${TEXT_BROWN}1A`,
-                    background: `linear-gradient(135deg, rgba(244,163,180,0.18), rgba(255,255,255,0.82))`,
+                    background: `linear-gradient(135deg, rgba(244,163,180,0.18), rgba(255,255,255,0.86))`,
                   }}
                 >
-                  <div
-                    className="grid"
-                    style={{
-                      gridTemplateColumns: '1fr 140px',
-                      minHeight: '170px',
-                    }}
-                  >
-                    {/* Left: clean text + CTA */}
-                    <div style={{ padding: '14px 14px 14px 14px' }}>
+                  <div style={{ padding: '14px' }}>
+                    {/* top row */}
+                    <div className="flex items-center justify-between gap-2">
                       <div
                         style={{
                           display: 'inline-flex',
@@ -385,84 +403,93 @@ export const Footer: React.FC = () => {
                           padding: '8px 10px',
                           borderRadius: '999px',
                           border: `1px solid ${TEXT_BROWN}14`,
-                          backgroundColor: 'rgba(255,255,255,0.85)',
+                          backgroundColor: 'rgba(255,255,255,0.88)',
                           color: TEXT_BROWN,
                           fontSize: '12px',
-                          fontWeight: 700,
+                          fontWeight: 800,
                         }}
                       >
                         🌼 Bông Lém
                       </div>
 
+                      {/* TikTok mini button */}
+                      <a
+                        href="#"
+                        aria-label="TikTok"
+                        className="inline-flex items-center justify-center rounded-full border transition"
+                        style={{
+                          width: '40px',
+                          height: '40px',
+                          borderColor: `${TEXT_BROWN}14`,
+                          backgroundColor: 'rgba(255,255,255,0.88)',
+                          color: TEXT_BROWN,
+                        }}
+                        onMouseEnter={(e) => (e.currentTarget.style.borderColor = ACCENT_PINK)}
+                        onMouseLeave={(e) => (e.currentTarget.style.borderColor = `${TEXT_BROWN}14`)}
+                      >
+                        <TikTokIcon size={18} />
+                      </a>
+                    </div>
+
+                    {/* copy */}
+                    <div style={{ marginTop: '10px' }}>
                       <div
                         style={{
-                          marginTop: '10px',
                           color: TEXT_BROWN,
-                          fontWeight: 800,
+                          fontWeight: 900,
                           fontSize: '14px',
-                          lineHeight: 1.25,
+                          lineHeight: 1.2,
                         }}
                       >
-                        Cảm ơn bạn đã ghé chơi!
+                        Follow TikTok của tụi mình!
                       </div>
-
                       <div
                         style={{
                           marginTop: '6px',
                           color: `${TEXT_BROWN}B3`,
                           fontSize: '13px',
                           lineHeight: 1.35,
-                          maxWidth: '210px',
                         }}
                       >
-                        Follow tụi mình để xem sản phẩm mới & ưu đãi nhé.
+                        Video ngắn, sản phẩm mới & content vui 🌼
                       </div>
-
-                      <a
-                        href="#"
-                        className="inline-flex items-center gap-2 mt-4"
-                        style={{
-                          color: TEXT_BROWN,
-                          fontWeight: 700,
-                          fontSize: '13px',
-                          textDecoration: 'none',
-                          width: 'fit-content',
-                          padding: '10px 12px',
-                          borderRadius: '14px',
-                          border: `1px solid ${TEXT_BROWN}1A`,
-                          backgroundColor: 'rgba(255,255,255,0.85)',
-                          boxShadow: '0 10px 22px rgba(0,0,0,0.05)',
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.borderColor = ACCENT_PINK;
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`;
-                        }}
-                      >
-                        Xem Instagram <ArrowRight size={16} />
-                      </a>
                     </div>
 
-                    {/* Right: mascot zone (separate, clean) */}
+                    {/* mascot center area */}
                     <div
                       style={{
-                        position: 'relative',
-                        borderLeft: `1px solid ${TEXT_BROWN}14`,
+                        marginTop: '10px',
+                        borderRadius: '18px',
+                        border: `1px solid ${TEXT_BROWN}14`,
                         background:
-                          'radial-gradient(circle at 30% 20%, rgba(255,255,255,0.9), rgba(244,163,180,0.12) 55%, rgba(244,163,180,0.18) 100%)',
+                          'radial-gradient(circle at 30% 20%, rgba(255,255,255,0.92), rgba(244,163,180,0.14) 55%, rgba(244,163,180,0.18) 100%)',
+                        height: '120px',
+                        position: 'relative',
+                        overflow: 'hidden',
                       }}
                     >
-                      {/* subtle badge behind */}
+                      {/* decorative blobs */}
                       <div
                         style={{
                           position: 'absolute',
-                          top: '14px',
-                          right: '14px',
-                          width: '44px',
-                          height: '44px',
+                          width: '120px',
+                          height: '120px',
                           borderRadius: '999px',
-                          backgroundColor: 'rgba(244,163,180,0.25)',
+                          left: '-40px',
+                          top: '-50px',
+                          backgroundColor: 'rgba(244,163,180,0.18)',
+                          filter: 'blur(0px)',
+                        }}
+                      />
+                      <div
+                        style={{
+                          position: 'absolute',
+                          width: '140px',
+                          height: '140px',
+                          borderRadius: '999px',
+                          right: '-60px',
+                          bottom: '-70px',
+                          backgroundColor: 'rgba(244,163,180,0.22)',
                           filter: 'blur(0px)',
                         }}
                       />
@@ -473,15 +500,43 @@ export const Footer: React.FC = () => {
                         style={{
                           position: 'absolute',
                           left: '50%',
-                          bottom: '-8px',
-                          transform: 'translateX(-50%)',
-                          width: '120px',
-                          filter: 'drop-shadow(0px 18px 24px rgba(0,0,0,0.14))',
+                          top: '50%',
+                          transform: 'translate(-50%, -50%)',
+                          width: '92px', // safe size; never clipped
+                          maxWidth: '92px',
+                          filter: 'drop-shadow(0px 14px 20px rgba(0,0,0,0.14))',
                         }}
                       />
                     </div>
+
+                    {/* CTA button */}
+                    <a
+                      href="#"
+                      className="inline-flex items-center justify-center gap-2 mt-10"
+                      style={{
+                        width: '100%',
+                        color: '#fff',
+                        fontWeight: 800,
+                        fontSize: '13px',
+                        textDecoration: 'none',
+                        padding: '11px 12px',
+                        borderRadius: '16px',
+                        backgroundColor: ACCENT_PINK,
+                        boxShadow: '0 12px 26px rgba(244,163,180,0.35)',
+                      }}
+                      onMouseEnter={(e) =>
+                        (e.currentTarget.style.boxShadow = '0 14px 28px rgba(244,163,180,0.45)')
+                      }
+                      onMouseLeave={(e) =>
+                        (e.currentTarget.style.boxShadow = '0 12px 26px rgba(244,163,180,0.35)')
+                      }
+                    >
+                      Xem TikTok <ArrowRight size={16} />
+                    </a>
                   </div>
                 </div>
+
+                <div className="flex-1" />
               </div>
             </div>
           </div>
