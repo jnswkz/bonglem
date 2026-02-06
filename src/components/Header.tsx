@@ -47,7 +47,7 @@ export const Header: React.FC<HeaderProps> = ({
         className="text-white font-medium overflow-hidden whitespace-nowrap relative flex items-center"
         style={{
           backgroundColor: ACCENT_PINK,
-          height: '48px', // EXACTLY like before
+          height: '48px',
           fontSize: '14px',
         }}
       >
@@ -81,7 +81,7 @@ export const Header: React.FC<HeaderProps> = ({
       >
         <div className="mx-auto max-w-7xl px-6 md:px-10 py-6">
           <div className="flex items-center justify-between gap-4">
-            {/* Logo (UNCHANGED layout) + Mascot (now static, no hover) */}
+            {/* Logo (layout unchanged) + Mascot (static, responsive position/size) */}
             <div className="relative">
               <button
                 onClick={() => onNavigate('home')}
@@ -92,7 +92,7 @@ export const Header: React.FC<HeaderProps> = ({
                   className="font-serif font-bold tracking-wider transition-colors"
                   style={{
                     color: TEXT_BROWN,
-                    fontSize: '44px', // EXACTLY like before
+                    fontSize: '44px',
                     lineHeight: 1,
                   }}
                 >
@@ -100,23 +100,25 @@ export const Header: React.FC<HeaderProps> = ({
                 </span>
               </button>
 
-              {/* Mascot: ALWAYS visible, positioned left of the text (NO hover) */}
+              {/* Mascot: ALWAYS visible on md+, positioned left of text, responsive to avoid cutting */}
               <img
-                src="/mascot.png" // IMPORTANT: keep EXACT filename/path
+                src="/mascot.png" // keep exact filename/path as in your original
                 alt="Bông Lém Mascot"
                 className="pointer-events-none absolute hidden md:block"
                 style={{
-                  width: '70px', // good visible size like your example
-                  height: '70px',
+                  // Bigger on laptop, safe on iPad (no edge cutting)
+                  width: 'clamp(66px, 6vw, 86px)',
+                  height: 'clamp(66px, 6vw, 86px)',
                   top: '50%',
-                  left: '-86px', // puts mascot to the LEFT of the brand text
+                  // On smaller md screens (iPad), left becomes less negative => mascot moves inward
+                  left: 'clamp(-72px, -6vw, -92px)',
                   transform: 'translateY(-50%)',
                   filter: 'drop-shadow(0px 10px 18px rgba(0,0,0,0.18))',
                 }}
               />
             </div>
 
-            {/* Desktop Navigation (UNCHANGED) */}
+            {/* Desktop Navigation */}
             <div className="hidden lg:flex flex-1 justify-center">
               <div
                 className="flex items-center gap-2 px-3 py-3 rounded-full border shadow-sm"
@@ -134,7 +136,7 @@ export const Header: React.FC<HeaderProps> = ({
                         className="relative rounded-full font-medium transition-all"
                         style={{
                           padding: '12px 22px',
-                          fontSize: '18px', // EXACTLY like before
+                          fontSize: '18px',
                           color: active ? '#FFFFFF' : `${TEXT_BROWN}B3`,
                           backgroundColor: active ? ACCENT_PINK : 'transparent',
                         }}
@@ -154,7 +156,7 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
             </div>
 
-            {/* Actions (UNCHANGED) */}
+            {/* Actions */}
             <div className="flex items-center gap-4" style={{ color: TEXT_BROWN }}>
               <a
                 href="#"
@@ -222,7 +224,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Mobile Menu (UNCHANGED) */}
+        {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="lg:hidden border-t" style={{ borderColor: `${TEXT_BROWN}1A` }}>
             <div className="px-6 py-6 flex flex-col gap-3" style={{ backgroundColor: BG_CREAM }}>
@@ -239,9 +241,7 @@ export const Header: React.FC<HeaderProps> = ({
                     style={{
                       fontSize: '20px',
                       color: active ? '#FFFFFF' : TEXT_BROWN,
-                      backgroundColor: active
-                        ? ACCENT_PINK
-                        : 'rgba(255,255,255,0.7)',
+                      backgroundColor: active ? ACCENT_PINK : 'rgba(255,255,255,0.7)',
                       border: `1px solid ${TEXT_BROWN}1A`,
                     }}
                   >
