@@ -1,7 +1,20 @@
-import React from "react";
 import styles from "./Hero.module.css";
 
-function smoothScrollTo(hash) {
+type Cta = { label: string; href: string };
+type Img = { src: string; alt?: string };
+
+export type HeroProps = {
+  brand: string;
+  headline: string;
+  subline: string;
+  primaryCta: Cta;
+  secondaryCta: Cta;
+  trustChips?: string[];
+  heroImage?: Img;
+  mascotSticker?: Img;
+};
+
+function smoothScrollTo(hash: string) {
   const el = document.querySelector(hash);
   if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
@@ -15,9 +28,9 @@ export default function Hero({
   trustChips = [],
   heroImage,
   mascotSticker,
-}) {
-  const onAnchor = (e, href) => {
-    if (href?.startsWith("#")) {
+}: HeroProps) {
+  const onAnchor = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("#")) {
       e.preventDefault();
       smoothScrollTo(href);
     }
@@ -50,7 +63,7 @@ export default function Hero({
             </a>
           </div>
 
-          {trustChips?.length ? (
+          {trustChips.length ? (
             <div className={styles.chips}>
               {trustChips.map((t) => (
                 <span key={t} className={styles.chip}>
@@ -69,7 +82,7 @@ export default function Hero({
                 src={heroImage?.src}
                 alt={heroImage?.alt || "Hero"}
                 onError={(e) => {
-                  e.currentTarget.style.display = "none";
+                  (e.currentTarget as HTMLImageElement).style.display = "none";
                 }}
               />
 
@@ -85,7 +98,9 @@ export default function Hero({
                   className={styles.sticker}
                   src={mascotSticker.src}
                   alt={mascotSticker.alt || ""}
-                  onError={(e) => (e.currentTarget.style.display = "none")}
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).style.display = "none";
+                  }}
                 />
               ) : null}
             </div>
