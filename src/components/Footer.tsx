@@ -1,33 +1,15 @@
 import React from 'react';
-import { Facebook, Instagram, Mail, MapPin, Phone, ShoppingBag } from 'lucide-react';
+import { Facebook, Instagram, Mail, MapPin, Phone } from 'lucide-react';
 
-type Page =
-  | 'home'
-  | 'story'
-  | 'products'
-  | 'detail'
-  | 'feedback'
-  | 'contact'
-  | 'cart'
-  | 'checkout';
-
-interface FooterProps {
-  onNavigate: (page: Page) => void;
-}
-
-/**
- * Brand Tokens (match your header)
- */
 const ACCENT_PINK = '#F4A3B4';
 const TEXT_BROWN = '#5C4033';
 const BG_CREAM = '#FDFBF7';
 
-export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+export const Footer: React.FC = () => {
   const year = new Date().getFullYear();
 
   return (
     <footer className="w-full mt-14">
-      {/* Main Footer Panel */}
       <div
         className="border-t"
         style={{
@@ -77,9 +59,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                         color: TEXT_BROWN,
                       }}
                       onMouseEnter={(e) => (e.currentTarget.style.borderColor = ACCENT_PINK)}
-                      onMouseLeave={(e) =>
-                        (e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`)
-                      }
+                      onMouseLeave={(e) => (e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`)}
                     >
                       <Instagram size={20} />
                     </a>
@@ -96,9 +76,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                         color: TEXT_BROWN,
                       }}
                       onMouseEnter={(e) => (e.currentTarget.style.borderColor = ACCENT_PINK)}
-                      onMouseLeave={(e) =>
-                        (e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`)
-                      }
+                      onMouseLeave={(e) => (e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`)}
                     >
                       <Facebook size={20} />
                     </a>
@@ -115,77 +93,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                         color: TEXT_BROWN,
                       }}
                       onMouseEnter={(e) => (e.currentTarget.style.borderColor = ACCENT_PINK)}
-                      onMouseLeave={(e) =>
-                        (e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`)
-                      }
+                      onMouseLeave={(e) => (e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`)}
                     >
                       <Mail size={20} />
                     </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Newsletter / CTA */}
-              <div
-                className="mt-8 rounded-3xl border p-5 md:p-6"
-                style={{
-                  backgroundColor: 'rgba(255,255,255,0.65)',
-                  borderColor: `${TEXT_BROWN}1A`,
-                }}
-              >
-                <div className="flex items-start gap-3">
-                  <div
-                    className="flex items-center justify-center rounded-2xl"
-                    style={{
-                      width: '44px',
-                      height: '44px',
-                      backgroundColor: 'rgba(244,163,180,0.35)',
-                      color: TEXT_BROWN,
-                    }}
-                  >
-                    <ShoppingBag size={20} />
-                  </div>
-                  <div className="flex-1">
-                    <div className="font-semibold" style={{ color: TEXT_BROWN, fontSize: '16px' }}>
-                      Nhận ưu đãi & sản phẩm mới
-                    </div>
-                    <div className="text-sm mt-1" style={{ color: `${TEXT_BROWN}B3` }}>
-                      Đăng ký email để nhận thông tin khuyến mãi (không spam).
-                    </div>
-
-                    <div className="mt-4 flex flex-col sm:flex-row gap-3">
-                      <input
-                        type="email"
-                        placeholder="Email của bạn"
-                        className="w-full rounded-2xl border px-4 py-3 outline-none"
-                        style={{
-                          backgroundColor: 'rgba(255,255,255,0.85)',
-                          borderColor: `${TEXT_BROWN}1A`,
-                          color: TEXT_BROWN,
-                        }}
-                      />
-                      <button
-                        className="rounded-2xl px-5 py-3 font-semibold transition"
-                        style={{
-                          backgroundColor: ACCENT_PINK,
-                          color: '#fff',
-                          boxShadow: '0 10px 24px rgba(244,163,180,0.35)',
-                        }}
-                        onMouseEnter={(e) =>
-                          (e.currentTarget.style.boxShadow =
-                            '0 12px 26px rgba(244,163,180,0.45)')
-                        }
-                        onMouseLeave={(e) =>
-                          (e.currentTarget.style.boxShadow =
-                            '0 10px 24px rgba(244,163,180,0.35)')
-                        }
-                        onClick={() => {
-                          // Hook up later to your backend / email tool
-                        }}
-                      >
-                        Đăng ký
-                      </button>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -211,9 +122,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   >
                     <MapPin size={18} />
                   </span>
-                  <span>
-                    123 Đường Cánh Hoa, Quận 1, TP. Hồ Chí Minh
-                  </span>
+                  <span>123 Đường Cánh Hoa, Quận 1, TP. Hồ Chí Minh</span>
                 </div>
 
                 <div className="flex items-start gap-3">
@@ -248,48 +157,26 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   <span>hello@bonglem.vn</span>
                 </div>
               </div>
-
-              <div
-                className="mt-6 rounded-3xl border p-5"
-                style={{
-                  borderColor: `${TEXT_BROWN}1A`,
-                  backgroundColor: 'rgba(255,255,255,0.6)',
-                }}
-              >
-                <div className="font-semibold" style={{ color: TEXT_BROWN }}>
-                  Giờ hoạt động
-                </div>
-                <div className="mt-2 text-sm" style={{ color: `${TEXT_BROWN}B3` }}>
-                  Mon–Fri: 09:00–18:00 <br />
-                  Sat–Sun: 10:00–16:00
-                </div>
-              </div>
             </div>
 
-            {/* Policies / Links + Mascot Illustration */}
+            {/* Policies + Mascot */}
             <div className="md:col-span-3">
               <div className="font-semibold mb-4" style={{ color: TEXT_BROWN, fontSize: '18px' }}>
                 Chính sách
               </div>
 
               <div className="flex flex-col gap-3">
-                {[
-                  { label: 'Chính sách mua hàng', to: 'products' as Page },
-                  { label: 'Chính sách đổi trả', to: 'feedback' as Page },
-                  { label: 'Liên hệ', to: 'contact' as Page },
-                ].map((link) => (
-                  <button
-                    key={link.label}
-                    onClick={() => onNavigate(link.to)}
-                    className="text-left underline-offset-4 hover:underline transition"
-                    style={{ color: `${TEXT_BROWN}CC`, fontSize: '15px' }}
-                  >
-                    {link.label}
-                  </button>
-                ))}
+                <a href="#products" className="text-left hover:underline underline-offset-4" style={{ color: `${TEXT_BROWN}CC` }}>
+                  Chính sách mua hàng
+                </a>
+                <a href="#returns" className="text-left hover:underline underline-offset-4" style={{ color: `${TEXT_BROWN}CC` }}>
+                  Chính sách đổi trả
+                </a>
+                <a href="#contact" className="text-left hover:underline underline-offset-4" style={{ color: `${TEXT_BROWN}CC` }}>
+                  Liên hệ
+                </a>
               </div>
 
-              {/* Right-side mascot (like your orange example) */}
               <div className="mt-8 flex justify-end">
                 <div
                   className="relative rounded-[28px] border overflow-hidden"
@@ -319,10 +206,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                       transform: 'rotate(-4deg)',
                     }}
                   />
-                  <div
-                    className="absolute left-4 top-4 text-sm font-semibold"
-                    style={{ color: TEXT_BROWN }}
-                  >
+                  <div className="absolute left-4 top-4 text-sm font-semibold" style={{ color: TEXT_BROWN }}>
                     “Cảm ơn bạn đã ghé chơi!”
                   </div>
                 </div>
@@ -337,21 +221,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           >
             <div>© {year} BÔNG LÉM. Made with love.</div>
             <div className="flex items-center gap-3">
-              <button
-                className="underline-offset-4 hover:underline transition"
-                style={{ color: `${TEXT_BROWN}B3` }}
-                onClick={() => onNavigate('contact')}
-              >
+              <a href="#contact" className="hover:underline underline-offset-4" style={{ color: `${TEXT_BROWN}B3` }}>
                 Contact
-              </button>
+              </a>
               <span style={{ opacity: 0.5 }}>•</span>
-              <button
-                className="underline-offset-4 hover:underline transition"
-                style={{ color: `${TEXT_BROWN}B3` }}
-                onClick={() => onNavigate('products')}
-              >
+              <a href="#products" className="hover:underline underline-offset-4" style={{ color: `${TEXT_BROWN}B3` }}>
                 Shop
-              </button>
+              </a>
             </div>
           </div>
         </div>
