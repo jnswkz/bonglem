@@ -1,7 +1,12 @@
-import React from "react";
 import styles from "./QuoteBand.module.css";
 
-export default function QuoteBand({ quote, subline, watermarkSrc }) {
+export type QuoteBandProps = {
+  quote: string;
+  subline: string;
+  watermarkSrc?: string;
+};
+
+export default function QuoteBand({ quote, subline, watermarkSrc }: QuoteBandProps) {
   return (
     <div className={styles.wrap}>
       <div className={styles.card}>
@@ -11,7 +16,9 @@ export default function QuoteBand({ quote, subline, watermarkSrc }) {
             src={watermarkSrc}
             alt=""
             aria-hidden="true"
-            onError={(e) => (e.currentTarget.style.display = "none")}
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).style.display = "none";
+            }}
           />
         ) : null}
 
