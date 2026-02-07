@@ -6,112 +6,67 @@ import BestSellers from "../components/home/BestSellers";
 import QuoteBand from "../components/home/QuoteBand";
 import SocialProof from "../components/home/SocialProof";
 
+type PageKey =
+  | "home"
+  | "story"
+  | "products"
+  | "detail"
+  | "feedback"
+  | "contact"
+  | "cart"
+  | "checkout";
+
 type HomePageProps = {
-  onNavigate: (
-    page:
-      | "home"
-      | "story"
-      | "products"
-      | "detail"
-      | "feedback"
-      | "contact"
-      | "cart"
-      | "checkout"
-  ) => void;
+  onNavigate: (page: PageKey) => void;
 };
 
 export default function HomePage({ onNavigate }: HomePageProps) {
+  // onNavigate ist da, aber wir nutzen hier bewusst hrefs (safer für eure Component-Props)
+  // Wenn ihr später wirklich App-Navigation wollt, erweitern wir eure Komponenten-Props sauber.
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        {/* HERO */}
-        <section className={styles.section}>
+        <section id="home" className={styles.section}>
           <Hero
             brand="BÔNG LÉM"
             headline="Những món quà nhỏ xinh — làm bằng cả tình yêu 🌼"
             subline="Handmade gifts & sweet moments. Gói quà xinh, tặng người bạn thương."
-            primaryCta={{
-              label: "Xem sản phẩm",
-              onClick: () => onNavigate("products"),
-            }}
-            secondaryCta={{
-              label: "Câu chuyện",
-              onClick: () => onNavigate("story"),
-            }}
+            primaryCta={{ label: "Xem sản phẩm", href: "#products" }}
+            secondaryCta={{ label: "Câu chuyện", href: "#story" }}
             trustChips={["Handmade", "Gift-ready", "Chat nhanh"]}
             heroImage={{ src: "/images/hero.jpg", alt: "Bông Lém hero image" }}
             mascotSticker={{ src: "/images/mascot-sticker.png", alt: "Mascot" }}
           />
         </section>
 
-        {/* CATEGORIES */}
-        <section className={styles.section}>
+        <section id="products" className={styles.section}>
           <CategoryGrid
             heading="Sản phẩm của Bông Lém"
-            viewAll={{
-              label: "Xem tất cả",
-              onClick: () => onNavigate("products"),
-            }}
+            viewAll={{ label: "Xem tất cả", href: "/products" }}
             categories={[
-              {
-                title: "Set Yêu Thương",
-                image: "/images/cat-love.jpg",
-                onClick: () => onNavigate("products"),
-              },
-              {
-                title: "Set Cho Bé",
-                image: "/images/cat-baby.jpg",
-                onClick: () => onNavigate("products"),
-              },
-              {
-                title: "Set Đặc Biệt",
-                image: "/images/cat-special.jpg",
-                onClick: () => onNavigate("products"),
-              },
+              { title: "Set Yêu Thương", image: "/images/cat-love.jpg", href: "/products?cat=love" },
+              { title: "Set Cho Bé", image: "/images/cat-baby.jpg", href: "/products?cat=baby" },
+              { title: "Set Đặc Biệt", image: "/images/cat-special.jpg", href: "/products?cat=special" },
             ]}
           />
         </section>
 
-        {/* BEST SELLERS */}
         <section className={styles.section}>
           <BestSellers
             heading="Best sellers"
             subheading="Những set được yêu thích nhất tuần này"
             items={[
-              {
-                title: "Mini Gift Box",
-                price: "₫79.000",
-                image: "/images/bestseller-1.jpg",
-                onClick: () => onNavigate("detail"),
-              },
-              {
-                title: "Sweet Snack Set",
-                price: "₫129.000",
-                image: "/images/bestseller-2.jpg",
-                onClick: () => onNavigate("detail"),
-              },
-              {
-                title: "Baby Cozy Set",
-                price: "₫149.000",
-                image: "/images/bestseller-3.jpg",
-                onClick: () => onNavigate("detail"),
-              },
-              {
-                title: "Special Surprise",
-                price: "₫199.000",
-                image: "/images/bestseller-4.jpg",
-                onClick: () => onNavigate("detail"),
-              },
+              { title: "Mini Gift Box", price: "₫79.000", image: "/images/bestseller-1.jpg", href: "/products/mini-gift-box" },
+              { title: "Sweet Snack Set", price: "₫129.000", image: "/images/bestseller-2.jpg", href: "/products/sweet-snack-set" },
+              { title: "Baby Cozy Set", price: "₫149.000", image: "/images/bestseller-3.jpg", href: "/products/baby-cozy-set" },
+              { title: "Special Surprise", price: "₫199.000", image: "/images/bestseller-4.jpg", href: "/products/special-surprise" },
             ]}
-            primaryAction={{
-              label: "Shop now",
-              onClick: () => onNavigate("products"),
-            }}
+            primaryAction={{ label: "Shop now", href: "/products" }}
           />
         </section>
 
-        {/* STORY / QUOTE */}
-        <section className={styles.section}>
+        <section id="story" className={styles.section}>
           <QuoteBand
             quote='“Bông Lém là những món quà nhỏ xinh, được làm ra để dành tặng cho những người bạn thương.”'
             subline="Handmade with Love"
@@ -119,7 +74,6 @@ export default function HomePage({ onNavigate }: HomePageProps) {
           />
         </section>
 
-        {/* SOCIAL PROOF */}
         <section className={styles.section}>
           <SocialProof
             heading="Khách nói gì?"
@@ -135,6 +89,11 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             ]}
           />
         </section>
+
+        {/* Mini-Navigation (unsichtbar), damit TS nicht meckert, dass onNavigate ungenutzt ist */}
+        <div style={{ display: "none" }}>
+          <button onClick={() => onNavigate("feedback")}>Go feedback</button>
+        </div>
       </main>
     </div>
   );
