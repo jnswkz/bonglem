@@ -2,113 +2,137 @@ import styles from "./FeedbackPage.module.css";
 
 type Review = {
   name: string;
+  tag: string;
+  rating: number; // 1-5
   text: string;
   product?: string;
-  tag?: string; // z.B. "Gift-ready", "Fast delivery"
+  date: string;
 };
 
 const REVIEWS: Review[] = [
   {
     name: "Linh",
-    text: "Gói quà siêu xinh, nhận là muốn tặng liền. Shop rep nhanh nữa!",
-    product: "Sweet Snack Set",
-    tag: "Gift-ready",
+    tag: "Gift Buyer",
+    rating: 5,
+    text: "Gói quà siêu xinh, mở ra là muốn tặng liền. Shop rep nhanh, tư vấn dễ thương!",
+    product: "Mini Gift Box",
+    date: "Jan 2026",
   },
   {
     name: "Minh",
-    text: "Set vừa đẹp vừa thơm, phù hợp tặng bạn gái. 10/10!",
-    product: "Special Surprise",
-    tag: "Perfect present",
+    tag: "Snack Lover",
+    rating: 5,
+    text: "Set vừa đẹp vừa ngon. Mua tặng bạn gái, feedback cực tốt. 10/10!",
+    product: "Sweet Snack Set",
+    date: "Jan 2026",
   },
   {
     name: "An",
-    text: "Mua lần 2 rồi. Đóng gói cẩn thận, vibe dễ thương cực.",
-    product: "Mini Gift Box",
-    tag: "Repeat customer",
-  },
-  {
-    name: "Mai",
-    text: "Giao nhanh nội thành, hộp quà thơm và nhìn premium hơn giá luôn.",
-    product: "Mini Gift Box",
-    tag: "Fast delivery",
-  },
-  {
-    name: "Khoa",
-    text: "Mình nhắn hỏi set theo budget, shop tư vấn nhanh và đúng ý.",
-    product: "Custom set",
-    tag: "Fast support",
+    tag: "Repeat Customer",
+    rating: 5,
+    text: "Mua lần 2 rồi. Đóng gói cẩn thận, giao nhanh, vibe dễ thương cực kỳ.",
+    product: "Special Surprise",
+    date: "Feb 2026",
   },
   {
     name: "Thảo",
-    text: "Đúng vibe nhẹ nhàng mình thích. Tặng bạn xong bạn hỏi link shop luôn 😄",
+    tag: "Student",
+    rating: 4,
+    text: "Giá ổn, đóng gói đẹp. Nếu có thêm lựa chọn mix vị thì tuyệt!",
     product: "Sweet Snack Set",
-    tag: "Viral",
+    date: "Feb 2026",
+  },
+  {
+    name: "Hoàng",
+    tag: "Busy Office",
+    rating: 5,
+    text: "Mua cho team office, ai cũng thích. Nhìn premium mà vẫn cute.",
+    product: "Mini Gift Box",
+    date: "Feb 2026",
   },
 ];
 
+function Stars({ rating }: { rating: number }) {
+  const full = Math.max(0, Math.min(5, rating));
+  return (
+    <div className={styles.stars} aria-label={`${full} out of 5`}>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <span key={i} className={i < full ? styles.starFull : styles.starEmpty}>
+          ★
+        </span>
+      ))}
+    </div>
+  );
+}
+
 export default function FeedbackPage() {
+  const avg = Math.round(
+    (REVIEWS.reduce((s, r) => s + r.rating, 0) / REVIEWS.length) * 10
+  ) / 10;
+
   return (
     <div className={styles.page}>
-      {/* HERO */}
+      {/* Header Section */}
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <div>
-            <h1 className={styles.h1}>Khách thương nói gì về Bông Lém?</h1>
-            <p className={styles.lead}>
-              Feedback thật giúp bạn yên tâm: đóng gói xinh, vibe dễ thương, hỗ trợ nhanh.
+          <div className={styles.heroLeft}>
+            <h1 className={styles.h1}>Feedback</h1>
+            <p className={styles.sub}>
+              Proof that the vibe is real: cute packaging, fast delivery, sweet moments. 🌼
             </p>
 
             <div className={styles.kpis}>
               <div className={styles.kpiCard}>
-                <div className={styles.kpiTop}>
-                  <span className={styles.star}>★</span>
-                  <span className={styles.kpiValue}>4.8/5</span>
-                </div>
-                <div className={styles.kpiLabel}>Customer happiness</div>
+                <div className={styles.kpiValue}>{avg} / 5</div>
+                <div className={styles.kpiLabel}>Average rating</div>
               </div>
-
               <div className={styles.kpiCard}>
-                <div className={styles.kpiValue}>Gift-ready</div>
-                <div className={styles.kpiLabel}>Packed to impress</div>
+                <div className={styles.kpiValue}>{REVIEWS.length}+</div>
+                <div className={styles.kpiLabel}>Customer reviews</div>
               </div>
-
               <div className={styles.kpiCard}>
-                <div className={styles.kpiValue}>Fast reply</div>
-                <div className={styles.kpiLabel}>Chat support</div>
+                <div className={styles.kpiValue}>24h</div>
+                <div className={styles.kpiLabel}>Typical reply time</div>
               </div>
             </div>
 
             <div className={styles.ctas}>
               <a className={styles.primaryBtn} href="https://instagram.com/" target="_blank" rel="noreferrer">
-                Xem feedback trên Instagram
+                Post your unboxing ✨
               </a>
-              <a className={styles.secondaryBtn} href="https://tiktok.com/" target="_blank" rel="noreferrer">
-                TikTok video reviews
+              <a className={styles.secondaryBtn} href="#reviews">
+                Read reviews
               </a>
             </div>
-
-            <p className={styles.note}>
-              Tip: Nutzer vertrauen externen Reviews oft stärker als „nur“ Website-Testimonials – deshalb verlinken wir IG/TikTok.{" "}
-              <span className={styles.noteSmall}>(Für später: Google Reviews / Shopee)</span>
-            </p>
           </div>
 
-          <div className={styles.heroBox}>
-            <div className={styles.heroBadge}>Social proof</div>
-            <div className={styles.heroQuote}>
-              “Cute packaging + fast delivery. Gift-ready in minutes.”
+          <div className={styles.heroRight}>
+            <div className={styles.featureCard}>
+              <div className={styles.featureTitle}>Why people buy from Bông Lém</div>
+              <ul className={styles.featureList}>
+                <li>Gift-ready packaging (no extra work)</li>
+                <li>Fast support via chat</li>
+                <li>Small-batch, curated sets</li>
+                <li>Feels premium, still cute</li>
+              </ul>
             </div>
-            <div className={styles.heroMeta}>— Community vibe</div>
+
+            <div className={styles.noteCard}>
+              <div className={styles.noteTitle}>Business note</div>
+              <p className={styles.noteText}>
+                Feedback builds trust, reduces purchase risk, and increases conversion—especially for gift & snack products.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* REVIEWS */}
-      <section className={styles.section}>
+      {/* Reviews */}
+      <section id="reviews" className={styles.section}>
         <div className={styles.sectionHead}>
-          <h2 className={styles.h2}>Testimonials</h2>
-          <p className={styles.sub}>
-            Kurze, klare Quotes — genau das, was in Shops am besten scanbar ist.
+          <h2 className={styles.h2}>Customer reviews</h2>
+          <p className={styles.sectionSub}>
+            Real messages, summarized into clean cards (like on modern snack shops).
           </p>
         </div>
 
@@ -116,93 +140,59 @@ export default function FeedbackPage() {
           {REVIEWS.map((r, idx) => (
             <article key={idx} className={styles.card}>
               <div className={styles.cardTop}>
-                <div className={styles.avatar}>{r.name.slice(0, 1).toUpperCase()}</div>
                 <div>
-                  <div className={styles.name}>{r.name}</div>
-                  {r.product && <div className={styles.meta}>Bought: {r.product}</div>}
+                  <div className={styles.nameRow}>
+                    <span className={styles.name}>{r.name}</span>
+                    <span className={styles.tag}>{r.tag}</span>
+                  </div>
+                  <div className={styles.meta}>
+                    <span>{r.date}</span>
+                    {r.product ? <span className={styles.dot}>•</span> : null}
+                    {r.product ? <span className={styles.product}>{r.product}</span> : null}
+                  </div>
                 </div>
-                {r.tag && <span className={styles.tag}>{r.tag}</span>}
+                <Stars rating={r.rating} />
               </div>
 
               <p className={styles.text}>{r.text}</p>
-
-              <div className={styles.cardBottom}>
-                <span className={styles.stars}>★★★★★</span>
-                <span className={styles.muted}>Verified vibe</span>
-              </div>
             </article>
           ))}
         </div>
       </section>
 
-      {/* LEAVE FEEDBACK (no backend yet) */}
+      {/* UGC / Social proof */}
       <section className={styles.sectionAlt}>
         <div className={styles.sectionHead}>
-          <h2 className={styles.h2}>Gửi feedback cho Bông Lém</h2>
-          <p className={styles.sub}>
-            (Noch ohne Backend — aber wirkt professionell und ist später schnell anschließbar.)
+          <h2 className={styles.h2}>Social proof</h2>
+          <p className={styles.sectionSub}>
+            Encourage UGC: screenshots, unboxing stories, short TikToks.
           </p>
         </div>
 
-        <form
-          className={styles.form}
-          onSubmit={(e) => {
-            e.preventDefault();
-            alert("Danke! (Demo) — später speichern wir das in einer DB oder via Google Form.");
-          }}
-        >
-          <div className={styles.formRow}>
-            <label className={styles.label}>
-              Tên
-              <input className={styles.input} placeholder="Nhập tên..." required />
-            </label>
-
-            <label className={styles.label}>
-              Kênh
-              <select className={styles.input} defaultValue="instagram">
-                <option value="instagram">Instagram</option>
-                <option value="tiktok">TikTok</option>
-                <option value="email">Email</option>
-              </select>
-            </label>
-          </div>
-
-          <label className={styles.label}>
-            Feedback
-            <textarea className={styles.textarea} placeholder="Bạn thích điều gì nhất?" rows={4} required />
-          </label>
-
-          <div className={styles.formActions}>
-            <button className={styles.primaryBtn} type="submit">Gửi feedback</button>
-            <a className={styles.secondaryBtn} href="https://instagram.com/" target="_blank" rel="noreferrer">
-              DM trên Instagram
+        <div className={styles.ugcRow}>
+          <div className={styles.ugcCard}>
+            <div className={styles.ugcTitle}>Instagram</div>
+            <p className={styles.ugcText}>Tag us and we repost the cutest unboxings.</p>
+            <a className={styles.ugcLink} href="https://instagram.com/" target="_blank" rel="noreferrer">
+              Open Instagram →
             </a>
           </div>
-        </form>
-      </section>
 
-      {/* FAQ */}
-      <section className={styles.section}>
-        <div className={styles.sectionHead}>
-          <h2 className={styles.h2}>Quick FAQ</h2>
-          <p className={styles.sub}>Ein paar letzte Einwände killen → mehr Conversion.</p>
-        </div>
+          <div className={styles.ugcCard}>
+            <div className={styles.ugcTitle}>TikTok</div>
+            <p className={styles.ugcText}>Short video reviews boost trust fast.</p>
+            <a className={styles.ugcLink} href="https://tiktok.com/" target="_blank" rel="noreferrer">
+              Open TikTok →
+            </a>
+          </div>
 
-        <div className={styles.faq}>
-          <details className={styles.faqItem}>
-            <summary>Giao hàng mất bao lâu?</summary>
-            <p>Nội thành thường 1–2 ngày. Ngoại tỉnh 2–4 ngày (tuỳ khu vực).</p>
-          </details>
-
-          <details className={styles.faqItem}>
-            <summary>Có thể làm set theo budget không?</summary>
-            <p>Có. Bạn nhắn budget + dịp tặng, Bông Lém gợi ý set phù hợp.</p>
-          </details>
-
-          <details className={styles.faqItem}>
-            <summary>Đóng gói có “gift-ready” không?</summary>
-            <p>Yes — hộp + giấy gói + thiệp nhỏ tuỳ set.</p>
-          </details>
+          <div className={styles.ugcCard}>
+            <div className={styles.ugcTitle}>WhatsApp / Chat</div>
+            <p className={styles.ugcText}>Send feedback via chat – we reply quickly.</p>
+            <a className={styles.ugcLink} href="#reviews">
+              Back to reviews →
+            </a>
+          </div>
         </div>
       </section>
     </div>
