@@ -9,18 +9,27 @@ import HomePage from "./pages/HomePage";
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
-  // Wir lassen deine Navigation-Props am Header dran,
-  // aber halten das App minimal stabil für den Deploy.
   const [currentPage, setCurrentPage] = useState<
     "home" | "story" | "products" | "detail" | "feedback" | "contact" | "cart" | "checkout"
   >("home");
 
-  // Platzhalter (Header erwartet cartCount)
-  const cartCount = 0;
-
   useEffect(() => {
     if (!isLoading) window.scrollTo(0, 0);
   }, [currentPage, isLoading]);
+
+  // Wichtig: Header will cartCount sehen – wenn du Cart später wieder nutzt,
+  // kannst du hier wieder echte Logik reinbauen.
+  const cartCount = 0;
+
+  // Platzhalter-Seiten (damit die Leiste sofort “arbeitet”)
+  const Placeholder = ({ title }: { title: string }) => (
+    <div className="max-w-5xl mx-auto px-6 py-16">
+      <h1 className="text-3xl font-bold text-[#5C4033]">{title}</h1>
+      <p className="mt-2 text-[#5C4033]/70">
+        Seite ist verlinkt – Inhalt bauen wir als nächstes.
+      </p>
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-[#FDFBF7] font-sans selection:bg-[#808000]/20 selection:text-[#5C4033]">
@@ -31,13 +40,30 @@ const App: React.FC = () => {
       <motion.div
         initial={{ opacity: 0, filter: "blur(12px)" }}
         animate={!isLoading ? { opacity: 1, filter: "blur(0px)" } : {}}
-        transition={{ duration: 0.8, delay: 0.2 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
       >
         <Header onNavigate={setCurrentPage} currentPage={currentPage} cartCount={cartCount} />
 
         <main>
-          {/* HomePage ist jetzt live – du siehst sofort die neue Homepage */}
-          <HomePage />
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentPage}
+              initial={{ opacity: 0, x: 8 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -8 }}
+              transition={{ duration: 0.2 }}
+            >
+              {currentPage === "home" && <HomePage />}
+
+              {currentPage === "story" && <Placeholder title="Story" />}
+              {currentPage === "products" && <Placeholder title="Products" />}
+              {currentPage === "detail" && <Placeholder title="Product Detail" />}
+              {currentPage === "feedback" && <Placeholder title="Feedback" />}
+              {currentPage === "contact" && <Placeholder title="Contact" />}
+              {currentPage === "cart" && <Placeholder title="Cart" />}
+              {currentPage === "checkout" && <Placeholder title="Checkout" />}
+            </motion.div>
+          </AnimatePresence>
         </main>
 
         <Footer />
