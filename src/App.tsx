@@ -8,19 +8,11 @@ import HomePage from "./pages/HomePage";
 import FeedbackPage from "./pages/FeedbackPage";
 import ContactPage from "./pages/ContactPage";
 
-export type PageKey =
-  | "home"
-  | "story"
-  | "products"
-  | "detail"
-  | "feedback"
-  | "contact"
-  | "cart"
-  | "checkout";
+import type { Page } from "./pageTypes";
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState<PageKey>("home");
+  const [currentPage, setCurrentPage] = useState<Page>("home");
 
   useEffect(() => {
     if (!isLoading) window.scrollTo(0, 0);
@@ -38,7 +30,7 @@ const App: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] font-sans">
+    <div className="min-h-screen bg-[#FDFBF7] font-sans selection:bg-[#808000]/20 selection:text-[#5C4033]">
       <AnimatePresence>
         {isLoading && <SplashScreen onComplete={() => setIsLoading(false)} />}
       </AnimatePresence>
@@ -63,10 +55,12 @@ const App: React.FC = () => {
               exit={{ opacity: 0, x: -8 }}
               transition={{ duration: 0.2 }}
             >
+              {/* echte Seiten */}
               {currentPage === "home" && <HomePage onNavigate={setCurrentPage} />}
               {currentPage === "feedback" && <FeedbackPage />}
               {currentPage === "contact" && <ContactPage />}
 
+              {/* Placeholder only */}
               {currentPage === "story" && <Placeholder title="Story" />}
               {currentPage === "products" && <Placeholder title="Products" />}
               {currentPage === "detail" && <Placeholder title="Product Detail" />}
