@@ -5,6 +5,7 @@ import { SplashScreen } from "./components/SplashScreen";
 import { motion, AnimatePresence } from "motion/react";
 
 import HomePage from "./pages/HomePage";
+import FeedbackPage from "./pages/FeedbackPage"; // ✅ neu
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -58,7 +59,10 @@ const App: React.FC = () => {
               {currentPage === "story" && <Placeholder title="Story" />}
               {currentPage === "products" && <Placeholder title="Products" />}
               {currentPage === "detail" && <Placeholder title="Product Detail" />}
-              {currentPage === "feedback" && <Placeholder title="Feedback" />}
+
+              {/* ✅ HIER: echte Feedback-Seite */}
+              {currentPage === "feedback" && <FeedbackPage />}
+
               {currentPage === "contact" && <Placeholder title="Contact" />}
               {currentPage === "cart" && <Placeholder title="Cart" />}
               {currentPage === "checkout" && <Placeholder title="Checkout" />}
