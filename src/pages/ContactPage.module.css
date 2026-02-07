@@ -1,234 +1,135 @@
 .page {
-  padding-bottom: 64px;
+  padding: 48px 24px 80px;
 }
 
-.hero {
-  padding: 48px 24px;
-}
-
-.heroInner {
-  max-width: 1200px;
+.wrap {
+  max-width: 1100px;
   margin: 0 auto;
-  display: grid;
-  gap: 24px;
-  grid-template-columns: 1.2fr 0.8fr;
-  align-items: start;
 }
 
-.heroText {
-  padding: 8px 0;
+.header {
+  text-align: center;
+  margin-bottom: 28px;
 }
 
-.h1 {
+.title {
   font-size: 44px;
-  line-height: 1.1;
-  margin: 0;
-  color: #5c4033;
   font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #5c4033;
+  margin: 0;
 }
 
-.sub {
-  margin-top: 12px;
-  color: rgba(92, 64, 51, 0.75);
+.subtitle {
+  margin: 10px auto 0;
+  max-width: 720px;
+  color: rgba(92, 64, 51, 0.7);
   font-size: 16px;
-  max-width: 56ch;
+  line-height: 1.6;
 }
 
-.quickChips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 18px;
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
 }
 
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(92, 64, 51, 0.12);
-  background: rgba(245, 241, 233, 0.5);
-  color: rgba(92, 64, 51, 0.85);
-  font-size: 13px;
-  font-weight: 600;
+@media (min-width: 960px) {
+  .grid {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 22px;
+    align-items: start;
+  }
 }
 
-.infoCard {
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+@media (min-width: 640px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.card {
+  background: white;
   border: 1px solid rgba(92, 64, 51, 0.08);
-  background: #ffffff;
-  border-radius: 24px;
-  padding: 18px;
-  box-shadow: 0 8px 24px rgba(92, 64, 51, 0.06);
+  border-radius: 18px;
+  padding: 16px 16px;
 }
 
 .cardTitle {
-  margin: 0 0 12px 0;
+  font-weight: 800;
   color: #5c4033;
-  font-weight: 800;
-  font-size: 16px;
-}
-
-.infoRow {
-  display: grid;
-  grid-template-columns: 38px 1fr;
-  gap: 12px;
-  padding: 10px 0;
-}
-
-.iconBox {
-  width: 38px;
-  height: 38px;
-  border-radius: 14px;
-  display: grid;
-  place-items: center;
-  background: rgba(245, 241, 233, 0.7);
-  color: #808000;
-  border: 1px solid rgba(92, 64, 51, 0.08);
-}
-
-.label {
   font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(92, 64, 51, 0.55);
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
 }
 
-.value {
-  margin-top: 2px;
-  color: rgba(92, 64, 51, 0.85);
-  font-weight: 600;
+.cardText {
+  color: rgba(92, 64, 51, 0.75);
+  line-height: 1.5;
+  font-size: 14px;
 }
 
 .link {
-  display: inline-block;
-  margin-top: 2px;
-  color: #5c4033;
-  font-weight: 800;
+  color: #808000;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.link:hover {
+  opacity: 0.8;
   text-decoration: underline;
-  text-decoration-color: rgba(128, 128, 0, 0.35);
-  text-underline-offset: 3px;
 }
 
-.divider {
-  height: 1px;
-  background: rgba(92, 64, 51, 0.08);
-  margin: 10px 0;
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.hoursTitle {
+.pill {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-weight: 900;
-  color: rgba(92, 64, 51, 0.8);
+  justify-content: center;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(92, 64, 51, 0.12);
+  background: #fdfbf7;
+  color: #5c4033;
+  text-decoration: none;
+  font-weight: 700;
   font-size: 13px;
 }
 
-.hoursText {
-  margin-top: 6px;
-  color: rgba(92, 64, 51, 0.7);
-  font-size: 14px;
+.pill:hover {
+  border-color: rgba(128, 128, 0, 0.35);
 }
 
-.section {
-  padding: 18px 24px;
-}
-
-.grid3 {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  gap: 14px;
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.actionCard {
-  text-decoration: none;
+.formCard {
+  background: white;
   border: 1px solid rgba(92, 64, 51, 0.08);
-  background: #fff;
-  border-radius: 22px;
-  padding: 16px;
-  box-shadow: 0 8px 22px rgba(92, 64, 51, 0.05);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.actionCard:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 28px rgba(92, 64, 51, 0.08);
-}
-
-.actionTop {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.badge {
-  font-size: 11px;
-  font-weight: 900;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: rgba(128, 128, 0, 0.12);
-  color: #808000;
-}
-
-.actionIcon {
-  width: 40px;
-  height: 40px;
-  border-radius: 14px;
-  display: grid;
-  place-items: center;
-  background: rgba(245, 241, 233, 0.8);
-  color: #5c4033;
-  border: 1px solid rgba(92, 64, 51, 0.08);
-}
-
-.actionTitle {
-  margin-top: 10px;
-  color: #5c4033;
-  font-weight: 900;
-  font-size: 16px;
-}
-
-.actionText {
-  margin-top: 6px;
-  color: rgba(92, 64, 51, 0.7);
-  font-size: 14px;
-  line-height: 1.45;
-}
-
-.actionCta {
-  margin-top: 12px;
-  font-weight: 900;
-  color: #808000;
-}
-
-.formWrap {
-  max-width: 1200px;
-  margin: 0 auto;
-  border: 1px solid rgba(92, 64, 51, 0.08);
-  background: rgba(245, 241, 233, 0.35);
-  border-radius: 26px;
+  border-radius: 18px;
   padding: 18px;
 }
 
-.formHead {
-  margin-bottom: 12px;
-}
-
-.h2 {
+.formTitle {
   margin: 0;
-  color: #5c4033;
-  font-weight: 900;
   font-size: 22px;
+  font-weight: 900;
+  color: #5c4033;
 }
 
-.formSub {
-  margin-top: 6px;
+.formHint {
+  margin: 6px 0 14px;
   color: rgba(92, 64, 51, 0.7);
   font-size: 14px;
+  line-height: 1.5;
 }
 
 .form {
@@ -236,30 +137,20 @@
   gap: 12px;
 }
 
-.fieldRow {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.field {
+.label {
   display: grid;
   gap: 6px;
-}
-
-.fieldLabel {
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: rgba(92, 64, 51, 0.6);
+  color: rgba(92, 64, 51, 0.85);
+  font-weight: 700;
+  font-size: 13px;
 }
 
 .input,
 .textarea {
+  width: 100%;
+  border-radius: 14px;
   border: 1px solid rgba(92, 64, 51, 0.14);
-  background: #fff;
-  border-radius: 16px;
+  background: #fdfbf7;
   padding: 12px 12px;
   font-size: 14px;
   outline: none;
@@ -267,88 +158,49 @@
 
 .input:focus,
 .textarea:focus {
-  border-color: rgba(128, 128, 0, 0.55);
+  border-color: rgba(128, 128, 0, 0.45);
 }
 
-.submit {
+.button {
   border: none;
-  border-radius: 16px;
-  padding: 12px 14px;
+  border-radius: 14px;
+  background: #808000;
+  color: white;
   font-weight: 900;
-  background: #f3a7b5; /* passt zu eurem pink */
-  color: #5c4033;
+  padding: 12px 14px;
   cursor: pointer;
 }
 
-.submit:hover {
-  filter: brightness(0.98);
+.button:hover {
+  opacity: 0.9;
 }
 
-.faq {
-  max-width: 1200px;
-  margin: 0 auto;
+.small {
+  margin: 4px 0 0;
+  color: rgba(92, 64, 51, 0.55);
+  font-size: 12px;
+  line-height: 1.4;
 }
 
-.faqSub {
-  margin-top: 6px;
+.map {
+  margin-top: 18px;
+}
+
+.mapInner {
+  border-radius: 18px;
+  border: 1px dashed rgba(92, 64, 51, 0.22);
+  background: rgba(245, 241, 233, 0.45);
+  padding: 18px;
+}
+
+.mapTitle {
+  font-weight: 900;
+  color: #5c4033;
+  margin-bottom: 6px;
+}
+
+.mapText {
   color: rgba(92, 64, 51, 0.7);
   font-size: 14px;
-}
-
-.faqList {
-  margin-top: 12px;
-  display: grid;
-  gap: 10px;
-}
-
-.faqItem {
-  border: 1px solid rgba(92, 64, 51, 0.08);
-  background: #fff;
-  border-radius: 18px;
-  padding: 10px 12px;
-}
-
-.faqQ {
-  cursor: pointer;
-  list-style: none;
-  font-weight: 900;
-  color: rgba(92, 64, 51, 0.9);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.faqQ::-webkit-details-marker {
-  display: none;
-}
-
-.qIcon {
-  width: 28px;
-  height: 28px;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  background: rgba(245, 241, 233, 0.8);
-  color: #808000;
-  border: 1px solid rgba(92, 64, 51, 0.08);
-}
-
-.faqA {
-  margin-top: 8px;
-  color: rgba(92, 64, 51, 0.72);
-  font-size: 14px;
   line-height: 1.5;
-}
-
-/* responsive */
-@media (max-width: 960px) {
-  .heroInner {
-    grid-template-columns: 1fr;
-  }
-  .grid3 {
-    grid-template-columns: 1fr;
-  }
-  .fieldRow {
-    grid-template-columns: 1fr;
-  }
 }
