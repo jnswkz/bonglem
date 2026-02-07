@@ -6,7 +6,7 @@ import BestSellers from "../components/home/BestSellers";
 import QuoteBand from "../components/home/QuoteBand";
 import SocialProof from "../components/home/SocialProof";
 
-type PageKey =
+export type PageKey =
   | "home"
   | "story"
   | "products"
@@ -16,14 +16,12 @@ type PageKey =
   | "cart"
   | "checkout";
 
-type HomePageProps = {
-  onNavigate: (page: PageKey) => void;
+export type HomePageProps = {
+  // ✅ optional => TS2741 kann nie wieder kommen
+  onNavigate?: (page: PageKey) => void;
 };
 
-export default function HomePage({ onNavigate }: HomePageProps) {
-  // onNavigate ist da, aber wir nutzen hier bewusst hrefs (safer für eure Component-Props)
-  // Wenn ihr später wirklich App-Navigation wollt, erweitern wir eure Komponenten-Props sauber.
-
+export default function HomePage(_props: HomePageProps) {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -89,11 +87,6 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             ]}
           />
         </section>
-
-        {/* Mini-Navigation (unsichtbar), damit TS nicht meckert, dass onNavigate ungenutzt ist */}
-        <div style={{ display: "none" }}>
-          <button onClick={() => onNavigate("feedback")}>Go feedback</button>
-        </div>
       </main>
     </div>
   );
