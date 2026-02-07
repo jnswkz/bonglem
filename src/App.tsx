@@ -26,10 +26,8 @@ const App: React.FC = () => {
     if (!isLoading) window.scrollTo(0, 0);
   }, [currentPage, isLoading]);
 
-  // Header will cartCount sehen – später echte Logik
   const cartCount = 0;
 
-  // Platzhalter-Seiten, damit Header-Navigation sichtbar funktioniert
   const Placeholder = ({ title }: { title: string }) => (
     <div className="max-w-5xl mx-auto px-6 py-16">
       <h1 className="text-3xl font-bold text-[#5C4033]">{title}</h1>
@@ -50,11 +48,7 @@ const App: React.FC = () => {
         animate={!isLoading ? { opacity: 1, filter: "blur(0px)" } : {}}
         transition={{ duration: 0.6, delay: 0.1 }}
       >
-        <Header
-          onNavigate={setCurrentPage}
-          currentPage={currentPage}
-          cartCount={cartCount}
-        />
+        <Header onNavigate={setCurrentPage} currentPage={currentPage} cartCount={cartCount} />
 
         <main>
           <AnimatePresence mode="wait">
@@ -65,14 +59,14 @@ const App: React.FC = () => {
               exit={{ opacity: 0, x: -8 }}
               transition={{ duration: 0.2 }}
             >
-              {/* Home braucht onNavigate (TS2741 fix) */}
+              {/* ✅ HomePage kann onNavigate bekommen (optional => safe) */}
               {currentPage === "home" && <HomePage onNavigate={setCurrentPage} />}
 
-              {/* echte Seiten */}
+              {/* ✅ echte Seiten */}
               {currentPage === "feedback" && <FeedbackPage />}
               {currentPage === "contact" && <ContactPage />}
 
-              {/* Rest erstmal Platzhalter */}
+              {/* Rest */}
               {currentPage === "story" && <Placeholder title="Story" />}
               {currentPage === "products" && <Placeholder title="Products" />}
               {currentPage === "detail" && <Placeholder title="Product Detail" />}
