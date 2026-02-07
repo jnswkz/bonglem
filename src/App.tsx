@@ -5,30 +5,35 @@ import { SplashScreen } from "./components/SplashScreen";
 import { motion, AnimatePresence } from "motion/react";
 
 import HomePage from "./pages/HomePage";
-import FeedbackPage from "./pages/FeedbackPage"; // ✅ neu
+import FeedbackPage from "./pages/FeedbackPage";
+
+type PageKey =
+  | "home"
+  | "story"
+  | "products"
+  | "detail"
+  | "feedback"
+  | "contact"
+  | "cart"
+  | "checkout";
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
-  const [currentPage, setCurrentPage] = useState<
-    "home" | "story" | "products" | "detail" | "feedback" | "contact" | "cart" | "checkout"
-  >("home");
+  const [currentPage, setCurrentPage] = useState<PageKey>("home");
 
   useEffect(() => {
     if (!isLoading) window.scrollTo(0, 0);
   }, [currentPage, isLoading]);
 
-  // Wichtig: Header will cartCount sehen – wenn du Cart später wieder nutzt,
-  // kannst du hier wieder echte Logik reinbauen.
+  // Header will cartCount sehen – später echte Logik
   const cartCount = 0;
 
-  // Platzhalter-Seiten (damit die Leiste sofort “arbeitet”)
+  // Platzhalter-Seiten, damit Header-Navigation sichtbar funktioniert
   const Placeholder = ({ title }: { title: string }) => (
     <div className="max-w-5xl mx-auto px-6 py-16">
       <h1 className="text-3xl font-bold text-[#5C4033]">{title}</h1>
-      <p className="mt-2 text-[#5C4033]/70">
-        Seite ist verlinkt – Inhalt bauen wir als nächstes.
-      </p>
+      <p className="mt-2 text-[#5C4033]/70">Seite ist verlinkt – Inhalt bauen wir als nächstes.</p>
     </div>
   );
 
@@ -54,15 +59,16 @@ const App: React.FC = () => {
               exit={{ opacity: 0, x: -8 }}
               transition={{ duration: 0.2 }}
             >
-              {currentPage === "home" && <HomePage />}
+              {/* ✅ Home bekommt onNavigate -> TS2741 ist weg */}
+              {currentPage === "home" && <HomePage onNavigate={setCurrentPage} />}
 
+              {/* ✅ Feedback Seite ist jetzt echt */}
+              {currentPage === "feedback" && <FeedbackPage />}
+
+              {/* Rest erstmal Platzhalter */}
               {currentPage === "story" && <Placeholder title="Story" />}
               {currentPage === "products" && <Placeholder title="Products" />}
               {currentPage === "detail" && <Placeholder title="Product Detail" />}
-
-              {/* ✅ HIER: echte Feedback-Seite */}
-              {currentPage === "feedback" && <FeedbackPage />}
-
               {currentPage === "contact" && <Placeholder title="Contact" />}
               {currentPage === "cart" && <Placeholder title="Cart" />}
               {currentPage === "checkout" && <Placeholder title="Checkout" />}
