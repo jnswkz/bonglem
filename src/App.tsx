@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "motion/react";
 
 import HomePage from "./pages/HomePage";
 import FeedbackPage from "./pages/FeedbackPage";
+import ContactPage from "./pages/ContactPage";
 
 type PageKey =
   | "home"
@@ -19,7 +20,6 @@ type PageKey =
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
-
   const [currentPage, setCurrentPage] = useState<PageKey>("home");
 
   useEffect(() => {
@@ -33,7 +33,9 @@ const App: React.FC = () => {
   const Placeholder = ({ title }: { title: string }) => (
     <div className="max-w-5xl mx-auto px-6 py-16">
       <h1 className="text-3xl font-bold text-[#5C4033]">{title}</h1>
-      <p className="mt-2 text-[#5C4033]/70">Seite ist verlinkt – Inhalt bauen wir als nächstes.</p>
+      <p className="mt-2 text-[#5C4033]/70">
+        Seite ist verlinkt – Inhalt bauen wir als nächstes.
+      </p>
     </div>
   );
 
@@ -48,7 +50,11 @@ const App: React.FC = () => {
         animate={!isLoading ? { opacity: 1, filter: "blur(0px)" } : {}}
         transition={{ duration: 0.6, delay: 0.1 }}
       >
-        <Header onNavigate={setCurrentPage} currentPage={currentPage} cartCount={cartCount} />
+        <Header
+          onNavigate={setCurrentPage}
+          currentPage={currentPage}
+          cartCount={cartCount}
+        />
 
         <main>
           <AnimatePresence mode="wait">
@@ -59,17 +65,17 @@ const App: React.FC = () => {
               exit={{ opacity: 0, x: -8 }}
               transition={{ duration: 0.2 }}
             >
-              {/* ✅ Home bekommt onNavigate -> TS2741 ist weg */}
+              {/* Home braucht onNavigate (TS2741 fix) */}
               {currentPage === "home" && <HomePage onNavigate={setCurrentPage} />}
 
-              {/* ✅ Feedback Seite ist jetzt echt */}
+              {/* echte Seiten */}
               {currentPage === "feedback" && <FeedbackPage />}
+              {currentPage === "contact" && <ContactPage />}
 
               {/* Rest erstmal Platzhalter */}
               {currentPage === "story" && <Placeholder title="Story" />}
               {currentPage === "products" && <Placeholder title="Products" />}
               {currentPage === "detail" && <Placeholder title="Product Detail" />}
-              {currentPage === "contact" && <Placeholder title="Contact" />}
               {currentPage === "cart" && <Placeholder title="Cart" />}
               {currentPage === "checkout" && <Placeholder title="Checkout" />}
             </motion.div>
