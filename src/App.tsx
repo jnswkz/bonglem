@@ -8,7 +8,7 @@ import HomePage from "./pages/HomePage";
 import FeedbackPage from "./pages/FeedbackPage";
 import ContactPage from "./pages/ContactPage";
 
-type PageKey =
+export type PageKey =
   | "home"
   | "story"
   | "products"
@@ -38,7 +38,7 @@ const App: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] font-sans selection:bg-[#808000]/20 selection:text-[#5C4033]">
+    <div className="min-h-screen bg-[#FDFBF7] font-sans">
       <AnimatePresence>
         {isLoading && <SplashScreen onComplete={() => setIsLoading(false)} />}
       </AnimatePresence>
@@ -48,7 +48,11 @@ const App: React.FC = () => {
         animate={!isLoading ? { opacity: 1, filter: "blur(0px)" } : {}}
         transition={{ duration: 0.6, delay: 0.1 }}
       >
-        <Header onNavigate={setCurrentPage} currentPage={currentPage} cartCount={cartCount} />
+        <Header
+          onNavigate={setCurrentPage}
+          currentPage={currentPage}
+          cartCount={cartCount}
+        />
 
         <main>
           <AnimatePresence mode="wait">
@@ -59,14 +63,10 @@ const App: React.FC = () => {
               exit={{ opacity: 0, x: -8 }}
               transition={{ duration: 0.2 }}
             >
-              {/* ✅ HomePage kann onNavigate bekommen (optional => safe) */}
               {currentPage === "home" && <HomePage onNavigate={setCurrentPage} />}
-
-              {/* ✅ echte Seiten */}
               {currentPage === "feedback" && <FeedbackPage />}
               {currentPage === "contact" && <ContactPage />}
 
-              {/* Rest */}
               {currentPage === "story" && <Placeholder title="Story" />}
               {currentPage === "products" && <Placeholder title="Products" />}
               {currentPage === "detail" && <Placeholder title="Product Detail" />}
