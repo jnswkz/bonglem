@@ -100,8 +100,8 @@ export const Header: React.FC<HeaderProps> = ({
                 alt="Bông Lém Mascot"
                 className="pointer-events-none absolute md:hidden"
                 style={{
-                  width: "43px",
-                  height: "43px",
+                  width: "32px",
+                  height: "32px",
                   top: "52%",
                   left: "0px",
                   transform: "translateY(-50%)",
@@ -115,10 +115,10 @@ export const Header: React.FC<HeaderProps> = ({
                 alt="Bông Lém Mascot"
                 className="pointer-events-none absolute hidden md:block"
                 style={{
-                  width: "clamp(66px, 6vw, 86px)",
-                  height: "clamp(66px, 6vw, 86px)",
+                  width: "clamp(48px, 5vw, 60px)",
+                  height: "clamp(48px, 5vw, 60px)",
                   top: "50%",
-                  left: "clamp(-72px, -6vw, -92px)",
+                  left: "clamp(-54px, -5vw, -66px)",
                   transform: "translateY(-50%)",
                   filter: "drop-shadow(0px 10px 18px rgba(0,0,0,0.18))",
                 }}
