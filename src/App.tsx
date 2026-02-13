@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "motion/react";
 import HomePage from "./pages/HomePage";
 import FeedbackPage from "./pages/FeedbackPage";
 import ContactPage from "./pages/ContactPage";
+import StoryPage from "./pages/StoryPage";
 
 import type { Page } from "./pageTypes";
 import { useLanguage } from "./i18n/LanguageContext";
@@ -68,7 +69,7 @@ const App: React.FC = () => {
               {currentPage === "feedback" && <FeedbackPage />}
               {currentPage === "contact" && <ContactPage />}
 
-              {currentPage === "story" && <Placeholder title="Story" />}
+              {currentPage === "story" && <StoryPage />}
               {currentPage === "products" && <Placeholder title="Products" />}
               {currentPage === "detail" && <Placeholder title="Product Detail" />}
               {currentPage === "cart" && <Placeholder title="Cart" />}

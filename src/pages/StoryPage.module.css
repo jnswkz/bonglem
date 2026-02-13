@@ -1,0 +1,125 @@
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px 80px;
+  color: #3f2f26;
+}
+
+.hero {
+  background: linear-gradient(135deg, rgba(244, 163, 180, 0.22), rgba(255, 255, 255, 0.8));
+  border: 1px solid rgba(92, 64, 51, 0.1);
+  border-radius: 30px;
+  padding: 34px 30px;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.08);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(92, 64, 51, 0.12);
+}
+
+.title {
+  margin: 14px 0 10px;
+  font-size: clamp(34px, 6vw, 54px);
+  line-height: 1.05;
+  color: #5c4033;
+}
+
+.lead {
+  margin: 0;
+  max-width: 860px;
+  line-height: 1.75;
+  color: rgba(92, 64, 51, 0.82);
+  font-size: 17px;
+}
+
+.section {
+  margin-top: 22px;
+  border-radius: 26px;
+  border: 1px solid rgba(92, 64, 51, 0.1);
+  background: rgba(255, 255, 255, 0.75);
+  padding: 26px;
+}
+
+.sectionTitle {
+  margin: 0 0 12px;
+  font-size: 28px;
+  color: #5c4033;
+}
+
+.body {
+  margin: 0;
+  white-space: pre-line;
+  line-height: 1.9;
+  color: rgba(63, 47, 38, 0.86);
+  font-size: 16px;
+}
+
+.quote {
+  margin-top: 18px;
+  border-left: 4px solid #e79eb0;
+  background: rgba(244, 163, 180, 0.14);
+  border-radius: 16px;
+  padding: 14px 16px;
+  font-style: italic;
+  color: #5c4033;
+  line-height: 1.8;
+}
+
+.visionGrid {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.card {
+  border-radius: 20px;
+  border: 1px solid rgba(92, 64, 51, 0.12);
+  background: #fff;
+  padding: 18px;
+}
+
+.cardLabel {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(92, 64, 51, 0.65);
+}
+
+.cardTitle {
+  margin: 8px 0 8px;
+  font-size: 22px;
+  color: #5c4033;
+}
+
+.cardText {
+  margin: 0;
+  color: rgba(63, 47, 38, 0.82);
+  line-height: 1.75;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding: 24px 20px;
+  }
+
+  .section {
+    padding: 20px;
+  }
+
+  .visionGrid {
+    grid-template-columns: 1fr;
+  }
+}
