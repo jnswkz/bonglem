@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { motion } from "motion/react";
 
 const MASCOT = {
@@ -67,7 +67,7 @@ export const FlowerLogo: React.FC<{
           width: size * 0.27,
           height: size * 0.27,
           backgroundColor: centerColor,
-          boxShadow: `0 0 0 2px rgba(0,0,0,0.18), 0 10px 28px rgba(0,0,0,0.16)`,
+          boxShadow: "0 0 0 2px rgba(0,0,0,0.18), 0 10px 28px rgba(0,0,0,0.16)",
         }}
         animate={animate ? { scale: [1, 1.08, 1] } : {}}
         transition={{ duration: 1.5, repeat: Infinity }}
@@ -78,9 +78,13 @@ export const FlowerLogo: React.FC<{
 
 interface SplashScreenProps {
   onComplete: () => void;
+  language?: "vi" | "en";
 }
 
-export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
+export const SplashScreen: React.FC<SplashScreenProps> = ({
+  onComplete,
+  language = "vi",
+}) => {
   const [phase, setPhase] = React.useState(1);
 
   React.useEffect(() => {
@@ -111,7 +115,6 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.6 }}
     >
-      {/* Soft paper grain */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.10] mix-blend-multiply"
         style={{
@@ -120,12 +123,11 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
         }}
       />
 
-      {/* Subtle corner decor (optional) */}
       <div className="absolute top-10 left-10 opacity-[0.12] rotate-12 pointer-events-none select-none">
-        <span className="text-7xl">🌼</span>
+        <span className="text-7xl">✿</span>
       </div>
       <div className="absolute bottom-10 right-10 opacity-[0.10] -rotate-12 pointer-events-none select-none">
-        <span className="text-7xl">🍪</span>
+        <span className="text-7xl">●</span>
       </div>
 
       <motion.div
@@ -154,7 +156,8 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
           </h1>
 
           <p className="text-sm font-medium italic" style={{ color: "rgba(20,19,24,0.55)" }}>
-            Chờ xí nhaa... <span style={{ color: MASCOT.petalPink }}>✿</span>
+            {language === "vi" ? "Chờ một chút nhé..." : "Just a sec..."}{" "}
+            <span style={{ color: MASCOT.petalPink }}>✿</span>
           </p>
 
           <div className="mx-auto h-[3px] w-24 rounded-full overflow-hidden">
@@ -168,13 +171,18 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
         </motion.div>
       </motion.div>
 
-      {/* Debug label (optional) */}
       <div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-[0.2em] font-bold hidden md:block"
         style={{ color: "rgba(20,19,24,0.28)" }}
       >
         Phase {phase}:{" "}
-        {phase === 1 ? "Fade In" : phase === 2 ? "Petal Bloom" : phase === 3 ? "Zoom Through" : "Handoff"}
+        {phase === 1
+          ? "Fade In"
+          : phase === 2
+            ? "Petal Bloom"
+            : phase === 3
+              ? "Zoom Through"
+              : "Handoff"}
       </div>
     </motion.div>
   );

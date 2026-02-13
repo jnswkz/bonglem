@@ -9,10 +9,12 @@ import FeedbackPage from "./pages/FeedbackPage";
 import ContactPage from "./pages/ContactPage";
 
 import type { Page } from "./pageTypes";
+import { useLanguage } from "./i18n/LanguageContext";
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState<Page>("home");
+  const { language } = useLanguage();
 
   useEffect(() => {
     if (!isLoading) window.scrollTo(0, 0);
@@ -24,7 +26,9 @@ const App: React.FC = () => {
     <div className="max-w-5xl mx-auto px-6 py-16">
       <h1 className="text-3xl font-bold text-[#5C4033]">{title}</h1>
       <p className="mt-2 text-[#5C4033]/70">
-        Seite ist verlinkt – Inhalt bauen wir als nächstes.
+        {language === "vi"
+          ? "Trang đã được liên kết - nội dung sẽ được cập nhật sớm."
+          : "This page is linked - content will be added next."}
       </p>
     </div>
   );
@@ -32,7 +36,12 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#FDFBF7] font-sans selection:bg-[#808000]/20 selection:text-[#5C4033]">
       <AnimatePresence>
-        {isLoading && <SplashScreen onComplete={() => setIsLoading(false)} />}
+        {isLoading && (
+          <SplashScreen
+            onComplete={() => setIsLoading(false)}
+            language={language}
+          />
+        )}
       </AnimatePresence>
 
       <motion.div
@@ -55,12 +64,10 @@ const App: React.FC = () => {
               exit={{ opacity: 0, x: -8 }}
               transition={{ duration: 0.2 }}
             >
-              {/* echte Seiten */}
               {currentPage === "home" && <HomePage onNavigate={setCurrentPage} />}
               {currentPage === "feedback" && <FeedbackPage />}
               {currentPage === "contact" && <ContactPage />}
 
-              {/* Placeholder only */}
               {currentPage === "story" && <Placeholder title="Story" />}
               {currentPage === "products" && <Placeholder title="Products" />}
               {currentPage === "detail" && <Placeholder title="Product Detail" />}

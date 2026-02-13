@@ -1,10 +1,13 @@
 import styles from "./FeedbackPage.module.css";
+import { useLanguage } from "../i18n/LanguageContext";
 
 type Review = {
   name: string;
-  tag: string;
-  rating: number; // 1-5
-  text: string;
+  tagVi: string;
+  tagEn: string;
+  rating: number;
+  textVi: string;
+  textEn: string;
   product?: string;
   date: string;
 };
@@ -12,42 +15,32 @@ type Review = {
 const REVIEWS: Review[] = [
   {
     name: "Linh",
-    tag: "Gift Buyer",
+    tagVi: "Người mua quà",
+    tagEn: "Gift Buyer",
     rating: 5,
-    text: "Gói quà siêu xinh, mở ra là muốn tặng liền. Shop rep nhanh, tư vấn dễ thương!",
+    textVi: "Gói quà siêu xinh, mở ra là muốn tặng liền. Shop rep nhanh, tư vấn dễ thương!",
+    textEn: "Super cute wrapping, ready to gift right away. Fast and friendly support!",
     product: "Mini Gift Box",
     date: "Jan 2026",
   },
   {
     name: "Minh",
-    tag: "Snack Lover",
+    tagVi: "Fan đồ ăn vặt",
+    tagEn: "Snack Lover",
     rating: 5,
-    text: "Set vừa đẹp vừa ngon. Mua tặng bạn gái, feedback cực tốt. 10/10!",
+    textVi: "Set vừa đẹp vừa ngon. Mua tặng bạn gái và feedback rất tốt.",
+    textEn: "Beautiful and tasty set. Bought it as a gift and got great feedback.",
     product: "Sweet Snack Set",
     date: "Jan 2026",
   },
   {
     name: "An",
-    tag: "Repeat Customer",
+    tagVi: "Khách quay lại",
+    tagEn: "Repeat Customer",
     rating: 5,
-    text: "Mua lần 2 rồi. Đóng gói cẩn thận, giao nhanh, vibe dễ thương cực kỳ.",
+    textVi: "Mua lần 2 rồi. Đóng gói cẩn thận, giao nhanh, vibe rất dễ thương.",
+    textEn: "Second order already. Careful packaging, fast delivery, very cute vibe.",
     product: "Special Surprise",
-    date: "Feb 2026",
-  },
-  {
-    name: "Thảo",
-    tag: "Student",
-    rating: 4,
-    text: "Giá ổn, đóng gói đẹp. Nếu có thêm lựa chọn mix vị thì tuyệt!",
-    product: "Sweet Snack Set",
-    date: "Feb 2026",
-  },
-  {
-    name: "Hoàng",
-    tag: "Busy Office",
-    rating: 5,
-    text: "Mua cho team office, ai cũng thích. Nhìn premium mà vẫn cute.",
-    product: "Mini Gift Box",
     date: "Feb 2026",
   },
 ];
@@ -66,73 +59,94 @@ function Stars({ rating }: { rating: number }) {
 }
 
 export default function FeedbackPage() {
+  const { language } = useLanguage();
+  const isVi = language === "vi";
   const avg = Math.round(
     (REVIEWS.reduce((s, r) => s + r.rating, 0) / REVIEWS.length) * 10
   ) / 10;
 
   return (
     <div className={styles.page}>
-      {/* Header Section */}
       <section className={styles.hero}>
         <div className={styles.heroInner}>
           <div className={styles.heroLeft}>
-            <h1 className={styles.h1}>Feedback</h1>
+            <h1 className={styles.h1}>{isVi ? "Danh gia" : "Feedback"}</h1>
             <p className={styles.sub}>
-              Proof that the vibe is real: cute packaging, fast delivery, sweet moments. 🌼
+              {isVi
+                ? "Bằng chứng cho vibe dễ thương: đóng gói xinh, giao nhanh, trải nghiệm tốt."
+                : "Proof that the vibe is real: cute packaging, fast delivery, and sweet moments."}
             </p>
 
             <div className={styles.kpis}>
               <div className={styles.kpiCard}>
                 <div className={styles.kpiValue}>{avg} / 5</div>
-                <div className={styles.kpiLabel}>Average rating</div>
+                <div className={styles.kpiLabel}>{isVi ? "Điểm trung bình" : "Average rating"}</div>
               </div>
               <div className={styles.kpiCard}>
                 <div className={styles.kpiValue}>{REVIEWS.length}+</div>
-                <div className={styles.kpiLabel}>Customer reviews</div>
+                <div className={styles.kpiLabel}>{isVi ? "Đánh giá khách hàng" : "Customer reviews"}</div>
               </div>
               <div className={styles.kpiCard}>
                 <div className={styles.kpiValue}>24h</div>
-                <div className={styles.kpiLabel}>Typical reply time</div>
+                <div className={styles.kpiLabel}>{isVi ? "Thời gian phản hồi" : "Typical reply time"}</div>
               </div>
             </div>
 
             <div className={styles.ctas}>
               <a className={styles.primaryBtn} href="https://instagram.com/" target="_blank" rel="noreferrer">
-                Post your unboxing ✨
+                {isVi ? "Đăng unboxing của bạn" : "Post your unboxing"}
               </a>
               <a className={styles.secondaryBtn} href="#reviews">
-                Read reviews
+                {isVi ? "Xem đánh giá" : "Read reviews"}
               </a>
             </div>
           </div>
 
           <div className={styles.heroRight}>
             <div className={styles.featureCard}>
-              <div className={styles.featureTitle}>Why people buy from Bông Lém</div>
+              <div className={styles.featureTitle}>
+                {isVi ? "Vì sao khách mua ở Bông Lém" : "Why people buy from Bong Lem"}
+              </div>
               <ul className={styles.featureList}>
-                <li>Gift-ready packaging (no extra work)</li>
-                <li>Fast support via chat</li>
-                <li>Small-batch, curated sets</li>
-                <li>Feels premium, still cute</li>
+                {isVi ? (
+                  <>
+                    <li>Gói quà sẵn, không cần chuẩn bị thêm</li>
+                    <li>Hỗ trợ chat nhanh</li>
+                    <li>Set chọn lọc theo đợt nhỏ</li>
+                    <li>Vừa đẹp vừa dễ thương</li>
+                  </>
+                ) : (
+                  <>
+                    <li>Gift-ready packaging (no extra work)</li>
+                    <li>Fast support via chat</li>
+                    <li>Small-batch curated sets</li>
+                    <li>Feels premium and still cute</li>
+                  </>
+                )}
               </ul>
             </div>
 
             <div className={styles.noteCard}>
-              <div className={styles.noteTitle}>Business note</div>
+              <div className={styles.noteTitle}>
+                {isVi ? "Góc kinh doanh" : "Business note"}
+              </div>
               <p className={styles.noteText}>
-                Feedback builds trust, reduces purchase risk, and increases conversion—especially for gift & snack products.
+                {isVi
+                  ? "Feedback giúp tăng độ tin cậy, giảm rủi ro mua hàng, và tăng tỉ lệ chốt đơn."
+                  : "Feedback builds trust, reduces purchase risk, and improves conversion."}
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Reviews */}
       <section id="reviews" className={styles.section}>
         <div className={styles.sectionHead}>
-          <h2 className={styles.h2}>Customer reviews</h2>
+          <h2 className={styles.h2}>{isVi ? "Đánh giá khách hàng" : "Customer reviews"}</h2>
           <p className={styles.sectionSub}>
-            Real messages, summarized into clean cards (like on modern snack shops).
+            {isVi
+              ? "Tổng hợp feedback thật thành các card gọn gàng, dễ đọc."
+              : "Real messages summarized into clean cards."}
           </p>
         </div>
 
@@ -143,7 +157,7 @@ export default function FeedbackPage() {
                 <div>
                   <div className={styles.nameRow}>
                     <span className={styles.name}>{r.name}</span>
-                    <span className={styles.tag}>{r.tag}</span>
+                    <span className={styles.tag}>{isVi ? r.tagVi : r.tagEn}</span>
                   </div>
                   <div className={styles.meta}>
                     <span>{r.date}</span>
@@ -154,43 +168,52 @@ export default function FeedbackPage() {
                 <Stars rating={r.rating} />
               </div>
 
-              <p className={styles.text}>{r.text}</p>
+              <p className={styles.text}>{isVi ? r.textVi : r.textEn}</p>
             </article>
           ))}
         </div>
       </section>
 
-      {/* UGC / Social proof */}
       <section className={styles.sectionAlt}>
         <div className={styles.sectionHead}>
-          <h2 className={styles.h2}>Social proof</h2>
+          <h2 className={styles.h2}>{isVi ? "Social proof" : "Social proof"}</h2>
           <p className={styles.sectionSub}>
-            Encourage UGC: screenshots, unboxing stories, short TikToks.
+            {isVi
+              ? "Khuyến khích UGC: screenshot, unboxing story, video ngắn."
+              : "Encourage UGC: screenshots, unboxing stories, and short videos."}
           </p>
         </div>
 
         <div className={styles.ugcRow}>
           <div className={styles.ugcCard}>
             <div className={styles.ugcTitle}>Instagram</div>
-            <p className={styles.ugcText}>Tag us and we repost the cutest unboxings.</p>
+            <p className={styles.ugcText}>
+              {isVi
+                ? "Tag tụi mình, shop sẽ repost những unboxing đẹp nhất."
+                : "Tag us and we will repost the cutest unboxings."}
+            </p>
             <a className={styles.ugcLink} href="https://instagram.com/" target="_blank" rel="noreferrer">
-              Open Instagram →
+              {isVi ? "Mở Instagram ->" : "Open Instagram ->"}
             </a>
           </div>
 
           <div className={styles.ugcCard}>
             <div className={styles.ugcTitle}>TikTok</div>
-            <p className={styles.ugcText}>Short video reviews boost trust fast.</p>
+            <p className={styles.ugcText}>
+              {isVi ? "Video review ngắn giúp tăng trust nhanh." : "Short review videos boost trust fast."}
+            </p>
             <a className={styles.ugcLink} href="https://tiktok.com/" target="_blank" rel="noreferrer">
-              Open TikTok →
+              {isVi ? "Mở TikTok ->" : "Open TikTok ->"}
             </a>
           </div>
 
           <div className={styles.ugcCard}>
-            <div className={styles.ugcTitle}>WhatsApp / Chat</div>
-            <p className={styles.ugcText}>Send feedback via chat – we reply quickly.</p>
+            <div className={styles.ugcTitle}>Chat</div>
+            <p className={styles.ugcText}>
+              {isVi ? "Gửi feedback qua chat, tụi mình phản hồi nhanh." : "Send feedback via chat and we reply quickly."}
+            </p>
             <a className={styles.ugcLink} href="#reviews">
-              Back to reviews →
+              {isVi ? "Quay lại đánh giá ->" : "Back to reviews ->"}
             </a>
           </div>
         </div>
