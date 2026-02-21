@@ -17,7 +17,7 @@ export type PageKey =
   | "checkout";
 
 export type HomePageProps = {
-  onNavigate?: (page: PageKey) => void;
+  onNavigate?: (page: string) => void;
 };
 
 export default function HomePage({ onNavigate }: HomePageProps) {
