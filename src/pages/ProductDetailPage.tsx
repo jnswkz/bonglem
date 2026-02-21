@@ -40,9 +40,9 @@ export default function ProductDetailPage({ productId, onNavigate }: ProductDeta
       setProduct(data);
       
       // Track product view (fire and forget - don't block on this)
-      clickApi.trackView(productId).catch(() => {
-        // Silently ignore tracking errors
-      });
+      clickApi.trackView(productId)
+        .then((res) => console.log("[Click Tracking] Success:", res))
+        .catch((err) => console.error("[Click Tracking] Failed:", err));
     } catch (err) {
       setError(isVi ? "Không thể tải sản phẩm" : "Failed to load product");
       console.error("Failed to load product:", err);
