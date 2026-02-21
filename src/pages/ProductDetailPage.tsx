@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { productApi, type Product } from "../api";
+import { productApi, clickApi, type Product } from "../api";
 import { useLanguage } from "../i18n/LanguageContext";
 import { useCart } from "../store/CartContext";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
@@ -38,6 +38,11 @@ export default function ProductDetailPage({ productId, onNavigate }: ProductDeta
     try {
       const data = await productApi.getById(productId);
       setProduct(data);
+      
+      // Track product view (fire and forget - don't block on this)
+      clickApi.trackView(productId).catch(() => {
+        // Silently ignore tracking errors
+      });
     } catch (err) {
       setError(isVi ? "Không thể tải sản phẩm" : "Failed to load product");
       console.error("Failed to load product:", err);
