@@ -101,11 +101,23 @@
   font-size: 12px;
 }
 
+.emoji {
+  width: 80px;
+  height: 80px;
+  margin-left: 12px;
+  vertical-align: middle;
+  object-fit: contain;
+}
+
 @media (max-width: 980px) {
   .grid {
     grid-template-columns: 1fr;
   }
   .card {
     aspect-ratio: 16 / 10;
+  }
+  .emoji {
+    width: 60px;
+    height: 60px;
   }
 }

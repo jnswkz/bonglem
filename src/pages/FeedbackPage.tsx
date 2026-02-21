@@ -20,7 +20,7 @@ const REVIEWS: Review[] = [
     rating: 5,
     textVi: "Gói quà siêu xinh, mở ra là muốn tặng liền. Shop rep nhanh, tư vấn dễ thương!",
     textEn: "Super cute wrapping, ready to gift right away. Fast and friendly support!",
-    product: "Mini Gift Box",
+    product: "Khoai lang",
     date: "Jan 2026",
   },
   {
@@ -30,7 +30,7 @@ const REVIEWS: Review[] = [
     rating: 5,
     textVi: "Set vừa đẹp vừa ngon. Mua tặng bạn gái và feedback rất tốt.",
     textEn: "Beautiful and tasty set. Bought it as a gift and got great feedback.",
-    product: "Sweet Snack Set",
+    product: "Nui sấy",
     date: "Jan 2026",
   },
   {
@@ -40,7 +40,7 @@ const REVIEWS: Review[] = [
     rating: 5,
     textVi: "Mua lần 2 rồi. Đóng gói cẩn thận, giao nhanh, vibe rất dễ thương.",
     textEn: "Second order already. Careful packaging, fast delivery, very cute vibe.",
-    product: "Special Surprise",
+    product: "Kẹo Milo",
     date: "Feb 2026",
   },
 ];
@@ -69,13 +69,14 @@ export default function FeedbackPage() {
     <div className={styles.page}>
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <div className={styles.heroLeft}>
-            <h1 className={styles.h1}>{isVi ? "Danh gia" : "Feedback"}</h1>
-            <p className={styles.sub}>
-              {isVi
-                ? "Bằng chứng cho vibe dễ thương: đóng gói xinh, giao nhanh, trải nghiệm tốt."
-                : "Proof that the vibe is real: cute packaging, fast delivery, and sweet moments."}
-            </p>
+          <div className={styles.heroEmoji}>
+            <img src="/emoji/sad 2.png" alt="" className={styles.emojiLarge} />
+          </div>
+          <div className={styles.heroTitle}>
+            <h1 className={styles.h1}>
+              {isVi ? "Khách iu nói gì về bé Bông?" : "What do customers say about Bông?"}
+              <img src="/emoji/love 2.png" alt="" className={styles.emoji} />
+            </h1>
 
             <div className={styles.kpis}>
               <div className={styles.kpiCard}>
@@ -101,53 +102,17 @@ export default function FeedbackPage() {
               </a>
             </div>
           </div>
-
-          <div className={styles.heroRight}>
-            <div className={styles.featureCard}>
-              <div className={styles.featureTitle}>
-                {isVi ? "Vì sao khách mua ở Bông Lém" : "Why people buy from Bong Lem"}
-              </div>
-              <ul className={styles.featureList}>
-                {isVi ? (
-                  <>
-                    <li>Gói quà sẵn, không cần chuẩn bị thêm</li>
-                    <li>Hỗ trợ chat nhanh</li>
-                    <li>Set chọn lọc theo đợt nhỏ</li>
-                    <li>Vừa đẹp vừa dễ thương</li>
-                  </>
-                ) : (
-                  <>
-                    <li>Gift-ready packaging (no extra work)</li>
-                    <li>Fast support via chat</li>
-                    <li>Small-batch curated sets</li>
-                    <li>Feels premium and still cute</li>
-                  </>
-                )}
-              </ul>
-            </div>
-
-            <div className={styles.noteCard}>
-              <div className={styles.noteTitle}>
-                {isVi ? "Góc kinh doanh" : "Business note"}
-              </div>
-              <p className={styles.noteText}>
-                {isVi
-                  ? "Feedback giúp tăng độ tin cậy, giảm rủi ro mua hàng, và tăng tỉ lệ chốt đơn."
-                  : "Feedback builds trust, reduces purchase risk, and improves conversion."}
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
       <section id="reviews" className={styles.section}>
         <div className={styles.sectionHead}>
           <h2 className={styles.h2}>{isVi ? "Đánh giá khách hàng" : "Customer reviews"}</h2>
-          <p className={styles.sectionSub}>
+          {/* <p className={styles.sectionSub}>
             {isVi
               ? "Tổng hợp feedback thật thành các card gọn gàng, dễ đọc."
               : "Real messages summarized into clean cards."}
-          </p>
+          </p> */}
         </div>
 
         <div className={styles.grid}>
@@ -177,11 +142,11 @@ export default function FeedbackPage() {
       <section className={styles.sectionAlt}>
         <div className={styles.sectionHead}>
           <h2 className={styles.h2}>{isVi ? "Social proof" : "Social proof"}</h2>
-          <p className={styles.sectionSub}>
+          {/* <p className={styles.sectionSub}>
             {isVi
               ? "Khuyến khích UGC: screenshot, unboxing story, video ngắn."
               : "Encourage UGC: screenshots, unboxing stories, and short videos."}
-          </p>
+          </p> */}
         </div>
 
         <div className={styles.ugcRow}>

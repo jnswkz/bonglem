@@ -1,8 +1,7 @@
 import styles from "./HomePage.module.css";
 
 import Hero from "../components/home/Hero";
-import CategoryGrid from "../components/home/CategoryGrid";
-import BestSellers from "../components/home/BestSellers";
+import ProductGrid from "../components/home/ProductGrid";
 import QuoteBand from "../components/home/QuoteBand";
 import SocialProof from "../components/home/SocialProof";
 import { useLanguage } from "../i18n/LanguageContext";
@@ -60,82 +59,11 @@ export default function HomePage(_props: HomePageProps) {
         </section>
 
         <section id="products" className={styles.section}>
-          <CategoryGrid
-            heading={isVi ? "Sản phẩm của Bông Lém" : "Bong Lem collections"}
-            viewAll={{ label: isVi ? "Xem tất cả" : "View all", href: "/products" }}
-            categories={
-              isVi
-                ? [
-                    {
-                      title: "Set Yêu Thương",
-                      image: "/images/cat-love.jpg",
-                      href: "/products?cat=love",
-                    },
-                    {
-                      title: "Set Cho Bé",
-                      image: "/images/cat-baby.jpg",
-                      href: "/products?cat=baby",
-                    },
-                    {
-                      title: "Set Đặc Biệt",
-                      image: "/images/cat-special.jpg",
-                      href: "/products?cat=special",
-                    },
-                  ]
-                : [
-                    {
-                      title: "Love Set",
-                      image: "/images/cat-love.jpg",
-                      href: "/products?cat=love",
-                    },
-                    {
-                      title: "Baby Set",
-                      image: "/images/cat-baby.jpg",
-                      href: "/products?cat=baby",
-                    },
-                    {
-                      title: "Special Set",
-                      image: "/images/cat-special.jpg",
-                      href: "/products?cat=special",
-                    },
-                  ]
-            }
-          />
-        </section>
-
-        <section className={styles.section}>
-          <BestSellers
-            heading={isVi ? "Bán chạy nhất" : "Best sellers"}
-            subheading={
-              isVi ? "Những set được yêu thích nhất tuần này" : "Most loved sets this week"
-            }
-            items={[
-              {
-                title: "Mini Gift Box",
-                price: "79.000 VND",
-                image: "/images/bestseller-1.jpg",
-                href: "/products/mini-gift-box",
-              },
-              {
-                title: "Sweet Snack Set",
-                price: "129.000 VND",
-                image: "/images/bestseller-2.jpg",
-                href: "/products/sweet-snack-set",
-              },
-              {
-                title: "Baby Cozy Set",
-                price: "149.000 VND",
-                image: "/images/bestseller-3.jpg",
-                href: "/products/baby-cozy-set",
-              },
-              {
-                title: "Special Surprise",
-                price: "199.000 VND",
-                image: "/images/bestseller-4.jpg",
-                href: "/products/special-surprise",
-              },
-            ]}
-            primaryAction={{ label: isVi ? "Mua ngay" : "Shop now", href: "/products" }}
+          <ProductGrid
+            heading={isVi ? "Bông Lém có gì?" : "What does Bong Lem have?"}
+            emojiSrc="/emoji/hello 2.png"
+            viewAllLabel={isVi ? "Xem tất cả" : "View all"}
+            viewAllHref="/products"
           />
         </section>
 
@@ -143,17 +71,19 @@ export default function HomePage(_props: HomePageProps) {
           <QuoteBand
             quote={
               isVi
-                ? '"Bông Lém là những món quà nhỏ xinh, được làm ra để tặng người bạn thương."'
-                : '"Bong Lem creates small gifts made to delight the people you love."'
+                ? '"Bông Lém tin rằng... Những món quà nhỏ có thể mang lại niềm vui rất to."'
+                : '"Bong Lem believes... Small gifts can bring great joy."'
             }
             subline={isVi ? "Làm bằng yêu thương" : "Handmade with Love"}
             watermarkSrc="/images/flower-watermark.png"
+            emojiSrc="/emoji/love 2.png"
           />
         </section>
 
         <section className={styles.section}>
           <SocialProof
-            heading={isVi ? "Khách nói gì?" : "What customers say"}
+            heading={isVi ? "Khách iu nói gì về bé Bông?" : "What do customers say about Bong?"}
+            emojiSrc="/emoji/sad 2.png"
             subheading={
               isVi
                 ? "Feedback thật - vibe dễ thương, đóng gói xinh, giao nhanh."

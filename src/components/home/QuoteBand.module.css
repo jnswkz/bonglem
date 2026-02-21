@@ -56,3 +56,11 @@
 .sub {
   letter-spacing: 0.2px;
 }
+
+.emoji {
+  width: 100px;
+  height: 100px;
+  margin: 0 12px;
+  vertical-align: middle;
+  object-fit: contain;
+}

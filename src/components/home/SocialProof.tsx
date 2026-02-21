@@ -5,14 +5,15 @@ type Social = { label: string; href: string };
 
 export type SocialProofProps = {
   heading: string;
-  subheading: string;
+  subheading?: string;
+  emojiSrc?: string;
   reviews?: Review[];
   socials?: Social[];
 };
 
 export default function SocialProof({
   heading,
-  subheading,
+  emojiSrc,
   reviews = [],
   socials = [],
 }: SocialProofProps) {
@@ -20,8 +21,10 @@ export default function SocialProof({
     <div className={styles.wrap}>
       <div className={styles.header}>
         <div>
-          <h2 className={styles.heading}>{heading}</h2>
-          <p className={styles.subheading}>{subheading}</p>
+          <h2 className={styles.heading}>
+            {emojiSrc && <img src={emojiSrc} alt="" className={styles.emoji} />}
+            {heading}
+          </h2>
         </div>
 
         <div className={styles.socials}>

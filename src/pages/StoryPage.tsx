@@ -50,10 +50,21 @@ At Bông Lém, we believe snacks are more than just food. They are time machines
 
   return (
     <div className={styles.page}>
-      <section className={styles.hero}>
-        <span className={styles.eyebrow}>{content.eyebrow}</span>
-        <h1 className={styles.title}>{content.title}</h1>
-        <p className={styles.lead}>{content.lead}</p>
+      <section className={styles.blackBand}>
+        <h2 className={styles.bandTitle}>{isVi ? "Bông Lém có gì?" : "What does Bông Lém have?"}</h2>
+      </section>
+
+      <section className={styles.storySection}>
+        <div className={styles.storyRow}>
+          <div className={styles.storyTextBox}>
+            <h3 className={styles.storyHeading}>{isVi ? "Bông Lém bắt đầu từ đâu?" : "Where did Bông Lém start?"}</h3>
+            <img src="/emoji/hello 2.png" alt="" className={styles.storyEmoji} />
+          </div>
+          <div className={styles.storyTextBox}>
+            <img src="/emoji/1.png" alt="" className={styles.storyEmoji} />
+            <h3 className={styles.storyHeading}>{isVi ? "Vì sao Bông Lém ra đời?" : "Why was Bông Lém born?"}</h3>
+          </div>
+        </div>
       </section>
 
       <section className={styles.section}>
@@ -61,18 +72,28 @@ At Bông Lém, we believe snacks are more than just food. They are time machines
         <p className={styles.quote}>{content.quote}</p>
 
         <div className={styles.visionGrid}>
-          <article className={styles.card}>
+          <div className={styles.card}>
             <p className={styles.cardLabel}>{content.visionLabel}</p>
-            <h2 className={styles.cardTitle}>{content.visionLabel}</h2>
             <p className={styles.cardText}>{content.visionTitle}</p>
-          </article>
+          </div>
 
-          <article className={styles.card}>
+          <div className={styles.card}>
             <p className={styles.cardLabel}>{content.missionLabel}</p>
-            <h2 className={styles.cardTitle}>{content.missionLabel}</h2>
             <p className={styles.cardText}>{content.missionTitle}</p>
-          </article>
+          </div>
         </div>
+      </section>
+
+      <section className={styles.quoteSection}>
+        <div className={styles.quoteContent}>
+          <img src="/emoji/love 2.png" alt="" className={styles.quoteEmoji} />
+          <p className={styles.quoteText}>
+            {isVi
+              ? '"Bông Lém tin rằng... Những món quà nhỏ có thể mang lại niềm vui rất to."'
+              : '"Bông Lém believes... Small gifts can bring great joy."'}
+          </p>
+        </div>
+        <img src="/emoji/hug 2.png" alt="" className={styles.quoteMascot} />
       </section>
     </div>
   );

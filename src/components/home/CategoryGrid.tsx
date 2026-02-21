@@ -5,15 +5,19 @@ type Category = { title: string; image: string; href: string };
 
 export type CategoryGridProps = {
   heading: string;
+  emojiSrc?: string;
   viewAll?: ViewAll;
   categories?: Category[];
 };
 
-export default function CategoryGrid({ heading, viewAll, categories = [] }: CategoryGridProps) {
+export default function CategoryGrid({ heading, emojiSrc, viewAll, categories = [] }: CategoryGridProps) {
   return (
     <div className={styles.wrap}>
       <div className={styles.topRow}>
-        <h2 className={styles.heading}>{heading}</h2>
+        <h2 className={styles.heading}>
+          {heading}
+          {emojiSrc && <img src={emojiSrc} alt="" className={styles.emoji} />}
+        </h2>
         <a className={styles.viewAll} href={viewAll?.href || "/products"}>
           {viewAll?.label || "Xem tất cả"}
         </a>
