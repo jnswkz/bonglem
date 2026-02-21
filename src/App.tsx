@@ -8,31 +8,37 @@ import HomePage from "./pages/HomePage";
 import FeedbackPage from "./pages/FeedbackPage";
 import ContactPage from "./pages/ContactPage";
 import StoryPage from "./pages/StoryPage";
+import ProductsPage from "./pages/ProductsPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
+import CartPage from "./pages/CartPage";
+import CheckoutPage from "./pages/CheckoutPage";
 
 import type { Page } from "./pageTypes";
 import { useLanguage } from "./i18n/LanguageContext";
+import { useCart } from "./store/CartContext";
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState<Page>("home");
+  const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
   const { language } = useLanguage();
+  const { totalItems } = useCart();
+
+  const handleNavigate = (page: string) => {
+    if (page.startsWith("product/")) {
+      const productId = page.replace("product/", "");
+      setSelectedProductId(productId);
+      setCurrentPage("detail" as Page);
+    } else {
+      setCurrentPage(page as Page);
+    }
+  };
 
   useEffect(() => {
     if (!isLoading) window.scrollTo(0, 0);
   }, [currentPage, isLoading]);
 
-  const cartCount = 0;
-
-  const Placeholder = ({ title }: { title: string }) => (
-    <div className="max-w-5xl mx-auto px-6 py-16">
-      <h1 className="text-3xl font-bold text-[#5C4033]">{title}</h1>
-      <p className="mt-2 text-[#5C4033]/70">
-        {language === "vi"
-          ? "Trang đã được liên kết - nội dung sẽ được cập nhật sớm."
-          : "This page is linked - content will be added next."}
-      </p>
-    </div>
-  );
+  const cartCount = totalItems;
 
   return (
     <div className="min-h-screen bg-[#FDFBF7] font-sans selection:bg-[#808000]/20 selection:text-[#5C4033]">
@@ -51,7 +57,7 @@ const App: React.FC = () => {
         transition={{ duration: 0.6, delay: 0.1 }}
       >
         <Header
-          onNavigate={setCurrentPage}
+          onNavigate={handleNavigate}
           currentPage={currentPage}
           cartCount={cartCount}
         />
@@ -65,15 +71,17 @@ const App: React.FC = () => {
               exit={{ opacity: 0, x: -8 }}
               transition={{ duration: 0.2 }}
             >
-              {currentPage === "home" && <HomePage onNavigate={setCurrentPage} />}
+              {currentPage === "home" && <HomePage onNavigate={handleNavigate} />}
               {currentPage === "feedback" && <FeedbackPage />}
               {currentPage === "contact" && <ContactPage />}
 
               {currentPage === "story" && <StoryPage />}
-              {currentPage === "products" && <Placeholder title="Products" />}
-              {currentPage === "detail" && <Placeholder title="Product Detail" />}
-              {currentPage === "cart" && <Placeholder title="Cart" />}
-              {currentPage === "checkout" && <Placeholder title="Checkout" />}
+              {currentPage === "products" && <ProductsPage onNavigate={handleNavigate} />}
+              {currentPage === "detail" && selectedProductId && (
+                <ProductDetailPage productId={selectedProductId} onNavigate={handleNavigate} />
+              )}
+              {currentPage === "cart" && <CartPage onNavigate={handleNavigate} />}
+              {currentPage === "checkout" && <CheckoutPage onNavigate={handleNavigate} />}
             </motion.div>
           </AnimatePresence>
         </main>
