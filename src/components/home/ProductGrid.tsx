@@ -7,9 +7,10 @@ export type ProductGridProps = {
   emojiSrc?: string;
   viewAllLabel?: string;
   viewAllHref?: string;
+  onNavigate?: (page: string) => void;
 };
 
-export default function ProductGrid({ heading, emojiSrc, viewAllLabel, viewAllHref }: ProductGridProps) {
+export default function ProductGrid({ heading, emojiSrc, viewAllLabel, viewAllHref, onNavigate }: ProductGridProps) {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -45,7 +46,12 @@ export default function ProductGrid({ heading, emojiSrc, viewAllLabel, viewAllHr
       ) : (
         <div className={styles.grid}>
           {products.map((product) => (
-            <a key={product._id} className={styles.card} href={`/products/${product.id}`}>
+            <div 
+              key={product._id} 
+              className={styles.card} 
+              onClick={() => onNavigate?.(`product/${product._id}`)}
+              style={{ cursor: 'pointer' }}
+            >
               <div className={styles.imgWrap}>
                 <img
                   className={styles.img}
@@ -57,7 +63,7 @@ export default function ProductGrid({ heading, emojiSrc, viewAllLabel, viewAllHr
                 <div className={styles.name}>{product.name}</div>
                 <div className={styles.price}>{product.formattedPrice}</div>
               </div>
-            </a>
+            </div>
           ))}
         </div>
       )}

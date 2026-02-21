@@ -20,7 +20,7 @@ export type HomePageProps = {
   onNavigate?: (page: PageKey) => void;
 };
 
-export default function HomePage(_props: HomePageProps) {
+export default function HomePage({ onNavigate }: HomePageProps) {
   const { language } = useLanguage();
   const isVi = language === "vi";
 
@@ -64,6 +64,7 @@ export default function HomePage(_props: HomePageProps) {
             emojiSrc="/emoji/hello 2.png"
             viewAllLabel={isVi ? "Xem tất cả" : "View all"}
             viewAllHref="/products"
+            onNavigate={onNavigate}
           />
         </section>
 
