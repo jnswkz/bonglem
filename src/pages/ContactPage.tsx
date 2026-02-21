@@ -14,7 +14,7 @@ export default function ContactPage() {
   const isVi = language === "vi";
 
   const info: ContactInfo = {
-    address: "123 Đường Cánh Hoa, Quận 1, TP. Hồ Chí Minh",
+    address: "279 Nguyễn Tri Phương, Phường 5, Quận 10, TP. Hồ Chí Minh",
     phone: "+84 987 654 321",
     email: "hello@bonglem.vn",
     hoursVi: "Thứ 2 - Thứ 7: 9:00 - 19:00",
@@ -116,26 +116,25 @@ export default function ContactPage() {
                 {isVi ? "Gửi đi" : "Send"}
               </button>
 
-              <p className={styles.small}>
+              {/* <p className={styles.small}>
                 {isVi
                   ? "Tip: sau này có thể thêm nút WhatsApp / Zalo."
                   : "Tip: later you can add WhatsApp / Zalo quick buttons."}
-              </p>
+              </p> */}
             </form>
           </section>
         </div>
 
         <section className={styles.map}>
-          <div className={styles.mapInner}>
-            <div className={styles.mapTitle}>
-              {isVi ? "Ban do (Placeholder)" : "Map (Placeholder)"}
-            </div>
-            <div className={styles.mapText}>
-              {isVi
-                ? "Có thể thêm Google Maps embed hoặc ảnh chụp màn hình bản đồ."
-                : "You can add a Google Maps embed or a static map screenshot later."}
-            </div>
-          </div>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4409.611825842199!2d106.66578307554303!3d10.761053189386772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ee4595019ad%3A0xf2a1b15c6af2c1a6!2zxJDhuqFpIGjhu41jIEtpbmggdOG6vyBUUC4gSOG7kyBDaMOtIE1pbmggKFVFSCkgLSBDxqEgc-G7nyBC!5e1!3m2!1svi!2s!4v1771656983494!5m2!1svi!2s"
+            width="600"
+            height="450"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
         </section>
       </div>
     </div>
