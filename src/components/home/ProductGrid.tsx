@@ -33,9 +33,12 @@ export default function ProductGrid({ heading, emojiSrc, viewAllLabel, viewAllHr
           {emojiSrc && <img src={emojiSrc} alt="" className={styles.emoji} />}
         </h2>
         {viewAllHref && (
-          <a className={styles.viewAll} href={viewAllHref}>
+          <button 
+            className={styles.viewAll} 
+            onClick={() => onNavigate?.("products")}
+          >
             {viewAllLabel || "Xem tất cả"}
-          </a>
+          </button>
         )}
       </div>
 

@@ -1,16 +1,17 @@
 import styles from "./CategoryGrid.module.css";
 
-type ViewAll = { label?: string; href?: string };
-type Category = { title: string; image: string; href: string };
+type ViewAll = { label?: string };
+type Category = { title: string; image: string; categoryId?: string };
 
 export type CategoryGridProps = {
   heading: string;
   emojiSrc?: string;
   viewAll?: ViewAll;
   categories?: Category[];
+  onNavigate?: (page: string) => void;
 };
 
-export default function CategoryGrid({ heading, emojiSrc, viewAll, categories = [] }: CategoryGridProps) {
+export default function CategoryGrid({ heading, emojiSrc, viewAll, categories = [], onNavigate }: CategoryGridProps) {
   return (
     <div className={styles.wrap}>
       <div className={styles.topRow}>
@@ -18,14 +19,22 @@ export default function CategoryGrid({ heading, emojiSrc, viewAll, categories = 
           {heading}
           {emojiSrc && <img src={emojiSrc} alt="" className={styles.emoji} />}
         </h2>
-        <a className={styles.viewAll} href={viewAll?.href || "/products"}>
+        <button 
+          className={styles.viewAll} 
+          onClick={() => onNavigate?.("products")}
+        >
           {viewAll?.label || "Xem tất cả"}
-        </a>
+        </button>
       </div>
 
       <div className={styles.grid}>
         {categories.map((c) => (
-          <a key={c.title} className={styles.card} href={c.href}>
+          <div 
+            key={c.title} 
+            className={styles.card} 
+            onClick={() => c.categoryId && onNavigate?.(`products?category=${c.categoryId}`)}
+            style={{ cursor: 'pointer' }}
+          >
             <img
               className={styles.img}
               src={c.image}
@@ -44,7 +53,7 @@ export default function CategoryGrid({ heading, emojiSrc, viewAll, categories = 
 
             <div className={styles.overlay} />
             <div className={styles.title}>{c.title}</div>
-          </a>
+          </div>
         ))}
       </div>
     </div>

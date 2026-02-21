@@ -1,13 +1,14 @@
 import styles from "./BestSellers.module.css";
 
-type Item = { title: string; price: string; image: string; href: string };
-type Action = { label?: string; href?: string };
+type Item = { title: string; price: string; image: string; productId?: string };
+type Action = { label?: string };
 
 export type BestSellersProps = {
   heading: string;
   subheading: string;
   items?: Item[];
   primaryAction?: Action;
+  onNavigate?: (page: string) => void;
 };
 
 export default function BestSellers({
@@ -15,6 +16,7 @@ export default function BestSellers({
   subheading,
   items = [],
   primaryAction,
+  onNavigate,
 }: BestSellersProps) {
   return (
     <div className={styles.wrap}>
@@ -24,14 +26,22 @@ export default function BestSellers({
           <p className={styles.subheading}>{subheading}</p>
         </div>
 
-        <a className={styles.primaryAction} href={primaryAction?.href || "/products"}>
+        <button 
+          className={styles.primaryAction} 
+          onClick={() => onNavigate?.("products")}
+        >
           {primaryAction?.label || "Shop now"}
-        </a>
+        </button>
       </div>
 
       <div className={styles.grid}>
         {items.map((p) => (
-          <a key={p.title} className={styles.card} href={p.href}>
+          <div 
+            key={p.title} 
+            className={styles.card} 
+            onClick={() => p.productId && onNavigate?.(`product/${p.productId}`)}
+            style={{ cursor: 'pointer' }}
+          >
             <div className={styles.imageBox}>
               <img
                 className={styles.img}
@@ -57,7 +67,7 @@ export default function BestSellers({
                 <span className={styles.ctaMini}>Add</span>
               </div>
             </div>
-          </a>
+          </div>
         ))}
       </div>
     </div>
