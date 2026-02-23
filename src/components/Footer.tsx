@@ -9,7 +9,11 @@ import {
   ShieldCheck,
   Sparkles,
   Truck,
+  Gift,
+  Clock,
+  HeartHandshake,
 } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 /**
  * Brand Tokens (match Header)
@@ -20,6 +24,68 @@ const BG_CREAM = '#FDFBF7';
 
 export const Footer: React.FC = () => {
   const year = new Date().getFullYear();
+  const { language } = useLanguage();
+  const isEN = language === 'en';
+
+  // ---- TEXT (VI / EN) ----
+  const t = {
+    brandLine1: isEN ? 'Tiny gifts that bring big joy 🌼' : 'Những món quà nhỏ mang niềm vui to 🌼',
+    brandLine2: isEN
+      ? 'Made with love — curated snacks & sweet moments.'
+      : 'Made with love — curated snacks & sweet moments.',
+
+    chip1: isEN ? 'Thoughtful gifts' : 'Quà tặng tinh tế',
+    chip2: isEN ? 'Fast support' : 'Hỗ trợ nhanh',
+    chip3: isEN ? 'Fast local delivery' : 'Giao nhanh nội thành',
+
+    leftTitle: isEN ? 'Stay connected' : 'Kết nối với Bông Lém',
+    leftSub: isEN ? 'Follow for updates & deals.' : 'Follow để nhận update & ưu đãi.',
+    newsletterTitle: isEN ? 'Get deals & new drops' : 'Nhận ưu đãi & sản phẩm mới',
+    newsletterSub: isEN ? 'Join by email (no spam, promise).' : 'Đăng ký email (không spam, hứa luôn).',
+    emailPlaceholder: isEN ? 'Your email' : 'Email của bạn',
+    subscribeBtn: isEN ? 'Subscribe' : 'Đăng ký',
+
+    quick1: isEN ? 'Products' : 'Sản phẩm',
+    quick2: isEN ? 'Story' : 'Câu chuyện',
+    quick3: isEN ? 'Feedback' : 'Đánh giá',
+    quick4: isEN ? 'Contact' : 'Liên hệ',
+
+    // NEW bottom-left badges (different from the top chips)
+    badgeA: isEN ? 'Gift note included' : 'Có thiệp quà tặng',
+    badgeB: isEN ? 'Same-day pickup' : 'Nhận trong ngày',
+    badgeC: isEN ? 'Custom bundles' : 'Combo theo yêu cầu',
+
+    contactTitle: isEN ? 'Contact info' : 'Thông tin liên hệ',
+    addressLabel: isEN ? 'Address' : 'Address',
+    phoneLabel: isEN ? 'Phone' : 'Phone',
+    emailLabel: isEN ? 'Email' : 'Email',
+    helpBox: isEN
+      ? 'Need help? DM us on Instagram or TikTok — we reply fastest there 🌼'
+      : 'Bạn cần hỗ trợ? Nhắn cho tụi mình qua Instagram hoặc TikTok — tụi mình phản hồi nhanh nhất có thể 🌼',
+
+    supportTitle: isEN ? 'Support & response' : 'Hỗ trợ & phản hồi',
+    support1: isEN ? 'Support hours: 09:00 – 21:00 (daily)' : '• Thời gian hỗ trợ: 09:00 – 21:00 (hàng ngày)',
+    support2: isEN
+      ? 'Instagram/TikTok DMs are usually faster than email'
+      : '• DM Instagram/TikTok thường nhanh hơn email 🌼',
+    support3: isEN
+      ? 'Local orders are prioritized earlier in the day'
+      : '• Đơn nội thành: ưu tiên xử lý sớm trong ngày',
+
+    policyTitle: isEN ? 'Policies' : 'Chính sách',
+    policy1: isEN ? 'Purchase policy' : 'Chính sách mua hàng',
+    policy2: isEN ? 'Privacy policy' : 'Chính sách bảo mật',
+    policy3: isEN ? 'Contact' : 'Liên hệ',
+
+    tiktokHeadline: isEN ? 'Follow our TikTok!' : 'Follow TikTok của tụi mình!',
+    tiktokSub: isEN ? 'Short videos, new products & fun content 🌼' : 'Video ngắn, sản phẩm mới & content vui 🌼',
+    tiktokBtn: isEN ? 'Open TikTok' : 'Xem TikTok',
+
+    bottomMade: isEN ? 'Made with love.' : 'Made with love.',
+    bottomLinkContact: isEN ? 'Contact' : 'Contact',
+    bottomLinkShop: isEN ? 'Shop' : 'Shop',
+    bottomLinkStory: isEN ? 'Story' : 'Story',
+  };
 
   // ---- styles ----
   const chipStyle: React.CSSProperties = {
@@ -77,7 +143,7 @@ export const Footer: React.FC = () => {
     transition: 'all 0.2s ease',
   };
 
-  const iconChipSmall: React.CSSProperties = {
+  const badgeStyle: React.CSSProperties = {
     display: 'flex',
     alignItems: 'center',
     gap: '10px',
@@ -91,14 +157,7 @@ export const Footer: React.FC = () => {
 
   // TikTok icon (Lucide does not ship a TikTok icon by default)
   const TikTokIcon: React.FC<{ size?: number }> = ({ size = 22 }) => (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 48 48"
-      fill="none"
-      aria-hidden="true"
-      focusable="false"
-    >
+    <svg width={size} height={size} viewBox="0 0 48 48" fill="none" aria-hidden="true" focusable="false">
       <path
         d="M30.8 6c.4 4.2 3 7.9 6.9 9.8 1.8.9 3.7 1.4 5.6 1.5v6.3c-2.4 0-4.8-.6-7-1.6-1.2-.6-2.3-1.3-3.3-2.1v14.6c0 6.8-5.5 12.3-12.3 12.3S8.4 41.3 8.4 34.5c0-6.8 5.5-12.3 12.3-12.3.8 0 1.6.1 2.4.2v6.7c-.7-.3-1.5-.5-2.4-.5-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6V6h4.1Z"
         fill="currentColor"
@@ -150,17 +209,13 @@ export const Footer: React.FC = () => {
                 }}
               />
               <div>
-                <div
-                  className="font-serif font-bold tracking-wider"
-                  style={{ color: TEXT_BROWN, fontSize: '34px', lineHeight: 1 }}
-                >
+                <div className="font-serif font-bold tracking-wider" style={{ color: TEXT_BROWN, fontSize: '34px', lineHeight: 1 }}>
                   BÔNG LÉM
                 </div>
                 <div className="mt-2 text-sm md:text-base" style={{ color: `${TEXT_BROWN}CC` }}>
-                  Những món quà nhỏ mang niềm vui to 🌼 <br />
-                  <span style={{ color: `${TEXT_BROWN}B3` }}>
-                    Made with love — curated snacks & sweet moments.
-                  </span>
+                  {t.brandLine1}
+                  <br />
+                  <span style={{ color: `${TEXT_BROWN}B3` }}>{t.brandLine2}</span>
                 </div>
               </div>
             </div>
@@ -168,32 +223,31 @@ export const Footer: React.FC = () => {
             <div className="flex flex-wrap gap-2">
               <span style={chipStyle}>
                 <Sparkles size={16} />
-                Quà tặng tinh tế
+                {t.chip1}
               </span>
               <span style={chipStyle}>
                 <ShieldCheck size={16} />
-                Hỗ trợ nhanh
+                {t.chip2}
               </span>
               <span style={chipStyle}>
                 <Truck size={16} />
-                Giao nhanh nội thành
+                {t.chip3}
               </span>
             </div>
           </div>
 
           {/* Main grid */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
-            {/* Left: social + newsletter + quick links */}
+            {/* Left */}
             <div className="md:col-span-5 h-full">
               <div className="p-6 md:p-7 h-full flex flex-col" style={cardStyle}>
-                {/* header row */}
                 <div className="flex items-center justify-between gap-4">
                   <div>
                     <div className="font-semibold" style={{ color: TEXT_BROWN, fontSize: '18px' }}>
-                      Kết nối với Bông Lém
+                      {t.leftTitle}
                     </div>
                     <div className="mt-1 text-sm" style={{ color: `${TEXT_BROWN}B3` }}>
-                      Follow để nhận update & ưu đãi.
+                      {t.leftSub}
                     </div>
                   </div>
 
@@ -230,7 +284,6 @@ export const Footer: React.FC = () => {
                   </div>
                 </div>
 
-                {/* newsletter */}
                 <div
                   className="mt-6 rounded-2xl border p-4 md:p-5"
                   style={{
@@ -239,16 +292,16 @@ export const Footer: React.FC = () => {
                   }}
                 >
                   <div className="font-semibold" style={{ color: TEXT_BROWN }}>
-                    Nhận ưu đãi & sản phẩm mới
+                    {t.newsletterTitle}
                   </div>
                   <div className="mt-1 text-sm" style={{ color: `${TEXT_BROWN}B3` }}>
-                    Đăng ký email (không spam, hứa luôn).
+                    {t.newsletterSub}
                   </div>
 
                   <div className="mt-4 flex flex-col sm:flex-row gap-3">
                     <input
                       type="email"
-                      placeholder="Email của bạn"
+                      placeholder={t.emailPlaceholder}
                       className="w-full rounded-2xl border px-4 py-3 outline-none"
                       style={{
                         backgroundColor: 'rgba(255,255,255,0.92)',
@@ -263,25 +316,19 @@ export const Footer: React.FC = () => {
                         color: '#fff',
                         boxShadow: '0 12px 26px rgba(244,163,180,0.35)',
                       }}
-                      onMouseEnter={(e) =>
-                        (e.currentTarget.style.boxShadow = '0 14px 28px rgba(244,163,180,0.45)')
-                      }
-                      onMouseLeave={(e) =>
-                        (e.currentTarget.style.boxShadow = '0 12px 26px rgba(244,163,180,0.35)')
-                      }
+                      onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0 14px 28px rgba(244,163,180,0.45)')}
+                      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = '0 12px 26px rgba(244,163,180,0.35)')}
                       onClick={() => {
                         // connect later
                       }}
                     >
-                      Đăng ký <ArrowRight size={18} />
+                      {t.subscribeBtn} <ArrowRight size={18} />
                     </button>
                   </div>
                 </div>
 
-                {/* divider */}
                 <div style={miniDivider} />
 
-                {/* quick links + promise (fills the empty area cleanly) */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <a
                     href="#products"
@@ -289,7 +336,7 @@ export const Footer: React.FC = () => {
                     onMouseEnter={(e) => (e.currentTarget.style.borderColor = ACCENT_PINK)}
                     onMouseLeave={(e) => (e.currentTarget.style.borderColor = `${TEXT_BROWN}14`)}
                   >
-                    <span style={{ fontWeight: 700, color: TEXT_BROWN }}>Sản phẩm</span>
+                    <span style={{ fontWeight: 700, color: TEXT_BROWN }}>{t.quick1}</span>
                     <ArrowRight size={16} />
                   </a>
 
@@ -299,7 +346,7 @@ export const Footer: React.FC = () => {
                     onMouseEnter={(e) => (e.currentTarget.style.borderColor = ACCENT_PINK)}
                     onMouseLeave={(e) => (e.currentTarget.style.borderColor = `${TEXT_BROWN}14`)}
                   >
-                    <span style={{ fontWeight: 700, color: TEXT_BROWN }}>Câu chuyện</span>
+                    <span style={{ fontWeight: 700, color: TEXT_BROWN }}>{t.quick2}</span>
                     <ArrowRight size={16} />
                   </a>
 
@@ -309,7 +356,7 @@ export const Footer: React.FC = () => {
                     onMouseEnter={(e) => (e.currentTarget.style.borderColor = ACCENT_PINK)}
                     onMouseLeave={(e) => (e.currentTarget.style.borderColor = `${TEXT_BROWN}14`)}
                   >
-                    <span style={{ fontWeight: 700, color: TEXT_BROWN }}>Đánh giá</span>
+                    <span style={{ fontWeight: 700, color: TEXT_BROWN }}>{t.quick3}</span>
                     <ArrowRight size={16} />
                   </a>
 
@@ -319,33 +366,34 @@ export const Footer: React.FC = () => {
                     onMouseEnter={(e) => (e.currentTarget.style.borderColor = ACCENT_PINK)}
                     onMouseLeave={(e) => (e.currentTarget.style.borderColor = `${TEXT_BROWN}14`)}
                   >
-                    <span style={{ fontWeight: 700, color: TEXT_BROWN }}>Liên hệ</span>
+                    <span style={{ fontWeight: 700, color: TEXT_BROWN }}>{t.quick4}</span>
                     <ArrowRight size={16} />
                   </a>
                 </div>
 
+                {/* NEW bottom-left badges (different from top chips) */}
                 <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <div style={iconChipSmall}>
-                    <Sparkles size={16} style={{ color: TEXT_BROWN }} />
-                    <span>Đóng gói đẹp</span>
+                  <div style={badgeStyle}>
+                    <Gift size={16} style={{ color: TEXT_BROWN }} />
+                    <span>{t.badgeA}</span>
                   </div>
-                  <div style={iconChipSmall}>
-                    <ShieldCheck size={16} style={{ color: TEXT_BROWN }} />
-                    <span>Hỗ trợ nhanh</span>
+                  <div style={badgeStyle}>
+                    <Clock size={16} style={{ color: TEXT_BROWN }} />
+                    <span>{t.badgeB}</span>
                   </div>
-                  <div style={iconChipSmall}>
-                    <Truck size={16} style={{ color: TEXT_BROWN }} />
-                    <span>Giao nội thành</span>
+                  <div style={badgeStyle}>
+                    <HeartHandshake size={16} style={{ color: TEXT_BROWN }} />
+                    <span>{t.badgeC}</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Middle: Contact (now visually “complete”, less empty) */}
+            {/* Middle */}
             <div className="md:col-span-4 h-full">
               <div className="p-6 md:p-7 h-full flex flex-col" style={cardStyle}>
                 <div className="font-semibold mb-4" style={{ color: TEXT_BROWN, fontSize: '18px' }}>
-                  Thông tin liên hệ
+                  {t.contactTitle}
                 </div>
 
                 <div className="flex flex-col gap-3" style={{ color: `${TEXT_BROWN}CC` }}>
@@ -364,7 +412,7 @@ export const Footer: React.FC = () => {
                     </span>
                     <div>
                       <div className="text-sm" style={{ color: `${TEXT_BROWN}B3` }}>
-                        Address
+                        {t.addressLabel}
                       </div>
                       <div className="text-sm md:text-base">
                         123 Đường Cánh Hoa, Quận 1, TP. Hồ Chí Minh
@@ -387,7 +435,7 @@ export const Footer: React.FC = () => {
                     </span>
                     <div>
                       <div className="text-sm" style={{ color: `${TEXT_BROWN}B3` }}>
-                        Phone
+                        {t.phoneLabel}
                       </div>
                       <div className="text-sm md:text-base">+84 987 654 321</div>
                     </div>
@@ -408,7 +456,7 @@ export const Footer: React.FC = () => {
                     </span>
                     <div>
                       <div className="text-sm" style={{ color: `${TEXT_BROWN}B3` }}>
-                        Email
+                        {t.emailLabel}
                       </div>
                       <div className="text-sm md:text-base">hello@bonglem.vn</div>
                     </div>
@@ -424,11 +472,9 @@ export const Footer: React.FC = () => {
                     fontSize: '14px',
                   }}
                 >
-                  Bạn cần hỗ trợ? Nhắn cho tụi mình qua Instagram hoặc TikTok — tụi mình phản hồi
-                  nhanh nhất có thể 🌼
+                  {t.helpBox}
                 </div>
 
-                {/* fills the “empty bottom” cleanly */}
                 <div style={miniDivider} />
 
                 <div
@@ -442,20 +488,20 @@ export const Footer: React.FC = () => {
                   }}
                 >
                   <div style={{ fontWeight: 800, color: TEXT_BROWN, marginBottom: '6px' }}>
-                    Hỗ trợ & phản hồi
+                    {t.supportTitle}
                   </div>
-                  <div>• Thời gian hỗ trợ: 09:00 – 21:00 (hàng ngày)</div>
-                  <div>• DM Instagram/TikTok thường nhanh hơn email 🌼</div>
-                  <div>• Đơn nội thành: ưu tiên xử lý sớm trong ngày</div>
+                  <div>{t.support1}</div>
+                  <div>{t.support2}</div>
+                  <div>{t.support3}</div>
                 </div>
               </div>
             </div>
 
-            {/* Right: Policies + TikTok tile (kept, slightly tightened) */}
+            {/* Right */}
             <div className="md:col-span-3 h-full">
               <div className="p-6 md:p-7 h-full flex flex-col" style={cardStyle}>
                 <div className="font-semibold mb-4" style={{ color: TEXT_BROWN, fontSize: '18px' }}>
-                  Chính sách
+                  {t.policyTitle}
                 </div>
 
                 <div className="flex flex-col gap-3 text-sm md:text-base">
@@ -464,21 +510,21 @@ export const Footer: React.FC = () => {
                     className="hover:underline underline-offset-4 transition"
                     style={{ color: `${TEXT_BROWN}CC` }}
                   >
-                    Chính sách mua hàng
+                    {t.policy1}
                   </a>
                   <a
                     href="#privacy"
                     className="hover:underline underline-offset-4 transition"
                     style={{ color: `${TEXT_BROWN}CC` }}
                   >
-                    Chính sách bảo mật
+                    {t.policy2}
                   </a>
                   <a
                     href="#contact"
                     className="hover:underline underline-offset-4 transition"
                     style={{ color: `${TEXT_BROWN}CC` }}
                   >
-                    Liên hệ
+                    {t.policy3}
                   </a>
                 </div>
 
@@ -529,25 +575,11 @@ export const Footer: React.FC = () => {
                     </div>
 
                     <div style={{ marginTop: '10px' }}>
-                      <div
-                        style={{
-                          color: TEXT_BROWN,
-                          fontWeight: 900,
-                          fontSize: '14px',
-                          lineHeight: 1.2,
-                        }}
-                      >
-                        Follow TikTok của tụi mình!
+                      <div style={{ color: TEXT_BROWN, fontWeight: 900, fontSize: '14px', lineHeight: 1.2 }}>
+                        {t.tiktokHeadline}
                       </div>
-                      <div
-                        style={{
-                          marginTop: '6px',
-                          color: `${TEXT_BROWN}B3`,
-                          fontSize: '13px',
-                          lineHeight: 1.35,
-                        }}
-                      >
-                        Video ngắn, sản phẩm mới & content vui 🌼
+                      <div style={{ marginTop: '6px', color: `${TEXT_BROWN}B3`, fontSize: '13px', lineHeight: 1.35 }}>
+                        {t.tiktokSub}
                       </div>
                     </div>
 
@@ -616,14 +648,10 @@ export const Footer: React.FC = () => {
                         backgroundColor: ACCENT_PINK,
                         boxShadow: '0 12px 26px rgba(244,163,180,0.35)',
                       }}
-                      onMouseEnter={(e) =>
-                        (e.currentTarget.style.boxShadow = '0 14px 28px rgba(244,163,180,0.45)')
-                      }
-                      onMouseLeave={(e) =>
-                        (e.currentTarget.style.boxShadow = '0 12px 26px rgba(244,163,180,0.35)')
-                      }
+                      onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0 14px 28px rgba(244,163,180,0.45)')}
+                      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = '0 12px 26px rgba(244,163,180,0.35)')}
                     >
-                      Xem TikTok <ArrowRight size={16} />
+                      {t.tiktokBtn} <ArrowRight size={16} />
                     </a>
                   </div>
                 </div>
@@ -639,32 +667,19 @@ export const Footer: React.FC = () => {
             style={{ borderColor: `${TEXT_BROWN}1A`, color: `${TEXT_BROWN}B3` }}
           >
             <div>
-              © {year} <span style={{ color: TEXT_BROWN, fontWeight: 600 }}>BÔNG LÉM</span>. Made
-              with love.
+              © {year} <span style={{ color: TEXT_BROWN, fontWeight: 600 }}>BÔNG LÉM</span>. {t.bottomMade}
             </div>
             <div className="flex items-center gap-3">
-              <a
-                href="#contact"
-                className="hover:underline underline-offset-4"
-                style={{ color: `${TEXT_BROWN}B3` }}
-              >
-                Contact
+              <a href="#contact" className="hover:underline underline-offset-4" style={{ color: `${TEXT_BROWN}B3` }}>
+                {t.bottomLinkContact}
               </a>
               <span style={{ opacity: 0.5 }}>•</span>
-              <a
-                href="#products"
-                className="hover:underline underline-offset-4"
-                style={{ color: `${TEXT_BROWN}B3` }}
-              >
-                Shop
+              <a href="#products" className="hover:underline underline-offset-4" style={{ color: `${TEXT_BROWN}B3` }}>
+                {t.bottomLinkShop}
               </a>
               <span style={{ opacity: 0.5 }}>•</span>
-              <a
-                href="#story"
-                className="hover:underline underline-offset-4"
-                style={{ color: `${TEXT_BROWN}B3` }}
-              >
-                Story
+              <a href="#story" className="hover:underline underline-offset-4" style={{ color: `${TEXT_BROWN}B3` }}>
+                {t.bottomLinkStory}
               </a>
             </div>
           </div>
