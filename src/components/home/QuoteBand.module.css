@@ -25,6 +25,21 @@
   width: 160px;
   opacity: 0.12;
   pointer-events: none;
+  z-index: 0;
+}
+
+/* NEW layout wrapper: left flower | center text | right flower */
+.row {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 120px 1fr 120px;
+  align-items: center; /* vertical middle */
+  gap: 12px;
+}
+
+.center {
+  min-width: 0;
 }
 
 .quote {
@@ -34,6 +49,7 @@
   line-height: 1.55;
   color: var(--text);
   font-style: italic;
+  word-break: break-word;
 }
 
 .subRow {
@@ -57,10 +73,45 @@
   letter-spacing: 0.2px;
 }
 
-.emoji {
+/* Flowers (uses your emojiSrc image) */
+.flower {
   width: 100px;
   height: 100px;
-  margin: 0 12px;
-  vertical-align: middle;
   object-fit: contain;
+}
+
+.flowerLeft {
+  justify-self: start;
+}
+
+.flowerRight {
+  justify-self: end;
+}
+
+/* Responsive adjustments */
+@media (max-width: 760px) {
+  .row {
+    grid-template-columns: 72px 1fr 72px;
+    gap: 10px;
+  }
+
+  .flower {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+@media (max-width: 420px) {
+  .row {
+    grid-template-columns: 56px 1fr 56px;
+  }
+
+  .flower {
+    width: 52px;
+    height: 52px;
+  }
+
+  .line {
+    width: 44px;
+  }
 }
