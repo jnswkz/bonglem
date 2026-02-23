@@ -136,7 +136,6 @@ export const Header: React.FC<HeaderProps> = ({
               />
             </div>
 
-            {/* DESKTOP NAV */}
             <div className="hidden lg:flex flex-1 justify-center px-6">
               <div
                 className="flex w-full max-w-[860px] items-center gap-2 pl-3 pr-2 py-2 rounded-full border shadow-sm"
@@ -158,9 +157,7 @@ export const Header: React.FC<HeaderProps> = ({
                           lineHeight: 1,
                           whiteSpace: "nowrap",
                           color: active ? "#FFFFFF" : `${TEXT_BROWN}B3`,
-                          backgroundColor: active
-                            ? ACCENT_PINK
-                            : "transparent",
+                          backgroundColor: active ? ACCENT_PINK : "transparent",
                         }}
                       >
                         {item.name}
@@ -217,7 +214,6 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
             </div>
 
-            {/* RIGHT ICONS */}
             <div className="flex items-center gap-4" style={{ color: TEXT_BROWN }}>
               <button
                 type="button"
@@ -228,6 +224,12 @@ export const Header: React.FC<HeaderProps> = ({
                   backgroundColor: "rgba(255,255,255,0.9)",
                   borderColor: `${TEXT_BROWN}1A`,
                 }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.borderColor = ACCENT_PINK)
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`)
+                }
                 onClick={() => window.open("https://instagram.com", "_blank")}
                 aria-label="Instagram"
               >
@@ -243,9 +245,16 @@ export const Header: React.FC<HeaderProps> = ({
                   backgroundColor: "rgba(255,255,255,0.9)",
                   borderColor: `${TEXT_BROWN}1A`,
                 }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.borderColor = ACCENT_PINK)
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`)
+                }
                 aria-label={language === "vi" ? "Giỏ hàng" : "Cart"}
               >
                 <ShoppingCart size={30} />
+
                 {cartCount > 0 && (
                   <span
                     className="absolute text-xs min-w-6 h-6 rounded-full flex items-center justify-center text-white"
@@ -279,6 +288,59 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           </div>
         </div>
+
+        {isMenuOpen && (
+          <div
+            className="lg:hidden border-t"
+            style={{ borderColor: `${TEXT_BROWN}1A` }}
+          >
+            <div
+              className="px-6 py-6 flex flex-col gap-3"
+              style={{ backgroundColor: BG_CREAM }}
+            >
+              <button
+                type="button"
+                onClick={() => {
+                  toggleLanguage();
+                  setIsMenuOpen(false);
+                }}
+                className="font-semibold py-4 px-5 rounded-2xl text-left transition"
+                style={{
+                  fontSize: "20px",
+                  color: TEXT_BROWN,
+                  backgroundColor: "rgba(255,255,255,0.7)",
+                  border: `1px solid ${TEXT_BROWN}1A`,
+                }}
+              >
+                {language === "vi" ? "Đổi ngôn ngữ: EN" : "Language: VI"}
+              </button>
+
+              {navItems.map((item) => {
+                const active = currentPage === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      onNavigate(item.id);
+                      setIsMenuOpen(false);
+                    }}
+                    className="font-medium py-4 px-5 rounded-2xl text-left transition"
+                    style={{
+                      fontSize: "20px",
+                      color: active ? "#FFFFFF" : TEXT_BROWN,
+                      backgroundColor: active
+                        ? ACCENT_PINK
+                        : "rgba(255,255,255,0.7)",
+                      border: `1px solid ${TEXT_BROWN}1A`,
+                    }}
+                  >
+                    {item.name}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );
