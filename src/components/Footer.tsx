@@ -9,8 +9,8 @@ import {
   ShieldCheck,
   Sparkles,
   Truck,
-  Gift,
-  Clock,
+  PackageOpen,
+  Lock,
   HeartHandshake,
 } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
@@ -29,7 +29,9 @@ export const Footer: React.FC = () => {
 
   // ---- TEXT (VI / EN) ----
   const t = {
-    brandLine1: isEN ? 'Tiny gifts that bring big joy 🌼' : 'Những món quà nhỏ mang niềm vui to 🌼',
+    brandLine1: isEN
+      ? 'Tiny gifts that bring big joy 🌼'
+      : 'Những món quà nhỏ mang niềm vui to 🌼',
     brandLine2: isEN
       ? 'Made with love — curated snacks & sweet moments.'
       : 'Made with love — curated snacks & sweet moments.',
@@ -41,7 +43,9 @@ export const Footer: React.FC = () => {
     leftTitle: isEN ? 'Stay connected' : 'Kết nối với Bông Lém',
     leftSub: isEN ? 'Follow for updates & deals.' : 'Follow để nhận update & ưu đãi.',
     newsletterTitle: isEN ? 'Get deals & new drops' : 'Nhận ưu đãi & sản phẩm mới',
-    newsletterSub: isEN ? 'Join by email (no spam, promise).' : 'Đăng ký email (không spam, hứa luôn).',
+    newsletterSub: isEN
+      ? 'Join by email (no spam, promise).'
+      : 'Đăng ký email (không spam, hứa luôn).',
     emailPlaceholder: isEN ? 'Your email' : 'Email của bạn',
     subscribeBtn: isEN ? 'Subscribe' : 'Đăng ký',
 
@@ -50,9 +54,9 @@ export const Footer: React.FC = () => {
     quick3: isEN ? 'Feedback' : 'Đánh giá',
     quick4: isEN ? 'Contact' : 'Liên hệ',
 
-    // NEW bottom-left badges (different from the top chips)
-    badgeA: isEN ? 'Gift note included' : 'Có thiệp quà tặng',
-    badgeB: isEN ? 'Same-day pickup' : 'Nhận trong ngày',
+    // Bottom-left badges (SAFE claims)
+    badgeA: isEN ? 'New drops weekly' : 'Hàng mới mỗi tuần',
+    badgeB: isEN ? 'Secure checkout' : 'Thanh toán an toàn',
     badgeC: isEN ? 'Custom bundles' : 'Combo theo yêu cầu',
 
     contactTitle: isEN ? 'Contact info' : 'Thông tin liên hệ',
@@ -64,13 +68,13 @@ export const Footer: React.FC = () => {
       : 'Bạn cần hỗ trợ? Nhắn cho tụi mình qua Instagram hoặc TikTok — tụi mình phản hồi nhanh nhất có thể 🌼',
 
     supportTitle: isEN ? 'Support & response' : 'Hỗ trợ & phản hồi',
-    support1: isEN ? 'Support hours: 09:00 – 21:00 (daily)' : '• Thời gian hỗ trợ: 09:00 – 21:00 (hàng ngày)',
+    support1: isEN
+      ? 'Support hours: 09:00 – 21:00 (daily)'
+      : '• Thời gian hỗ trợ: 09:00 – 21:00 (hàng ngày)',
     support2: isEN
       ? 'Instagram/TikTok DMs are usually faster than email'
       : '• DM Instagram/TikTok thường nhanh hơn email 🌼',
-    support3: isEN
-      ? 'Local orders are prioritized earlier in the day'
-      : '• Đơn nội thành: ưu tiên xử lý sớm trong ngày',
+    // support3 removed on purpose
 
     policyTitle: isEN ? 'Policies' : 'Chính sách',
     policy1: isEN ? 'Purchase policy' : 'Chính sách mua hàng',
@@ -78,7 +82,9 @@ export const Footer: React.FC = () => {
     policy3: isEN ? 'Contact' : 'Liên hệ',
 
     tiktokHeadline: isEN ? 'Follow our TikTok!' : 'Follow TikTok của tụi mình!',
-    tiktokSub: isEN ? 'Short videos, new products & fun content 🌼' : 'Video ngắn, sản phẩm mới & content vui 🌼',
+    tiktokSub: isEN
+      ? 'Short videos, new products & fun content 🌼'
+      : 'Video ngắn, sản phẩm mới & content vui 🌼',
     tiktokBtn: isEN ? 'Open TikTok' : 'Xem TikTok',
 
     bottomMade: isEN ? 'Made with love.' : 'Made with love.',
@@ -157,7 +163,14 @@ export const Footer: React.FC = () => {
 
   // TikTok icon (Lucide does not ship a TikTok icon by default)
   const TikTokIcon: React.FC<{ size?: number }> = ({ size = 22 }) => (
-    <svg width={size} height={size} viewBox="0 0 48 48" fill="none" aria-hidden="true" focusable="false">
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 48 48"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+    >
       <path
         d="M30.8 6c.4 4.2 3 7.9 6.9 9.8 1.8.9 3.7 1.4 5.6 1.5v6.3c-2.4 0-4.8-.6-7-1.6-1.2-.6-2.3-1.3-3.3-2.1v14.6c0 6.8-5.5 12.3-12.3 12.3S8.4 41.3 8.4 34.5c0-6.8 5.5-12.3 12.3-12.3.8 0 1.6.1 2.4.2v6.7c-.7-.3-1.5-.5-2.4-.5-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6V6h4.1Z"
         fill="currentColor"
@@ -179,7 +192,6 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="w-full mt-16">
-      {/* Top divider band */}
       <div
         style={{
           height: '10px',
@@ -187,7 +199,6 @@ export const Footer: React.FC = () => {
         }}
       />
 
-      {/* Main footer background */}
       <div
         className="border-t"
         style={{
@@ -196,7 +207,6 @@ export const Footer: React.FC = () => {
         }}
       >
         <div className="mx-auto max-w-7xl px-6 md:px-10 py-12">
-          {/* Brand row + chips */}
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-10">
             <div className="flex items-start gap-4">
               <img
@@ -209,7 +219,10 @@ export const Footer: React.FC = () => {
                 }}
               />
               <div>
-                <div className="font-serif font-bold tracking-wider" style={{ color: TEXT_BROWN, fontSize: '34px', lineHeight: 1 }}>
+                <div
+                  className="font-serif font-bold tracking-wider"
+                  style={{ color: TEXT_BROWN, fontSize: '34px', lineHeight: 1 }}
+                >
                   BÔNG LÉM
                 </div>
                 <div className="mt-2 text-sm md:text-base" style={{ color: `${TEXT_BROWN}CC` }}>
@@ -236,7 +249,6 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Main grid */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
             {/* Left */}
             <div className="md:col-span-5 h-full">
@@ -316,8 +328,14 @@ export const Footer: React.FC = () => {
                         color: '#fff',
                         boxShadow: '0 12px 26px rgba(244,163,180,0.35)',
                       }}
-                      onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0 14px 28px rgba(244,163,180,0.45)')}
-                      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = '0 12px 26px rgba(244,163,180,0.35)')}
+                      onMouseEnter={(e) =>
+                        (e.currentTarget.style.boxShadow =
+                          '0 14px 28px rgba(244,163,180,0.45)')
+                      }
+                      onMouseLeave={(e) =>
+                        (e.currentTarget.style.boxShadow =
+                          '0 12px 26px rgba(244,163,180,0.35)')
+                      }
                       onClick={() => {
                         // connect later
                       }}
@@ -334,7 +352,9 @@ export const Footer: React.FC = () => {
                     href="#products"
                     style={quickLinkStyle}
                     onMouseEnter={(e) => (e.currentTarget.style.borderColor = ACCENT_PINK)}
-                    onMouseLeave={(e) => (e.currentTarget.style.borderColor = `${TEXT_BROWN}14`)}
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.borderColor = `${TEXT_BROWN}14`)
+                    }
                   >
                     <span style={{ fontWeight: 700, color: TEXT_BROWN }}>{t.quick1}</span>
                     <ArrowRight size={16} />
@@ -344,7 +364,9 @@ export const Footer: React.FC = () => {
                     href="#story"
                     style={quickLinkStyle}
                     onMouseEnter={(e) => (e.currentTarget.style.borderColor = ACCENT_PINK)}
-                    onMouseLeave={(e) => (e.currentTarget.style.borderColor = `${TEXT_BROWN}14`)}
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.borderColor = `${TEXT_BROWN}14`)
+                    }
                   >
                     <span style={{ fontWeight: 700, color: TEXT_BROWN }}>{t.quick2}</span>
                     <ArrowRight size={16} />
@@ -354,7 +376,9 @@ export const Footer: React.FC = () => {
                     href="#feedback"
                     style={quickLinkStyle}
                     onMouseEnter={(e) => (e.currentTarget.style.borderColor = ACCENT_PINK)}
-                    onMouseLeave={(e) => (e.currentTarget.style.borderColor = `${TEXT_BROWN}14`)}
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.borderColor = `${TEXT_BROWN}14`)
+                    }
                   >
                     <span style={{ fontWeight: 700, color: TEXT_BROWN }}>{t.quick3}</span>
                     <ArrowRight size={16} />
@@ -364,21 +388,23 @@ export const Footer: React.FC = () => {
                     href="#contact"
                     style={quickLinkStyle}
                     onMouseEnter={(e) => (e.currentTarget.style.borderColor = ACCENT_PINK)}
-                    onMouseLeave={(e) => (e.currentTarget.style.borderColor = `${TEXT_BROWN}14`)}
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.borderColor = `${TEXT_BROWN}14`)
+                    }
                   >
                     <span style={{ fontWeight: 700, color: TEXT_BROWN }}>{t.quick4}</span>
                     <ArrowRight size={16} />
                   </a>
                 </div>
 
-                {/* NEW bottom-left badges (different from top chips) */}
+                {/* Bottom-left badges (UPDATED) */}
                 <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div style={badgeStyle}>
-                    <Gift size={16} style={{ color: TEXT_BROWN }} />
+                    <PackageOpen size={16} style={{ color: TEXT_BROWN }} />
                     <span>{t.badgeA}</span>
                   </div>
                   <div style={badgeStyle}>
-                    <Clock size={16} style={{ color: TEXT_BROWN }} />
+                    <Lock size={16} style={{ color: TEXT_BROWN }} />
                     <span>{t.badgeB}</span>
                   </div>
                   <div style={badgeStyle}>
@@ -492,7 +518,6 @@ export const Footer: React.FC = () => {
                   </div>
                   <div>{t.support1}</div>
                   <div>{t.support2}</div>
-                  <div>{t.support3}</div>
                 </div>
               </div>
             </div>
@@ -528,7 +553,6 @@ export const Footer: React.FC = () => {
                   </a>
                 </div>
 
-                {/* TikTok tile */}
                 <div
                   className="mt-7 border overflow-hidden"
                   style={{
@@ -568,17 +592,33 @@ export const Footer: React.FC = () => {
                           color: TEXT_BROWN,
                         }}
                         onMouseEnter={(e) => (e.currentTarget.style.borderColor = ACCENT_PINK)}
-                        onMouseLeave={(e) => (e.currentTarget.style.borderColor = `${TEXT_BROWN}14`)}
+                        onMouseLeave={(e) =>
+                          (e.currentTarget.style.borderColor = `${TEXT_BROWN}14`)
+                        }
                       >
                         <TikTokIcon size={18} />
                       </a>
                     </div>
 
                     <div style={{ marginTop: '10px' }}>
-                      <div style={{ color: TEXT_BROWN, fontWeight: 900, fontSize: '14px', lineHeight: 1.2 }}>
+                      <div
+                        style={{
+                          color: TEXT_BROWN,
+                          fontWeight: 900,
+                          fontSize: '14px',
+                          lineHeight: 1.2,
+                        }}
+                      >
                         {t.tiktokHeadline}
                       </div>
-                      <div style={{ marginTop: '6px', color: `${TEXT_BROWN}B3`, fontSize: '13px', lineHeight: 1.35 }}>
+                      <div
+                        style={{
+                          marginTop: '6px',
+                          color: `${TEXT_BROWN}B3`,
+                          fontSize: '13px',
+                          lineHeight: 1.35,
+                        }}
+                      >
                         {t.tiktokSub}
                       </div>
                     </div>
@@ -648,8 +688,14 @@ export const Footer: React.FC = () => {
                         backgroundColor: ACCENT_PINK,
                         boxShadow: '0 12px 26px rgba(244,163,180,0.35)',
                       }}
-                      onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0 14px 28px rgba(244,163,180,0.45)')}
-                      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = '0 12px 26px rgba(244,163,180,0.35)')}
+                      onMouseEnter={(e) =>
+                        (e.currentTarget.style.boxShadow =
+                          '0 14px 28px rgba(244,163,180,0.45)')
+                      }
+                      onMouseLeave={(e) =>
+                        (e.currentTarget.style.boxShadow =
+                          '0 12px 26px rgba(244,163,180,0.35)')
+                      }
                     >
                       {t.tiktokBtn} <ArrowRight size={16} />
                     </a>
@@ -667,18 +713,32 @@ export const Footer: React.FC = () => {
             style={{ borderColor: `${TEXT_BROWN}1A`, color: `${TEXT_BROWN}B3` }}
           >
             <div>
-              © {year} <span style={{ color: TEXT_BROWN, fontWeight: 600 }}>BÔNG LÉM</span>. {t.bottomMade}
+              © {year}{' '}
+              <span style={{ color: TEXT_BROWN, fontWeight: 600 }}>BÔNG LÉM</span>.{' '}
+              {t.bottomMade}
             </div>
             <div className="flex items-center gap-3">
-              <a href="#contact" className="hover:underline underline-offset-4" style={{ color: `${TEXT_BROWN}B3` }}>
+              <a
+                href="#contact"
+                className="hover:underline underline-offset-4"
+                style={{ color: `${TEXT_BROWN}B3` }}
+              >
                 {t.bottomLinkContact}
               </a>
               <span style={{ opacity: 0.5 }}>•</span>
-              <a href="#products" className="hover:underline underline-offset-4" style={{ color: `${TEXT_BROWN}B3` }}>
+              <a
+                href="#products"
+                className="hover:underline underline-offset-4"
+                style={{ color: `${TEXT_BROWN}B3` }}
+              >
                 {t.bottomLinkShop}
               </a>
               <span style={{ opacity: 0.5 }}>•</span>
-              <a href="#story" className="hover:underline underline-offset-4" style={{ color: `${TEXT_BROWN}B3` }}>
+              <a
+                href="#story"
+                className="hover:underline underline-offset-4"
+                style={{ color: `${TEXT_BROWN}B3` }}
+              >
                 {t.bottomLinkStory}
               </a>
             </div>
