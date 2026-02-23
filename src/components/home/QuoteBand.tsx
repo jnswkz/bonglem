@@ -4,7 +4,7 @@ export type QuoteBandProps = {
   quote: string;
   subline: string;
   watermarkSrc?: string;
-  emojiSrc?: string; // this is your flower/emoji image
+  emojiSrc?: string;
 };
 
 export default function QuoteBand({
@@ -29,7 +29,6 @@ export default function QuoteBand({
         ) : null}
 
         <div className={styles.row}>
-          {/* Left flower */}
           {emojiSrc ? (
             <img
               src={emojiSrc}
@@ -39,7 +38,6 @@ export default function QuoteBand({
             />
           ) : null}
 
-          {/* Center text */}
           <div className={styles.center}>
             <p className={styles.quote}>{quote}</p>
 
@@ -50,7 +48,6 @@ export default function QuoteBand({
             </div>
           </div>
 
-          {/* Right flower */}
           {emojiSrc ? (
             <img
               src={emojiSrc}
