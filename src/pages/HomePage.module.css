@@ -11,21 +11,44 @@
   --radius-lg: 22px;
 }
 
+/* ✅ IMPORTANT:
+   Page darf NICHT mehr selber beige/solid background malen,
+   sonst killt es den globalen Gradient aus globals.css */
 .page {
   min-height: 100vh;
-  background: radial-gradient(1200px 700px at 20% 0%, rgba(243, 167, 183, 0.22), transparent 55%),
-    radial-gradient(900px 600px at 80% 30%, rgba(243, 167, 183, 0.16), transparent 55%),
-    var(--bg);
+  background: transparent;
   color: var(--text);
 }
 
+/* Content-Wrapper mittig "soft pink / glass" */
 .main {
+  position: relative;
   max-width: 1200px;
   margin: 0 auto;
   padding: 22px 18px 72px;
   display: flex;
   flex-direction: column;
   gap: 54px;
+  z-index: 0;
+}
+
+/* ✅ Das ist der mittlere Pastel-Look (wie dein Screenshot) */
+.main::before {
+  content: "";
+  position: absolute;
+  inset: -18px;
+  border-radius: 36px;
+  pointer-events: none;
+  z-index: -1;
+
+  /* Pastel glow + glass */
+  background:
+    radial-gradient(1200px 700px at 20% 0%, rgba(243, 167, 183, 0.35), transparent 58%),
+    radial-gradient(1000px 650px at 85% 20%, rgba(255, 205, 220, 0.28), transparent 60%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.10) 100%);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(58, 43, 35, 0.08);
+  backdrop-filter: blur(10px);
 }
 
 .section {
