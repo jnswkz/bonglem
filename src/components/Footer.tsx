@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Facebook,
-  Instagram,
   Mail,
   MapPin,
   Phone,
@@ -63,29 +62,32 @@ export const Footer: React.FC = () => {
     addressLabel: isEN ? 'Address' : 'Address',
     phoneLabel: isEN ? 'Phone' : 'Phone',
     emailLabel: isEN ? 'Email' : 'Email',
+
+    // ✅ UPDATED (Instagram/TikTok removed)
     helpBox: isEN
-      ? 'Need help? DM us on Instagram or TikTok — we reply fastest there 🌼'
-      : 'Bạn cần hỗ trợ? Nhắn cho tụi mình qua Instagram hoặc TikTok — tụi mình phản hồi nhanh nhất có thể 🌼',
+      ? 'Need help? DM us on Facebook — we reply fastest there 🌼'
+      : 'Bạn cần hỗ trợ? Nhắn cho tụi mình qua Facebook — tụi mình phản hồi nhanh nhất có thể 🌼',
 
     supportTitle: isEN ? 'Support & response' : 'Hỗ trợ & phản hồi',
     support1: isEN
       ? 'Support hours: 09:00 – 21:00 (daily)'
       : '• Thời gian hỗ trợ: 09:00 – 21:00 (hàng ngày)',
+    // ✅ UPDATED (Instagram/TikTok removed)
     support2: isEN
-      ? 'Instagram/TikTok DMs are usually faster than email'
-      : '• DM Instagram/TikTok thường nhanh hơn email 🌼',
-    // support3 removed on purpose
+      ? 'Facebook DMs are usually faster than email'
+      : '• DM Facebook thường nhanh hơn email 🌼',
 
     policyTitle: isEN ? 'Policies' : 'Chính sách',
     policy1: isEN ? 'Purchase policy' : 'Chính sách mua hàng',
     policy2: isEN ? 'Privacy policy' : 'Chính sách bảo mật',
     policy3: isEN ? 'Contact' : 'Liên hệ',
 
-    tiktokHeadline: isEN ? 'Follow our TikTok!' : 'Follow TikTok của tụi mình!',
-    tiktokSub: isEN
-      ? 'Short videos, new products & fun content 🌼'
-      : 'Video ngắn, sản phẩm mới & content vui 🌼',
-    tiktokBtn: isEN ? 'Open TikTok' : 'Xem TikTok',
+    // ✅ UPDATED: TikTok promo -> Facebook promo
+    socialHeadline: isEN ? 'Follow us on Facebook!' : 'Follow Facebook của tụi mình!',
+    socialSub: isEN
+      ? 'Updates, new products & fun content 🌼'
+      : 'Cập nhật, sản phẩm mới & content vui 🌼',
+    socialBtn: isEN ? 'Open Facebook' : 'Mở Facebook',
 
     bottomMade: isEN ? 'Made with love.' : 'Made with love.',
     bottomLinkContact: isEN ? 'Contact' : 'Contact',
@@ -160,23 +162,6 @@ export const Footer: React.FC = () => {
     color: `${TEXT_BROWN}B3`,
     fontSize: '13px',
   };
-
-  // TikTok icon (Lucide does not ship a TikTok icon by default)
-  const TikTokIcon: React.FC<{ size?: number }> = ({ size = 22 }) => (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 48 48"
-      fill="none"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <path
-        d="M30.8 6c.4 4.2 3 7.9 6.9 9.8 1.8.9 3.7 1.4 5.6 1.5v6.3c-2.4 0-4.8-.6-7-1.6-1.2-.6-2.3-1.3-3.3-2.1v14.6c0 6.8-5.5 12.3-12.3 12.3S8.4 41.3 8.4 34.5c0-6.8 5.5-12.3 12.3-12.3.8 0 1.6.1 2.4.2v6.7c-.7-.3-1.5-.5-2.4-.5-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6V6h4.1Z"
-        fill="currentColor"
-      />
-    </svg>
-  );
 
   const socialHoverIn = (el: HTMLAnchorElement) => {
     el.style.borderColor = ACCENT_PINK;
@@ -263,17 +248,8 @@ export const Footer: React.FC = () => {
                     </div>
                   </div>
 
+                  {/* ✅ ONLY FACEBOOK */}
                   <div className="flex items-center gap-3">
-                    <a
-                      href="#"
-                      aria-label="Instagram"
-                      style={socialBtnStyle}
-                      onMouseEnter={(e) => socialHoverIn(e.currentTarget)}
-                      onMouseLeave={(e) => socialHoverOut(e.currentTarget)}
-                    >
-                      <Instagram size={22} />
-                    </a>
-
                     <a
                       href="#"
                       aria-label="Facebook"
@@ -282,16 +258,6 @@ export const Footer: React.FC = () => {
                       onMouseLeave={(e) => socialHoverOut(e.currentTarget)}
                     >
                       <Facebook size={22} />
-                    </a>
-
-                    <a
-                      href="#"
-                      aria-label="TikTok"
-                      style={socialBtnStyle}
-                      onMouseEnter={(e) => socialHoverIn(e.currentTarget)}
-                      onMouseLeave={(e) => socialHoverOut(e.currentTarget)}
-                    >
-                      <TikTokIcon size={22} />
                     </a>
                   </div>
                 </div>
@@ -553,6 +519,7 @@ export const Footer: React.FC = () => {
                   </a>
                 </div>
 
+                {/* ✅ UPDATED PROMO: Facebook */}
                 <div
                   className="mt-7 border overflow-hidden"
                   style={{
@@ -582,7 +549,7 @@ export const Footer: React.FC = () => {
 
                       <a
                         href="#"
-                        aria-label="TikTok"
+                        aria-label="Facebook"
                         className="inline-flex items-center justify-center rounded-full border transition"
                         style={{
                           width: '40px',
@@ -596,7 +563,7 @@ export const Footer: React.FC = () => {
                           (e.currentTarget.style.borderColor = `${TEXT_BROWN}14`)
                         }
                       >
-                        <TikTokIcon size={18} />
+                        <Facebook size={18} />
                       </a>
                     </div>
 
@@ -609,7 +576,7 @@ export const Footer: React.FC = () => {
                           lineHeight: 1.2,
                         }}
                       >
-                        {t.tiktokHeadline}
+                        {t.socialHeadline}
                       </div>
                       <div
                         style={{
@@ -619,7 +586,7 @@ export const Footer: React.FC = () => {
                           lineHeight: 1.35,
                         }}
                       >
-                        {t.tiktokSub}
+                        {t.socialSub}
                       </div>
                     </div>
 
@@ -697,7 +664,7 @@ export const Footer: React.FC = () => {
                           '0 12px 26px rgba(244,163,180,0.35)')
                       }
                     >
-                      {t.tiktokBtn} <ArrowRight size={16} />
+                      {t.socialBtn} <ArrowRight size={16} />
                     </a>
                   </div>
                 </div>
