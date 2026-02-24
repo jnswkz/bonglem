@@ -5,8 +5,8 @@
 :root {
   --font-size: 16px;
 
-  /* ✅ CHANGED: background is now a pink/pastel gradient (visible) */
-  --background: transparent;
+  /* ✅ IMPORTANT: keep background neutral (header/footer should NOT be tinted) */
+  --background: #ffffff;
 
   --foreground: oklch(0.145 0 0);
   --card: #ffffff;
@@ -134,18 +134,30 @@
     @apply bg-background text-foreground;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
-    /* ✅ STRONGER: Bong Lém pastel pink background (more visible everywhere) */
-    background:
-      radial-gradient(1200px 800px at 12% 10%, rgba(244,163,180,0.95) 0%, rgba(244,163,180,0.55) 45%, rgba(244,163,180,0.00) 78%),
-      radial-gradient(1100px 820px at 88% 18%, rgba(255,184,204,0.95) 0%, rgba(255,184,204,0.55) 46%, rgba(255,184,204,0.00) 80%),
-      radial-gradient(1300px 900px at 50% 95%, rgba(255,214,224,0.95) 0%, rgba(255,214,224,0.55) 50%, rgba(255,214,224,0.00) 82%),
-      linear-gradient(135deg, #F8D7E2 0%, #F4C8D7 35%, #F8E3EC 68%, #FFF6FA 100%);
-
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
   }
+}
+
+/* ✅ NEW: ONLY the middle content area gets the pink/pastel background */
+.bl-main-bg {
+  position: relative;
+  isolation: isolate;
+  /* fallback so it's never "grey/white boring" */
+  background-color: #fff6fa;
+}
+
+.bl-main-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  /* STRONGER + visible pastel pink gradient (middle area only) */
+  background:
+    radial-gradient(1200px 900px at 18% 8%, rgba(244,163,180,0.75) 0%, rgba(244,163,180,0.18) 55%, rgba(244,163,180,0.00) 78%),
+    radial-gradient(1100px 900px at 82% 18%, rgba(255,184,204,0.60) 0%, rgba(255,184,204,0.16) 56%, rgba(255,184,204,0.00) 80%),
+    radial-gradient(1400px 1000px at 50% 92%, rgba(255,214,224,0.65) 0%, rgba(255,214,224,0.16) 58%, rgba(255,214,224,0.00) 82%),
+    linear-gradient(180deg, rgba(255,210,224,0.35) 0%, rgba(255,246,250,0.92) 55%, rgba(255,214,224,0.22) 100%);
+  background-repeat: no-repeat;
 }
 
 /**
