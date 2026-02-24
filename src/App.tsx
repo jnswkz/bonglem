@@ -41,7 +41,7 @@ const App: React.FC = () => {
   const cartCount = totalItems;
 
   return (
-    <div className="min-h-screen font-sans selection:bg-[#808000]/20 selection:text-[#5C4033]">
+    <div className="bl-app-bg min-h-screen font-sans selection:bg-[#808000]/20 selection:text-[#5C4033]">
       <AnimatePresence>
         {isLoading && (
           <SplashScreen onComplete={() => setIsLoading(false)} language={language} />
@@ -59,39 +59,37 @@ const App: React.FC = () => {
           cartCount={cartCount}
         />
 
-        {/* ✅ ONLY MIDDLE CONTENT AREA gets the pink/pastel background */}
-        <div className="bl-main-bg">
-          <main>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentPage}
-                initial={{ opacity: 0, x: 8 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -8 }}
-                transition={{ duration: 0.2 }}
-              >
-                {currentPage === "home" && <HomePage onNavigate={handleNavigate} />}
-                {currentPage === "feedback" && <FeedbackPage />}
-                {currentPage === "contact" && <ContactPage />}
-
-                {currentPage === "story" && <StoryPage />}
-                {currentPage === "products" && (
-                  <ProductsPage onNavigate={handleNavigate} />
-                )}
-                {currentPage === "detail" && selectedProductId && (
-                  <ProductDetailPage
-                    productId={selectedProductId}
-                    onNavigate={handleNavigate}
-                  />
-                )}
-                {currentPage === "cart" && <CartPage onNavigate={handleNavigate} />}
-                {currentPage === "checkout" && (
-                  <CheckoutPage onNavigate={handleNavigate} />
-                )}
-              </motion.div>
-            </AnimatePresence>
-          </main>
-        </div>
+        <main>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentPage}
+              initial={{ opacity: 0, x: 8 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -8 }}
+              transition={{ duration: 0.2 }}
+            >
+              {currentPage === "home" && <HomePage onNavigate={handleNavigate} />}
+              {currentPage === "feedback" && <FeedbackPage />}
+              {currentPage === "contact" && <ContactPage />}
+              {currentPage === "story" && <StoryPage />}
+              {currentPage === "products" && (
+                <ProductsPage onNavigate={handleNavigate} />
+              )}
+              {currentPage === "detail" && selectedProductId && (
+                <ProductDetailPage
+                  productId={selectedProductId}
+                  onNavigate={handleNavigate}
+                />
+              )}
+              {currentPage === "cart" && (
+                <CartPage onNavigate={handleNavigate} />
+              )}
+              {currentPage === "checkout" && (
+                <CheckoutPage onNavigate={handleNavigate} />
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </main>
 
         <Footer />
       </motion.div>
