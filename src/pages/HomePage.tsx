@@ -122,8 +122,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                   ]
             }
             socials={[
-              { label: "Instagram", href: "https://instagram.com/" },
-              { label: "TikTok", href: "https://tiktok.com/" },
+              { label: "Facebook", href: "https://facebook.com/" },
             ]}
           />
         </section>
