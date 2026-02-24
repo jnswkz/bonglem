@@ -41,7 +41,17 @@ const App: React.FC = () => {
   const cartCount = totalItems;
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] font-sans selection:bg-[#808000]/20 selection:text-[#5C4033]">
+    <div
+      className="min-h-screen font-sans selection:bg-[#808000]/20 selection:text-[#5C4033]"
+      style={{
+        background: `
+          radial-gradient(900px 520px at 12% 10%, rgba(244,163,180,0.28) 0%, rgba(244,163,180,0.00) 60%),
+          radial-gradient(820px 520px at 88% 14%, rgba(244,163,180,0.20) 0%, rgba(244,163,180,0.00) 55%),
+          radial-gradient(980px 720px at 45% 92%, rgba(255,214,224,0.32) 0%, rgba(255,214,224,0.00) 62%),
+          linear-gradient(180deg, #FFF7FA 0%, #FDFBF7 55%, #FFF7FA 100%)
+        `,
+      }}
+    >
       <AnimatePresence>
         {isLoading && (
           <SplashScreen
@@ -71,17 +81,28 @@ const App: React.FC = () => {
               exit={{ opacity: 0, x: -8 }}
               transition={{ duration: 0.2 }}
             >
-              {currentPage === "home" && <HomePage onNavigate={handleNavigate} />}
+              {currentPage === "home" && (
+                <HomePage onNavigate={handleNavigate} />
+              )}
               {currentPage === "feedback" && <FeedbackPage />}
               {currentPage === "contact" && <ContactPage />}
 
               {currentPage === "story" && <StoryPage />}
-              {currentPage === "products" && <ProductsPage onNavigate={handleNavigate} />}
-              {currentPage === "detail" && selectedProductId && (
-                <ProductDetailPage productId={selectedProductId} onNavigate={handleNavigate} />
+              {currentPage === "products" && (
+                <ProductsPage onNavigate={handleNavigate} />
               )}
-              {currentPage === "cart" && <CartPage onNavigate={handleNavigate} />}
-              {currentPage === "checkout" && <CheckoutPage onNavigate={handleNavigate} />}
+              {currentPage === "detail" && selectedProductId && (
+                <ProductDetailPage
+                  productId={selectedProductId}
+                  onNavigate={handleNavigate}
+                />
+              )}
+              {currentPage === "cart" && (
+                <CartPage onNavigate={handleNavigate} />
+              )}
+              {currentPage === "checkout" && (
+                <CheckoutPage onNavigate={handleNavigate} />
+              )}
             </motion.div>
           </AnimatePresence>
         </main>
