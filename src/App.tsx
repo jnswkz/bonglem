@@ -21,6 +21,7 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState<Page>("home");
   const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
+
   const { language } = useLanguage();
   const { totalItems } = useCart();
 
@@ -41,17 +42,24 @@ const App: React.FC = () => {
   const cartCount = totalItems;
 
   return (
-    <div className="min-h-screen font-sans selection:bg-[#808000]/20 selection:text-[#5C4033]">
+    /* ✅ IMPORTANT: transparent root wrapper */
+    <div className="min-h-screen bg-transparent font-sans selection:bg-[#808000]/20 selection:text-[#5C4033]">
+      
       <AnimatePresence>
         {isLoading && (
-          <SplashScreen onComplete={() => setIsLoading(false)} language={language} />
+          <SplashScreen
+            onComplete={() => setIsLoading(false)}
+            language={language}
+          />
         )}
       </AnimatePresence>
 
+      {/* Page content */}
       <motion.div
         initial={{ opacity: 0, filter: "blur(12px)" }}
         animate={!isLoading ? { opacity: 1, filter: "blur(0px)" } : {}}
         transition={{ duration: 0.6, delay: 0.1 }}
+        className="bg-transparent"
       >
         <Header
           onNavigate={handleNavigate}
@@ -59,7 +67,8 @@ const App: React.FC = () => {
           cartCount={cartCount}
         />
 
-        <main>
+        {/* MAIN CONTENT */}
+        <main className="bg-transparent">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentPage}
@@ -67,21 +76,31 @@ const App: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -8 }}
               transition={{ duration: 0.2 }}
+              className="bg-transparent"
             >
-              {currentPage === "home" && <HomePage onNavigate={handleNavigate} />}
+              {currentPage === "home" && (
+                <HomePage onNavigate={handleNavigate} />
+              )}
+
               {currentPage === "feedback" && <FeedbackPage />}
               {currentPage === "contact" && <ContactPage />}
               {currentPage === "story" && <StoryPage />}
+
               {currentPage === "products" && (
                 <ProductsPage onNavigate={handleNavigate} />
               )}
+
               {currentPage === "detail" && selectedProductId && (
                 <ProductDetailPage
                   productId={selectedProductId}
                   onNavigate={handleNavigate}
                 />
               )}
-              {currentPage === "cart" && <CartPage onNavigate={handleNavigate} />}
+
+              {currentPage === "cart" && (
+                <CartPage onNavigate={handleNavigate} />
+              )}
+
               {currentPage === "checkout" && (
                 <CheckoutPage onNavigate={handleNavigate} />
               )}
