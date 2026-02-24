@@ -41,7 +41,7 @@ const App: React.FC = () => {
   const cartCount = totalItems;
 
   return (
-    <div className="bl-app-bg min-h-screen font-sans selection:bg-[#808000]/20 selection:text-[#5C4033]">
+    <div className="min-h-screen font-sans selection:bg-[#808000]/20 selection:text-[#5C4033]">
       <AnimatePresence>
         {isLoading && (
           <SplashScreen onComplete={() => setIsLoading(false)} language={language} />
@@ -81,9 +81,7 @@ const App: React.FC = () => {
                   onNavigate={handleNavigate}
                 />
               )}
-              {currentPage === "cart" && (
-                <CartPage onNavigate={handleNavigate} />
-              )}
+              {currentPage === "cart" && <CartPage onNavigate={handleNavigate} />}
               {currentPage === "checkout" && (
                 <CheckoutPage onNavigate={handleNavigate} />
               )}
