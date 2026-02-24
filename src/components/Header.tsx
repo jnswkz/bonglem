@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
-import { Instagram, ShoppingCart, Menu, X } from "lucide-react";
+import { Facebook, ShoppingCart, Menu, X } from "lucide-react";
 import type { Page } from "../pageTypes";
 import { useLanguage } from "../i18n/LanguageContext";
 
@@ -230,10 +230,10 @@ export const Header: React.FC<HeaderProps> = ({
                 onMouseLeave={(e) =>
                   (e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`)
                 }
-                onClick={() => window.open("https://instagram.com", "_blank")}
-                aria-label="Instagram"
+                onClick={() => window.open("https://facebook.com", "_blank")}
+                aria-label="Facebook"
               >
-                <Instagram size={30} />
+                <Facebook size={30} />
               </button>
 
               <button
