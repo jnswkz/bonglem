@@ -40,43 +40,66 @@ const App: React.FC = () => {
 
   const cartCount = totalItems;
 
+  // ✅ Your target "main pink"
+  const MAIN_PINK = "#F4A3B4";
+
   return (
     <div
       className="min-h-screen font-sans selection:bg-[#808000]/20 selection:text-[#5C4033] relative overflow-hidden"
       style={{
-        // Strong, clearly visible pastel background
+        // ✅ MUCH more visible pink/pastel background (based on your target color)
         background: `
-          radial-gradient(1200px 760px at 10% 12%, rgba(244,163,180,0.65) 0%, rgba(244,163,180,0.18) 52%, rgba(244,163,180,0.00) 74%),
-          radial-gradient(980px 720px at 90% 14%, rgba(255,166,196,0.52) 0%, rgba(255,166,196,0.14) 55%, rgba(255,166,196,0.00) 76%),
-          radial-gradient(1200px 900px at 52% 95%, rgba(255,214,224,0.68) 0%, rgba(255,214,224,0.18) 58%, rgba(255,214,224,0.00) 80%),
-          linear-gradient(180deg, #FFD7E3 0%, #FFF0F6 32%, #FFF8FB 68%, #FFE8F1 100%)
+          radial-gradient(1200px 800px at 12% 10%, rgba(244,163,180,0.95) 0%, rgba(244,163,180,0.25) 55%, rgba(244,163,180,0.00) 78%),
+          radial-gradient(1100px 820px at 88% 18%, rgba(255,184,204,0.85) 0%, rgba(255,184,204,0.22) 56%, rgba(255,184,204,0.00) 80%),
+          radial-gradient(1300px 900px at 50% 95%, rgba(255,214,224,0.95) 0%, rgba(255,214,224,0.25) 58%, rgba(255,214,224,0.00) 82%),
+          linear-gradient(180deg, ${MAIN_PINK}33 0%, #FFE4EC 35%, #FFF6FA 70%, ${MAIN_PINK}22 100%)
         `,
       }}
     >
-      {/* ✅ HARD OVERRIDE: removes boring flat cream sections inside main */}
+      {/* ✅ GLOBAL FIX: stop inner "gray/cream" sections from painting over the background */}
       <style>{`
-        /* Many of your "boring gray" areas come from bg-[#FDFBF7] containers. 
-           This makes them transparent so the pink gradient shows through. */
-        main .bg-\$begin:math:display$\\\\\#FDFBF7\\$end:math:display$ {
+        /* Make sure the page background applies to the whole app */
+        html, body, #root { background: transparent !important; }
+
+        /* A lot of your "boring gray" is just these backgrounds on wrappers/sections.
+           We make them transparent inside MAIN so the gradient shows through. */
+        main .bg-white,
+        main .bg-neutral-50,
+        main .bg-gray-50,
+        main .bg-slate-50,
+        main .bg-stone-50,
+        main .bg-\$begin:math:display$\\\\\#FDFBF7\\$end:math:display$,
+        main .bg-\$begin:math:display$\\\\\#FDFBF7\\$end:math:display$\\/\\*,
+        main [style*="background-color: rgb(253, 251, 247)"],
+        main [style*="background-color:#FDFBF7"],
+        main [style*="background: #FDFBF7"],
+        main [style*="background:#FDFBF7"] {
           background-color: transparent !important;
+          background: transparent !important;
+        }
+
+        /* Keep your cards clean: if something becomes too transparent, it still stays readable */
+        main .shadow,
+        main .shadow-sm,
+        main .shadow-md,
+        main .shadow-lg {
+          /* no change, just keeping cards visually separated */
         }
       `}</style>
 
-      {/* Extra dreamy overlay texture */}
+      {/* Optional: soft glossy overlay so it looks “clean” not “flat” */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           background: `
-            radial-gradient(900px 520px at 30% 40%, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.00) 62%),
-            radial-gradient(860px 500px at 70% 55%, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.00) 65%),
-            linear-gradient(90deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.00) 35%, rgba(255,255,255,0.08) 70%, rgba(255,255,255,0.00) 100%)
+            radial-gradient(900px 520px at 30% 40%, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.00) 62%),
+            radial-gradient(860px 500px at 70% 55%, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.00) 65%)
           `,
           mixBlendMode: "soft-light",
-          opacity: 0.95,
+          opacity: 1,
         }}
       />
 
-      {/* Keep content above overlays */}
       <div className="relative z-10">
         <AnimatePresence>
           {isLoading && (
