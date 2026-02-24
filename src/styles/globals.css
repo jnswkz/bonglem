@@ -135,14 +135,16 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    /* ✅ ADDED: visible Bong Lém pastel pink background */
+    /* ✅ STRONGER: Bong Lém pastel pink background (more visible everywhere) */
     background:
-      radial-gradient(1200px 800px at 12% 10%, rgba(244,163,180,0.95) 0%, rgba(244,163,180,0.25) 55%, rgba(244,163,180,0.00) 78%),
-      radial-gradient(1100px 820px at 88% 18%, rgba(255,184,204,0.85) 0%, rgba(255,184,204,0.22) 56%, rgba(255,184,204,0.00) 80%),
-      radial-gradient(1300px 900px at 50% 95%, rgba(255,214,224,0.95) 0%, rgba(255,214,224,0.25) 58%, rgba(255,214,224,0.00) 82%),
-      linear-gradient(180deg, rgba(244,163,180,0.22) 0%, #FFE4EC 35%, #FFF6FA 70%, rgba(244,163,180,0.16) 100%);
+      radial-gradient(1200px 800px at 12% 10%, rgba(244,163,180,0.95) 0%, rgba(244,163,180,0.55) 45%, rgba(244,163,180,0.00) 78%),
+      radial-gradient(1100px 820px at 88% 18%, rgba(255,184,204,0.95) 0%, rgba(255,184,204,0.55) 46%, rgba(255,184,204,0.00) 80%),
+      radial-gradient(1300px 900px at 50% 95%, rgba(255,214,224,0.95) 0%, rgba(255,214,224,0.55) 50%, rgba(255,214,224,0.00) 82%),
+      linear-gradient(135deg, #F8D7E2 0%, #F4C8D7 35%, #F8E3EC 68%, #FFF6FA 100%);
+
     background-attachment: fixed;
     background-repeat: no-repeat;
+    background-size: cover;
   }
 }
 
