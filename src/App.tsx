@@ -55,28 +55,47 @@ const App: React.FC = () => {
       >
         <Header onNavigate={handleNavigate} currentPage={currentPage} cartCount={cartCount} />
 
-        <main>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentPage}
-              initial={{ opacity: 0, x: 8 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -8 }}
-              transition={{ duration: 0.2 }}
-            >
-              {currentPage === "home" && <HomePage onNavigate={handleNavigate} />}
-              {currentPage === "feedback" && <FeedbackPage />}
-              {currentPage === "contact" && <ContactPage />}
+        {/* ✅ MAIN gets a visible pink/pastel tint overlay that affects even "solid" section backgrounds */}
+        <main className="relative">
+          {/* Overlay sits ABOVE the main content but doesn't block clicks */}
+          <div
+            className="pointer-events-none absolute inset-0 z-20"
+            style={{
+              background: `
+                radial-gradient(1200px 700px at 18% 10%, rgba(244,163,180,0.55) 0%, rgba(244,163,180,0.00) 60%),
+                radial-gradient(1000px 700px at 85% 22%, rgba(255,190,210,0.45) 0%, rgba(255,190,210,0.00) 62%),
+                radial-gradient(1200px 900px at 50% 95%, rgba(255,214,224,0.55) 0%, rgba(255,214,224,0.00) 70%),
+                linear-gradient(180deg, rgba(244,163,180,0.18) 0%, rgba(255,228,236,0.16) 40%, rgba(255,246,250,0.12) 75%, rgba(244,163,180,0.14) 100%)
+              `,
+              opacity: 0.55,              // ✅ strong enough to be clearly visible
+              mixBlendMode: "multiply",     // ✅ tints solid backgrounds without "washing out" text too hard
+            }}
+          />
 
-              {currentPage === "story" && <StoryPage />}
-              {currentPage === "products" && <ProductsPage onNavigate={handleNavigate} />}
-              {currentPage === "detail" && selectedProductId && (
-                <ProductDetailPage productId={selectedProductId} onNavigate={handleNavigate} />
-              )}
-              {currentPage === "cart" && <CartPage onNavigate={handleNavigate} />}
-              {currentPage === "checkout" && <CheckoutPage onNavigate={handleNavigate} />}
-            </motion.div>
-          </AnimatePresence>
+          {/* Content stays clickable + readable */}
+          <div className="relative z-10">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentPage}
+                initial={{ opacity: 0, x: 8 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -8 }}
+                transition={{ duration: 0.2 }}
+              >
+                {currentPage === "home" && <HomePage onNavigate={handleNavigate} />}
+                {currentPage === "feedback" && <FeedbackPage />}
+                {currentPage === "contact" && <ContactPage />}
+
+                {currentPage === "story" && <StoryPage />}
+                {currentPage === "products" && <ProductsPage onNavigate={handleNavigate} />}
+                {currentPage === "detail" && selectedProductId && (
+                  <ProductDetailPage productId={selectedProductId} onNavigate={handleNavigate} />
+                )}
+                {currentPage === "cart" && <CartPage onNavigate={handleNavigate} />}
+                {currentPage === "checkout" && <CheckoutPage onNavigate={handleNavigate} />}
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </main>
 
         <Footer />
