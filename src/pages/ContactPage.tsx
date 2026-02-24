@@ -62,12 +62,6 @@ export default function ContactPage() {
             <div className={styles.card}>
               <div className={styles.cardTitle}>{isVi ? "Mạng xã hội" : "Social"}</div>
               <div className={styles.socials}>
-                <a className={styles.pill} href="https://instagram.com/" target="_blank" rel="noreferrer">
-                  Instagram
-                </a>
-                <a className={styles.pill} href="https://tiktok.com/" target="_blank" rel="noreferrer">
-                  TikTok
-                </a>
                 <a className={styles.pill} href="https://facebook.com/" target="_blank" rel="noreferrer">
                   Facebook
                 </a>
