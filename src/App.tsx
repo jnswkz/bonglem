@@ -44,25 +44,35 @@ const App: React.FC = () => {
     <div
       className="min-h-screen font-sans selection:bg-[#808000]/20 selection:text-[#5C4033] relative overflow-hidden"
       style={{
-        // Stronger + more visible pastel background
+        // Strong, clearly visible pastel background
         background: `
-          radial-gradient(1100px 700px at 12% 8%, rgba(244,163,180,0.55) 0%, rgba(244,163,180,0.10) 55%, rgba(244,163,180,0.00) 72%),
-          radial-gradient(900px 650px at 88% 14%, rgba(255,180,200,0.42) 0%, rgba(255,180,200,0.08) 55%, rgba(255,180,200,0.00) 72%),
-          radial-gradient(1000px 780px at 52% 92%, rgba(255,214,224,0.55) 0%, rgba(255,214,224,0.14) 55%, rgba(255,214,224,0.00) 75%),
-          linear-gradient(180deg, #FFE6EE 0%, #FFF3F7 38%, #FFF9FB 72%, #FFF0F6 100%)
+          radial-gradient(1200px 760px at 10% 12%, rgba(244,163,180,0.65) 0%, rgba(244,163,180,0.18) 52%, rgba(244,163,180,0.00) 74%),
+          radial-gradient(980px 720px at 90% 14%, rgba(255,166,196,0.52) 0%, rgba(255,166,196,0.14) 55%, rgba(255,166,196,0.00) 76%),
+          radial-gradient(1200px 900px at 52% 95%, rgba(255,214,224,0.68) 0%, rgba(255,214,224,0.18) 58%, rgba(255,214,224,0.00) 80%),
+          linear-gradient(180deg, #FFD7E3 0%, #FFF0F6 32%, #FFF8FB 68%, #FFE8F1 100%)
         `,
       }}
     >
-      {/* Extra overlay for "unique" dreamy texture (still subtle, but visible) */}
+      {/* ✅ HARD OVERRIDE: removes boring flat cream sections inside main */}
+      <style>{`
+        /* Many of your "boring gray" areas come from bg-[#FDFBF7] containers. 
+           This makes them transparent so the pink gradient shows through. */
+        main .bg-\$begin:math:display$\\\\\#FDFBF7\\$end:math:display$ {
+          background-color: transparent !important;
+        }
+      `}</style>
+
+      {/* Extra dreamy overlay texture */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           background: `
-            radial-gradient(800px 420px at 30% 35%, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.00) 60%),
-            radial-gradient(700px 380px at 70% 55%, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.00) 62%)
+            radial-gradient(900px 520px at 30% 40%, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.00) 62%),
+            radial-gradient(860px 500px at 70% 55%, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.00) 65%),
+            linear-gradient(90deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.00) 35%, rgba(255,255,255,0.08) 70%, rgba(255,255,255,0.00) 100%)
           `,
           mixBlendMode: "soft-light",
-          opacity: 0.9,
+          opacity: 0.95,
         }}
       />
 
