@@ -18,8 +18,10 @@ const REVIEWS: Review[] = [
     tagVi: "Người mua quà",
     tagEn: "Gift Buyer",
     rating: 5,
-    textVi: "Gói quà siêu xinh, mở ra là muốn tặng liền. Shop rep nhanh, tư vấn dễ thương!",
-    textEn: "Super cute wrapping, ready to gift right away. Fast and friendly support!",
+    textVi:
+      "Mình đặt làm quà sinh nhật và hơi lo vì sợ nhìn ngoài không giống hình. Nhưng nhận được thì bất ngờ thật: gói rất xinh, sạch sẽ, nhìn “gift-ready” luôn. Bạn mình mở ra còn khen mùi thơm dễ chịu. Shop trả lời tin nhắn cũng nhanh, hỏi gì là rep liền.",
+    textEn:
+      "Ordered this as a birthday gift and I was a bit worried it wouldn’t look like the photos. But when it arrived, I was genuinely surprised — the wrapping was super cute, clean, and basically gift-ready. My friend opened it and even mentioned it smelled really nice. Also, support was quick whenever I had a question.",
     product: "Khoai lang",
     date: "Jan 2026",
   },
@@ -28,8 +30,10 @@ const REVIEWS: Review[] = [
     tagVi: "Fan đồ ăn vặt",
     tagEn: "Snack Lover",
     rating: 5,
-    textVi: "Set vừa đẹp vừa ngon. Mua tặng bạn gái và feedback rất tốt.",
-    textEn: "Beautiful and tasty set. Bought it as a gift and got great feedback.",
+    textVi:
+      "Mình thử set này vì thấy bạn giới thiệu. Đồ ăn vặt ổn, không bị ngọt gắt. Đóng gói chắc tay nên tới nơi không bị móp hay vỡ gì. Nói chung ok, sẽ mua lại nếu có set khác lạ hơn.",
+    textEn:
+      "Tried this set because a friend recommended it. The snacks were solid — not too sweet, and everything tasted fresh. Packaging was sturdy, so nothing arrived crushed. Overall really happy with it, I’d order again (especially if there are new sets).",
     product: "Nui sấy",
     date: "Jan 2026",
   },
@@ -38,8 +42,10 @@ const REVIEWS: Review[] = [
     tagVi: "Khách quay lại",
     tagEn: "Repeat Customer",
     rating: 5,
-    textVi: "Mua lần 2 rồi. Đóng gói cẩn thận, giao nhanh, vibe rất dễ thương.",
-    textEn: "Second order already. Careful packaging, fast delivery, very cute vibe.",
+    textVi:
+      "Đây là lần thứ hai mình mua. Lần này giao nhanh hơn mình nghĩ, mở ra vẫn thấy gói rất kỹ như trước. Mình thích kiểu vibe dễ thương nhưng không bị “lố”. Cầm lên thấy có cảm giác chăm chút, chứ không phải đóng gói qua loa.",
+    textEn:
+      "This was my second order. Delivery was faster than I expected and everything was packed just as carefully as the first time. I like the cute vibe — it doesn’t feel overdone, just thoughtfully put together. You can tell someone actually cared when packing it.",
     product: "Kẹo Milo",
     date: "Feb 2026",
   },
@@ -103,7 +109,6 @@ export default function FeedbackPage() {
             </div>
 
             <div className={styles.ctas}>
-              {/* ✅ UPDATED: Instagram CTA -> Facebook */}
               <a
                 className={styles.primaryBtn}
                 href="https://facebook.com/"
@@ -161,7 +166,6 @@ export default function FeedbackPage() {
         </div>
 
         <div className={styles.ugcRow}>
-          {/* ✅ NEW: Facebook card (replaces Instagram + TikTok) */}
           <div className={styles.ugcCard}>
             <div className={styles.ugcTitle}>Facebook</div>
             <p className={styles.ugcText}>
@@ -179,11 +183,8 @@ export default function FeedbackPage() {
             </a>
           </div>
 
-          {/* ✅ NEW: Photo proof card (creative + still social-proof) */}
           <div className={styles.ugcCard}>
-            <div className={styles.ugcTitle}>
-              {isVi ? "Ảnh thật" : "Photo proof"}
-            </div>
+            <div className={styles.ugcTitle}>{isVi ? "Ảnh thật" : "Photo proof"}</div>
             <p className={styles.ugcText}>
               {isVi
                 ? "Gửi ảnh unboxing/feedback cho tụi mình — tụi mình dùng làm social proof (ẩn thông tin nếu cần)."
@@ -194,7 +195,6 @@ export default function FeedbackPage() {
             </a>
           </div>
 
-          {/* Chat stays */}
           <div className={styles.ugcCard}>
             <div className={styles.ugcTitle}>Chat</div>
             <p className={styles.ugcText}>
