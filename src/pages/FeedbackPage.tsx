@@ -61,9 +61,10 @@ function Stars({ rating }: { rating: number }) {
 export default function FeedbackPage() {
   const { language } = useLanguage();
   const isVi = language === "vi";
-  const avg = Math.round(
-    (REVIEWS.reduce((s, r) => s + r.rating, 0) / REVIEWS.length) * 10
-  ) / 10;
+  const avg =
+    Math.round(
+      (REVIEWS.reduce((s, r) => s + r.rating, 0) / REVIEWS.length) * 10
+    ) / 10;
 
   return (
     <div className={styles.page}>
@@ -74,28 +75,42 @@ export default function FeedbackPage() {
           </div>
           <div className={styles.heroTitle}>
             <h1 className={styles.h1}>
-              {isVi ? "Khách iu nói gì về bé Bông?" : "What do customers say about Bông?"}
+              {isVi
+                ? "Khách iu nói gì về bé Bông?"
+                : "What do customers say about Bông?"}
               <img src="/emoji/love 2.png" alt="" className={styles.emoji} />
             </h1>
 
             <div className={styles.kpis}>
               <div className={styles.kpiCard}>
                 <div className={styles.kpiValue}>{avg} / 5</div>
-                <div className={styles.kpiLabel}>{isVi ? "Điểm trung bình" : "Average rating"}</div>
+                <div className={styles.kpiLabel}>
+                  {isVi ? "Điểm trung bình" : "Average rating"}
+                </div>
               </div>
               <div className={styles.kpiCard}>
                 <div className={styles.kpiValue}>{REVIEWS.length}+</div>
-                <div className={styles.kpiLabel}>{isVi ? "Đánh giá khách hàng" : "Customer reviews"}</div>
+                <div className={styles.kpiLabel}>
+                  {isVi ? "Đánh giá khách hàng" : "Customer reviews"}
+                </div>
               </div>
               <div className={styles.kpiCard}>
                 <div className={styles.kpiValue}>24h</div>
-                <div className={styles.kpiLabel}>{isVi ? "Thời gian phản hồi" : "Typical reply time"}</div>
+                <div className={styles.kpiLabel}>
+                  {isVi ? "Thời gian phản hồi" : "Typical reply time"}
+                </div>
               </div>
             </div>
 
             <div className={styles.ctas}>
-              <a className={styles.primaryBtn} href="https://instagram.com/" target="_blank" rel="noreferrer">
-                {isVi ? "Đăng unboxing của bạn" : "Post your unboxing"}
+              {/* ✅ UPDATED: Instagram CTA -> Facebook */}
+              <a
+                className={styles.primaryBtn}
+                href="https://facebook.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {isVi ? "Đăng ảnh feedback của bạn" : "Share your feedback photo"}
               </a>
               <a className={styles.secondaryBtn} href="#reviews">
                 {isVi ? "Xem đánh giá" : "Read reviews"}
@@ -107,12 +122,9 @@ export default function FeedbackPage() {
 
       <section id="reviews" className={styles.section}>
         <div className={styles.sectionHead}>
-          <h2 className={styles.h2}>{isVi ? "Đánh giá khách hàng" : "Customer reviews"}</h2>
-          {/* <p className={styles.sectionSub}>
-            {isVi
-              ? "Tổng hợp feedback thật thành các card gọn gàng, dễ đọc."
-              : "Real messages summarized into clean cards."}
-          </p> */}
+          <h2 className={styles.h2}>
+            {isVi ? "Đánh giá khách hàng" : "Customer reviews"}
+          </h2>
         </div>
 
         <div className={styles.grid}>
@@ -122,12 +134,16 @@ export default function FeedbackPage() {
                 <div>
                   <div className={styles.nameRow}>
                     <span className={styles.name}>{r.name}</span>
-                    <span className={styles.tag}>{isVi ? r.tagVi : r.tagEn}</span>
+                    <span className={styles.tag}>
+                      {isVi ? r.tagVi : r.tagEn}
+                    </span>
                   </div>
                   <div className={styles.meta}>
                     <span>{r.date}</span>
                     {r.product ? <span className={styles.dot}>•</span> : null}
-                    {r.product ? <span className={styles.product}>{r.product}</span> : null}
+                    {r.product ? (
+                      <span className={styles.product}>{r.product}</span>
+                    ) : null}
                   </div>
                 </div>
                 <Stars rating={r.rating} />
@@ -142,40 +158,49 @@ export default function FeedbackPage() {
       <section className={styles.sectionAlt}>
         <div className={styles.sectionHead}>
           <h2 className={styles.h2}>{isVi ? "Social proof" : "Social proof"}</h2>
-          {/* <p className={styles.sectionSub}>
-            {isVi
-              ? "Khuyến khích UGC: screenshot, unboxing story, video ngắn."
-              : "Encourage UGC: screenshots, unboxing stories, and short videos."}
-          </p> */}
         </div>
 
         <div className={styles.ugcRow}>
+          {/* ✅ NEW: Facebook card (replaces Instagram + TikTok) */}
           <div className={styles.ugcCard}>
-            <div className={styles.ugcTitle}>Instagram</div>
+            <div className={styles.ugcTitle}>Facebook</div>
             <p className={styles.ugcText}>
               {isVi
-                ? "Tag tụi mình, shop sẽ repost những unboxing đẹp nhất."
-                : "Tag us and we will repost the cutest unboxings."}
+                ? "Nhắn tụi mình trên Facebook hoặc đăng ảnh feedback — tụi mình rep nhanh và có thể repost story."
+                : "DM us on Facebook or post a feedback photo — we reply fast and may repost your story."}
             </p>
-            <a className={styles.ugcLink} href="https://instagram.com/" target="_blank" rel="noreferrer">
-              {isVi ? "Mở Instagram ->" : "Open Instagram ->"}
+            <a
+              className={styles.ugcLink}
+              href="https://facebook.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {isVi ? "Mở Facebook ->" : "Open Facebook ->"}
             </a>
           </div>
 
+          {/* ✅ NEW: Photo proof card (creative + still social-proof) */}
           <div className={styles.ugcCard}>
-            <div className={styles.ugcTitle}>TikTok</div>
+            <div className={styles.ugcTitle}>
+              {isVi ? "Ảnh thật" : "Photo proof"}
+            </div>
             <p className={styles.ugcText}>
-              {isVi ? "Video review ngắn giúp tăng trust nhanh." : "Short review videos boost trust fast."}
+              {isVi
+                ? "Gửi ảnh unboxing/feedback cho tụi mình — tụi mình dùng làm social proof (ẩn thông tin nếu cần)."
+                : "Send us an unboxing/feedback photo — we can use it as social proof (we can hide details if needed)."}
             </p>
-            <a className={styles.ugcLink} href="https://tiktok.com/" target="_blank" rel="noreferrer">
-              {isVi ? "Mở TikTok ->" : "Open TikTok ->"}
+            <a className={styles.ugcLink} href="#contact">
+              {isVi ? "Gửi qua Contact ->" : "Send via Contact ->"}
             </a>
           </div>
 
+          {/* Chat stays */}
           <div className={styles.ugcCard}>
             <div className={styles.ugcTitle}>Chat</div>
             <p className={styles.ugcText}>
-              {isVi ? "Gửi feedback qua chat, tụi mình phản hồi nhanh." : "Send feedback via chat and we reply quickly."}
+              {isVi
+                ? "Gửi feedback qua chat, tụi mình phản hồi nhanh."
+                : "Send feedback via chat and we reply quickly."}
             </p>
             <a className={styles.ugcLink} href="#reviews">
               {isVi ? "Quay lại đánh giá ->" : "Back to reviews ->"}
