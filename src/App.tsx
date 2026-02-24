@@ -42,19 +42,13 @@ const App: React.FC = () => {
   const cartCount = totalItems;
 
   return (
-    /* ✅ IMPORTANT: transparent root wrapper */
     <div className="min-h-screen bg-transparent font-sans selection:bg-[#808000]/20 selection:text-[#5C4033]">
-      
       <AnimatePresence>
         {isLoading && (
-          <SplashScreen
-            onComplete={() => setIsLoading(false)}
-            language={language}
-          />
+          <SplashScreen onComplete={() => setIsLoading(false)} language={language} />
         )}
       </AnimatePresence>
 
-      {/* Page content */}
       <motion.div
         initial={{ opacity: 0, filter: "blur(12px)" }}
         animate={!isLoading ? { opacity: 1, filter: "blur(0px)" } : {}}
@@ -67,7 +61,6 @@ const App: React.FC = () => {
           cartCount={cartCount}
         />
 
-        {/* MAIN CONTENT */}
         <main className="bg-transparent">
           <AnimatePresence mode="wait">
             <motion.div
@@ -78,29 +71,20 @@ const App: React.FC = () => {
               transition={{ duration: 0.2 }}
               className="bg-transparent"
             >
-              {currentPage === "home" && (
-                <HomePage onNavigate={handleNavigate} />
-              )}
-
+              {currentPage === "home" && <HomePage onNavigate={handleNavigate} />}
               {currentPage === "feedback" && <FeedbackPage />}
               {currentPage === "contact" && <ContactPage />}
               {currentPage === "story" && <StoryPage />}
-
               {currentPage === "products" && (
                 <ProductsPage onNavigate={handleNavigate} />
               )}
-
               {currentPage === "detail" && selectedProductId && (
                 <ProductDetailPage
                   productId={selectedProductId}
                   onNavigate={handleNavigate}
                 />
               )}
-
-              {currentPage === "cart" && (
-                <CartPage onNavigate={handleNavigate} />
-              )}
-
+              {currentPage === "cart" && <CartPage onNavigate={handleNavigate} />}
               {currentPage === "checkout" && (
                 <CheckoutPage onNavigate={handleNavigate} />
               )}
