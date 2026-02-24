@@ -129,7 +129,7 @@
     @apply border-border outline-ring/50;
   }
 
-  /* IMPORTANT: do NOT apply bg-background here, it can cover gradients */
+  /* IMPORTANT: do NOT apply bg-background here */
   body {
     @apply text-foreground;
     -webkit-font-smoothing: antialiased;
@@ -138,22 +138,41 @@
 }
 
 /* =========================================================
-   ✅ GLOBAL BACKGROUND (always visible)
+   ✅ GLOBAL BACKGROUND (EVERYWHERE, seamless, no stop line)
    ========================================================= */
 
 html,
-body {
+body,
+#root {
+  height: 100%;
   min-height: 100%;
-  background:
-    radial-gradient(1200px 900px at 18% 8%, rgba(244,163,180,0.65) 0%, rgba(244,163,180,0.16) 55%, rgba(244,163,180,0.00) 78%),
-    radial-gradient(1100px 900px at 82% 18%, rgba(255,184,204,0.52) 0%, rgba(255,184,204,0.14) 56%, rgba(255,184,204,0.00) 80%),
-    radial-gradient(1400px 1000px at 50% 92%, rgba(186,230,253,0.40) 0%, rgba(186,230,253,0.12) 58%, rgba(186,230,253,0.00) 82%),
-    linear-gradient(180deg, rgba(255,210,224,0.24) 0%, rgba(255,246,250,0.92) 55%, rgba(255,214,224,0.18) 100%);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 
-/* Force all big wrappers to be transparent so they don't "paint over" the background */
+body {
+  margin: 0;
+  background: transparent !important;
+  position: relative;
+}
+
+/* Fixed gradient layer across entire viewport (prevents abrupt lines) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background:
+    radial-gradient(1200px 900px at 18% 8%, rgba(244, 163, 180, 0.70) 0%, rgba(244, 163, 180, 0.20) 55%, rgba(244, 163, 180, 0.00) 78%),
+    radial-gradient(1100px 900px at 82% 18%, rgba(255, 184, 204, 0.58) 0%, rgba(255, 184, 204, 0.18) 56%, rgba(255, 184, 204, 0.00) 80%),
+    radial-gradient(1400px 1000px at 50% 92%, rgba(255, 210, 224, 0.40) 0%, rgba(255, 210, 224, 0.14) 58%, rgba(255, 210, 224, 0.00) 82%),
+    linear-gradient(180deg, rgba(255, 210, 224, 0.35) 0%, rgba(255, 246, 250, 0.95) 55%, rgba(255, 214, 224, 0.28) 100%);
+
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Force big wrappers to stay transparent */
 #root,
 main,
 header,
