@@ -4,7 +4,7 @@ import App from "./App";
 import "./styles/globals.css";
 import { LanguageProvider } from "./i18n/LanguageContext";
 import { CartProvider } from "./store/CartContext";
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/react";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
