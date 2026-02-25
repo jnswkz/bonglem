@@ -48,7 +48,7 @@ export const Header: React.FC<HeaderProps> = ({
     language === "vi" ? "Bông Lém chào bạn" : "Welcome to Bong Lem";
 
   return (
-    <header className="sticky top-0 z-50 w-full">
+    <header className="sticky top-0 z-50 w-full" style={{ fontFamily: 'var(--font-display)' }}>
       <div
         className="text-white font-medium overflow-hidden whitespace-nowrap relative flex items-center"
         style={{
@@ -62,18 +62,18 @@ export const Header: React.FC<HeaderProps> = ({
           transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
           className="flex whitespace-nowrap absolute"
         >
-          <div className="flex gap-14 items-center px-8">
-            <span>{marqueePrimary}</span>
-            <span>{marqueeSecondary}</span>
-            <span>{marqueePrimary}</span>
-            <span>{marqueeSecondary}</span>
-          </div>
-          <div className="flex gap-14 items-center px-8">
-            <span>{marqueePrimary}</span>
-            <span>{marqueeSecondary}</span>
-            <span>{marqueePrimary}</span>
-            <span>{marqueeSecondary}</span>
-          </div>
+                  <div className="flex gap-14 items-center px-8" style={{ fontFamily: 'var(--font-body)' }}>
+                    <span>{marqueePrimary}</span>
+                    <span>{marqueeSecondary}</span>
+                    <span>{marqueePrimary}</span>
+                    <span>{marqueeSecondary}</span>
+                  </div>
+                  <div className="flex gap-14 items-center px-8" style={{ fontFamily: 'var(--font-body)' }}>
+                    <span>{marqueePrimary}</span>
+                    <span>{marqueeSecondary}</span>
+                    <span>{marqueePrimary}</span>
+                    <span>{marqueeSecondary}</span>
+                  </div>
         </motion.div>
       </div>
 
@@ -101,6 +101,7 @@ export const Header: React.FC<HeaderProps> = ({
                     color: TEXT_BROWN,
                     fontSize: "44px",
                     lineHeight: 1,
+                    whiteSpace: "nowrap",
                   }}
                 >
                   BÔNG LÉM
@@ -112,8 +113,9 @@ export const Header: React.FC<HeaderProps> = ({
                 alt="Bông Lém Mascot"
                 className="pointer-events-none absolute md:hidden"
                 style={{
-                  width: "32px",
-                  height: "32px",
+                  width: "40px",
+                  height: "40px",
+                  objectFit: "contain",
                   top: "52%",
                   left: "0px",
                   transform: "translateY(-50%)",
@@ -126,10 +128,11 @@ export const Header: React.FC<HeaderProps> = ({
                 alt="Bông Lém Mascot"
                 className="pointer-events-none absolute hidden md:block"
                 style={{
-                  width: "clamp(48px, 5vw, 60px)",
-                  height: "clamp(48px, 5vw, 60px)",
+                  width: "clamp(70px, 6vw, 92px)",
+                  height: "clamp(70px, 6vw, 92px)",
+                  objectFit: "contain",
                   top: "50%",
-                  left: "clamp(-54px, -5vw, -66px)",
+                  left: "clamp(-70px, -5vw, -82px)",
                   transform: "translateY(-50%)",
                   filter: "drop-shadow(0px 10px 18px rgba(0,0,0,0.18))",
                 }}

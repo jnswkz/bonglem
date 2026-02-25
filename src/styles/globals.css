@@ -4,8 +4,8 @@
 
 :root {
   --font-size: 16px;
-  --font-body: "Baloo 2", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  --font-display: "Baloo 2", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "SVN Freude", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "iCiel Koni Black", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 
   /* keep token neutral */
   --background: #ffffff;
@@ -131,6 +131,22 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+  }
+
+  @font-face {
+    font-family: "iCiel Koni Black";
+    src: url("/src/assets/fonts/iCielKoniBlack.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "SVN Freude";
+    src: url("/src/assets/fonts/SVN-Freude.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
   }
 
   /* IMPORTANT: do NOT apply bg-background here */

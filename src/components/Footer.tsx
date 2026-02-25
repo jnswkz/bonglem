@@ -3,6 +3,8 @@ import { Facebook, MapPin, Phone } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
 
 const TEXT_BROWN = '#5C4033';
+const FONT_TITLE = '"iCiel Koni Black", "Baloo 2", cursive';
+const FONT_BODY = '"SVN Freude", "Baloo 2", sans-serif';
 
 export const Footer: React.FC = () => {
   const year = new Date().getFullYear();
@@ -11,7 +13,6 @@ export const Footer: React.FC = () => {
 
   const t = {
     brand: 'BÔNG LÉM',
-    // tagline: isEN ? 'Tiny gifts that bring big joy 🌼' : 'Những món quà nhỏ mang niềm vui to 🌼',
     contactTitle: isEN ? 'Contact us' : 'Liên hệ',
     address: '279 Nguyễn Tri Phương, Phường Diên Hồng, TP. Hồ Chí Minh',
     phone: '082 888 7696',
@@ -22,8 +23,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="w-full mt-16">
-      {/* white separator */}
+    <footer className="w-full mt-16" style={{ fontFamily: FONT_BODY }}>
       <div className="h-px w-full bg-white" />
 
       <div className="w-full bg-white">
@@ -35,16 +35,13 @@ export const Footer: React.FC = () => {
                 alt="Bông Lém mascot"
                 className="w-[180px] h-[180px] object-contain"
               />
-              <div className="text-[44px] font-extrabold leading-none" style={{ color: TEXT_BROWN }}>
+              <div className="text-[44px] font-extrabold leading-none" style={{ color: TEXT_BROWN, fontFamily: FONT_TITLE }}>
                 {t.brand}
               </div>
-              {/* <p className="text-base font-semibold text-neutral-700 text-center md:text-left" style={{ color: TEXT_BROWN }}>
-                {t.tagline}
-              </p> */}
             </section>
 
             <section className="flex flex-col gap-3 text-neutral-800">
-              <h3 className="text-[30px] font-extrabold" style={{ color: TEXT_BROWN }}>
+              <h3 className="text-[30px] font-extrabold" style={{ color: TEXT_BROWN, fontFamily: FONT_TITLE }}>
                 {t.contactTitle}
               </h3>
               <div className="flex items-start gap-3 text-lg">
@@ -78,7 +75,7 @@ export const Footer: React.FC = () => {
 
             <section className="flex flex-col justify-between gap-4 text-neutral-800">
               <div>
-                <h3 className="text-[30px] font-extrabold mb-4" style={{ color: TEXT_BROWN }}>
+                <h3 className="text-[30px] font-extrabold mb-4" style={{ color: TEXT_BROWN, fontFamily: FONT_TITLE }}>
                   {t.policyTitle}
                 </h3>
                 <div className="flex flex-col gap-2 text-lg font-semibold" style={{ color: TEXT_BROWN }}>
