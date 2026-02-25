@@ -7,93 +7,139 @@ export default function StoryPage() {
 
   const content = isVi
     ? {
-        eyebrow: "Giới thiệu brand",
-        title: "Câu chuyện thương hiệu",
-        lead:
-          "Bông Lém là nơi gom góp những điều dễ thương nhất của ngày xưa: gắn bó, hoài niệm và những niềm vui bé xíu.",
-        body: `Niềm vui tuổi thơ ngày ấy thật giản đơn, là cảm giác hạnh phúc khi học tốt trên lớp, sự háo hức khi nhận được một “Bông hoa điểm 10”, hay niềm vui nhỏ bé khi cùng bạn bè chia nhau những món ăn vặt sau giờ học. Chính những khoảnh khắc tưởng chừng rất nhỏ ấy đã tạo nên những ký ức theo ta suốt những năm tháng trưởng thành.
+        // Section 1: Bông Lém bắt đầu từ đâu?
+        section1Title: "Bông Lém bắt đầu từ đâu?",
+        section1Text: `Niềm vui tuổi thơ ngày ấy thật giản đơn, là cảm giác hạnh phúc khi học tốt trên lớp, sự háo hức khi nhận được một "Bông hoa điểm 10", hay niềm vui nhỏ bé khi cùng bạn bè chia nhau những món ăn vặt sau giờ học.
 
-Bông Lém được sinh ra từ những ký ức đó.
+Chính những khoảnh khắc tưởng chừng rất nhỏ ấy đã tạo nên những ký ức theo ta suốt những năm tháng trưởng thành.
 
-“Bông” tượng trưng cho sự dịu dàng, ấm áp và lời động viên, lấy cảm hứng từ những bông hoa thầy cô trao tặng để ghi nhận sự cố gắng và ngoan ngoãn của học trò. “Lém”, xuất phát từ lém lỉnh, mang tinh thần tinh nghịch, hóm hỉnh và tò mò, giống hệt tuổi thơ hồn nhiên. Khi kết hợp lại, Bông Lém trở thành một bông hoa nhỏ tinh nghịch, đại diện cho sự trong trẻo, niềm vui và những phút giây vô lo.
+Bông Lém được sinh ra từ những ký ức đó.`,
 
-Tại Bông Lém, chúng tôi tin rằng đồ ăn vặt không chỉ đơn thuần là thức ăn. Chúng là những cỗ máy thời gian. Mỗi hương vị quen thuộc, mỗi bao bì rực rỡ và từng chi tiết lém lỉnh đều được làm ra để đưa bạn về ký ức của những buổi chiều tan học, tiếng cười khúc khích vang khắp sân trường và những khoảnh khắc hạnh phúc nhỏ xíu mà nhớ hoài.`,
-        quote:
-          "Bông Lém không nói về việc lớn lên. Mà là về việc nhớ lại.",
-        visionLabel: "Tầm nhìn",
-        visionTitle:
-          "Trở thành nơi khơi gợi ký ức tuổi thơ qua những món ăn vặt vui nhộn và những khoảnh khắc đầy niềm vui.",
-        missionLabel: "Sứ mệnh",
-        missionTitle:
-          "Bông Lém tái hiện hương vị tuổi thơ Việt Nam bằng các món ăn vặt hoài niệm, kết hợp trải nghiệm tinh nghịch để mỗi miếng ăn đều đáng nhớ.",
+        // Section 2: Vì sao Bông Lém ra đời?
+        section2Title: "Vì sao Bông Lém ra đời?",
+        section2Text: `"Bông" tượng trưng cho sự dịu dàng, ấm áp và lời động viên, lấy cảm hứng từ những bông hoa thầy cô trao tặng để ghi nhận sự cố gắng và ngoan ngoãn của học trò.
+
+"Lém", xuất phát từ lém lỉnh, mang tinh thần tinh nghịch, hóm hỉnh và tò mò, giống hệt tuổi thơ hồn nhiên.
+
+Khi kết hợp lại, Bông Lém trở thành một bông hoa nhỏ tinh nghịch, đại diện cho sự trong trẻo, niềm vui và những phút giây vô lo.`,
+
+        // About us section
+        aboutTitle: "Về chúng mình",
+        aboutText: `Bạn thích phong cách quần áo nào? Y2K? Streetwear? Coquette?
+Dù là gì thì bạn cũng đang mặc cái gì đó ra đường.
+
+Vậy mà bạn chưa từng hỏi cục sạc của bạn có muốn hay không!
+
+Cũng như sinh viên muốn có bảng điểm full 4.0, cục sạc cũng muốn có full coverage. Cục sạc được ăn no mặc ấm sẽ mang lại sức mạnh biến mọi nguyện vọng của bạn thành sự thật.
+
+Bông chăm khô: Khoác lông bào cho cục sạc - Đời bạc sẽ lên hương.`,
+        // aboutCta: "Tổng đài nhà Bông luôn sẵn sàng",
+
+        // Vision & Mission
+        visionLabel: "TẦM NHÌN",
+        visionTitle: "Trở thành nơi khơi gợi ký ức tuổi thơ qua những món ăn vặt vui nhộn và những khoảnh khắc đầy niềm vui.",
+        missionLabel: "SỨ MỆNH", 
+        missionTitle: "Bông Lém tái hiện hương vị tuổi thơ Việt Nam bằng các món ăn vặt hoài niệm, kết hợp trải nghiệm tinh nghịch để mỗi miếng ăn đều đáng nhớ.",
+
+        // Quote
+        quote: "Bông Lém không nói về việc lớn lên. Mà là về việc nhớ lại.",
       }
     : {
-        eyebrow: "Brand Intro",
-        title: "Brand Story",
-        lead:
-          "Bong Lem is where the sweetest pieces of childhood are gathered again: nostalgia, connection, and tiny joys.",
-        body: `Childhood happiness was once simple, the joy of doing well in class, the excitement of receiving a “Bông hoa điểm 10”, and the pleasure of sharing snacks after school with friends. Those small moments created memories that stayed with us long after we grew up.
+        section1Title: "Where did Bông Lém start?",
+        section1Text: `Childhood happiness was once simple - the joy of doing well in class, the excitement of receiving a "Bông hoa điểm 10" (a flower sticker for getting 10 points), and the pleasure of sharing snacks after school with friends.
 
-Bông Lém was born from those memories.
+Those small moments created memories that stayed with us long after we grew up.
 
-“Bông” represents softness, warmth, and encouragement, inspired by the flowers teachers gave to reward effort and good behavior. “Lém,” derived from lém lỉnh, reflects a playful, cheeky, and curious personality, just like childhood itself. Together, Bông Lém becomes a mischievous little flower that embodies innocence, joy, and carefree fun.
+Bông Lém was born from those memories.`,
 
-At Bông Lém, we believe snacks are more than just food. They are time machines. Each familiar flavor, colorful wrapper, and playful detail is designed to take people back, to after-school afternoons, schoolyard laughter, and moments when happiness came easily.`,
-        quote: "Bông Lém isn’t about growing up. It’s about remembering.",
-        visionLabel: "Vision",
-        visionTitle:
-          "To be a place where childhood memories bloom again through playful snacks and joyful moments.",
-        missionLabel: "Mission",
-        missionTitle:
-          "Bông Lém brings back the taste of Vietnamese nostalgia by offering classic snacks with a cheeky, fun experience that makes every bite feel special.",
+        section2Title: "Why was Bông Lém born?",
+        section2Text: `"Bông" represents softness, warmth, and encouragement, inspired by the flowers teachers gave to reward effort and good behavior.
+
+"Lém," derived from lém lỉnh, reflects a playful, cheeky, and curious personality, just like childhood itself.
+
+Together, Bông Lém becomes a mischievous little flower that embodies innocence, joy, and carefree fun.`,
+
+        aboutTitle: "About Us",
+        aboutText: `What is your fashion style? Y2K? Streetwear? Coquette?
+Whatever it is, you are wearing something out there.
+
+But have you ever asked your charger if it wants to dress up too?
+
+Just like students want a full 4.0 GPA, chargers want full coverage too. A well-dressed charger will give you the power to make all your wishes come true.
+
+Bông Lém: Dress up your charger - Life will smell sweeter.`,
+        // aboutCta: "Bông hotline is always ready",
+
+        visionLabel: "VISION",
+        visionTitle: "To be a place where childhood memories bloom again through playful snacks and joyful moments.",
+        missionLabel: "MISSION",
+        missionTitle: "Bông Lém brings back the taste of Vietnamese nostalgia by offering classic snacks with a cheeky, fun experience that makes every bite feel special.",
+
+        quote: "Bông Lém is not about growing up. It is about remembering.",
       };
 
   return (
     <div className={styles.page}>
-      <section className={styles.blackBand}>
-        <h2 className={styles.bandTitle}>{isVi ? "Bông Lém có gì?" : "What does Bông Lém have?"}</h2>
-      </section>
-
-      <section className={styles.storySection}>
-        <div className={styles.storyRow}>
-          <div className={styles.storyTextBox}>
-            <h3 className={styles.storyHeading}>{isVi ? "Bông Lém bắt đầu từ đâu?" : "Where did Bông Lém start?"}</h3>
-            <img src="/emoji/hello 2.png" alt="" className={styles.storyEmoji} />
+      {/* Section 1: Bông Lém bắt đầu từ đâu? - Blue background */}
+      <section className={styles.heroSection}>
+        <div className={styles.heroContent}>
+          <div className={styles.heroTextSide}>
+            <h1 className={styles.heroTitle}>{content.section1Title}</h1>
+            <p className={styles.heroText}>{content.section1Text}</p>
           </div>
-          <div className={styles.storyTextBox}>
-            <img src="/emoji/1.png" alt="" className={styles.storyEmoji} />
-            <h3 className={styles.storyHeading}>{isVi ? "Vì sao Bông Lém ra đời?" : "Why was Bông Lém born?"}</h3>
+          <div className={styles.heroImageSide}>
+            <img src="/emoji/hello 2.png" alt="Mascot" className={styles.heroMascot} />
           </div>
         </div>
       </section>
 
-      <section className={styles.section}>
-        <p className={styles.body}>{content.body}</p>
-        <p className={styles.quote}>{content.quote}</p>
-
-        <div className={styles.visionGrid}>
-          <div className={styles.card}>
-            <p className={styles.cardLabel}>{content.visionLabel}</p>
-            <p className={styles.cardText}>{content.visionTitle}</p>
+      {/* Section 2: Vì sao Bông Lém ra đời? - Blue background */}
+      <section className={styles.fishSection}>
+        <div className={styles.fishContent}>
+          <div className={styles.fishImageSide}>
+            <img src="/emoji/actually 2.png" alt="Mascot" className={styles.fishMascot} />
           </div>
-
-          <div className={styles.card}>
-            <p className={styles.cardLabel}>{content.missionLabel}</p>
-            <p className={styles.cardText}>{content.missionTitle}</p>
+          <div className={styles.fishTextSide}>
+            <h2 className={styles.fishTitle}>{content.section2Title}</h2>
+            <p className={styles.fishText}>{content.section2Text}</p>
           </div>
         </div>
       </section>
 
+      {/* About Us Section */}
+      <section className={styles.aboutSection}>
+        <div className={styles.aboutContent}>
+          <div className={styles.aboutTextSide}>
+            <h2 className={styles.aboutTitle}>{content.aboutTitle}</h2>
+            <p className={styles.aboutText}>{content.aboutText}</p>
+            {/* <button className={styles.aboutCta}>{content.aboutCta}</button> */}
+          </div>
+          <div className={styles.aboutImageSide}>
+            <img src="/images/team.jpg" alt="Team" className={styles.teamImage} />
+          </div>
+        </div>
+      </section>
+
+      {/* Quote Section */}
       <section className={styles.quoteSection}>
-        <div className={styles.quoteContent}>
-          <img src="/emoji/love 2.png" alt="" className={styles.quoteEmoji} />
-          <p className={styles.quoteText}>
-            {isVi
-              ? '"Bông Lém tin rằng... Những món quà nhỏ có thể mang lại niềm vui rất to."'
-              : '"Bông Lém believes... Small gifts can bring great joy."'}
-          </p>
+        <p className={styles.quoteText}>"{content.quote}"</p>
+      </section>
+
+      {/* Vision & Mission Section */}
+      <section className={styles.vmSection}>
+        <h2 className={styles.vmSectionTitle}>{isVi ? "TẦM NHÌN & SỨ MỆNH" : "VISION & MISSION"}</h2>
+        <div className={styles.vmGrid}>
+          <div className={`${styles.vmCard} ${styles.visionCard}`}>
+            <p className={styles.vmLabel}>{content.visionLabel}</p>
+            <p className={styles.vmText}>{content.visionTitle}</p>
+            <img src="/emoji/love 2.png" alt="" className={styles.vmEmoji} />
+          </div>
+          <div className={`${styles.vmCard} ${styles.missionCard}`}>
+            <p className={styles.vmLabel}>{content.missionLabel}</p>
+            <p className={styles.vmText}>{content.missionTitle}</p>
+            <img src="/emoji/hug 2.png" alt="" className={styles.vmEmoji} />
+          </div>
         </div>
-        <img src="/emoji/hug 2.png" alt="" className={styles.quoteMascot} />
       </section>
     </div>
   );

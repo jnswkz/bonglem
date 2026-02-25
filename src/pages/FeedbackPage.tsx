@@ -1,4 +1,4 @@
-import styles from "./FeedbackPage.module.css";
+﻿import styles from "./FeedbackPage.module.css";
 import { useLanguage } from "../i18n/LanguageContext";
 
 type Review = {
@@ -19,9 +19,9 @@ const REVIEWS: Review[] = [
     tagEn: "Gift Buyer",
     rating: 5,
     textVi:
-      "Mình đặt làm quà sinh nhật và hơi lo vì sợ nhìn ngoài không giống hình. Nhưng nhận được thì bất ngờ thật: gói rất xinh, sạch sẽ, nhìn “gift-ready” luôn. Bạn mình mở ra còn khen mùi thơm dễ chịu. Shop trả lời tin nhắn cũng nhanh, hỏi gì là rep liền.",
+      "Mình đặt làm quà sinh nhật và hơi lo vì sợ nhìn ngoài không giống hình. Nhưng nhận được thì bất ngờ thật: gói rất xinh, sạch sẽ, nhìn \"gift-ready\" luôn. Bạn mình mở ra còn khen mùi thơm dễ chịu. Shop trả lời tin nhắn cũng nhanh, hỏi gì là rep liền.",
     textEn:
-      "Ordered this as a birthday gift and I was a bit worried it wouldn’t look like the photos. But when it arrived, I was genuinely surprised — the wrapping was super cute, clean, and basically gift-ready. My friend opened it and even mentioned it smelled really nice. Also, support was quick whenever I had a question.",
+      "Ordered this as a birthday gift and I was a bit worried it would not look like the photos. But when it arrived, I was genuinely surprised - the wrapping was super cute, clean, and basically gift-ready. My friend opened it and even mentioned it smelled really nice. Also, support was quick whenever I had a question.",
     product: "Khoai lang",
     date: "Jan 2026",
   },
@@ -33,7 +33,7 @@ const REVIEWS: Review[] = [
     textVi:
       "Mình thử set này vì thấy bạn giới thiệu. Đồ ăn vặt ổn, không bị ngọt gắt. Đóng gói chắc tay nên tới nơi không bị móp hay vỡ gì. Nói chung ok, sẽ mua lại nếu có set khác lạ hơn.",
     textEn:
-      "Tried this set because a friend recommended it. The snacks were solid — not too sweet, and everything tasted fresh. Packaging was sturdy, so nothing arrived crushed. Overall really happy with it, I’d order again (especially if there are new sets).",
+      "Tried this set because a friend recommended it. The snacks were solid - not too sweet, and everything tasted fresh. Packaging was sturdy, so nothing arrived crushed. Overall really happy with it, I would order again (especially if there are new sets).",
     product: "Nui sấy",
     date: "Jan 2026",
   },
@@ -43,9 +43,9 @@ const REVIEWS: Review[] = [
     tagEn: "Repeat Customer",
     rating: 5,
     textVi:
-      "Đây là lần thứ hai mình mua. Lần này giao nhanh hơn mình nghĩ, mở ra vẫn thấy gói rất kỹ như trước. Mình thích kiểu vibe dễ thương nhưng không bị “lố”. Cầm lên thấy có cảm giác chăm chút, chứ không phải đóng gói qua loa.",
+      "Đây là lần thứ hai mình mua. Lần này giao nhanh hơn mình nghĩ, mở ra vẫn thấy gói rất kỹ như trước. Mình thích kiểu vibe dễ thương nhưng không bị \"lố\". Cầm lên thấy có cảm giác chăm chút, chứ không phải đóng gói qua loa.",
     textEn:
-      "This was my second order. Delivery was faster than I expected and everything was packed just as carefully as the first time. I like the cute vibe — it doesn’t feel overdone, just thoughtfully put together. You can tell someone actually cared when packing it.",
+      "This was my second order. Delivery was faster than I expected and everything was packed just as carefully as the first time. I like the cute vibe - it does not feel overdone, just thoughtfully put together. You can tell someone actually cared when packing it.",
     product: "Kẹo Milo",
     date: "Feb 2026",
   },
@@ -157,55 +157,6 @@ export default function FeedbackPage() {
               <p className={styles.text}>{isVi ? r.textVi : r.textEn}</p>
             </article>
           ))}
-        </div>
-      </section>
-
-      <section className={styles.sectionAlt}>
-        <div className={styles.sectionHead}>
-          <h2 className={styles.h2}>{isVi ? "Social proof" : "Social proof"}</h2>
-        </div>
-
-        <div className={styles.ugcRow}>
-          <div className={styles.ugcCard}>
-            <div className={styles.ugcTitle}>Facebook</div>
-            <p className={styles.ugcText}>
-              {isVi
-                ? "Nhắn tụi mình trên Facebook hoặc đăng ảnh feedback — tụi mình rep nhanh và có thể repost story."
-                : "DM us on Facebook or post a feedback photo — we reply fast and may repost your story."}
-            </p>
-            <a
-              className={styles.ugcLink}
-              href="https://facebook.com/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              {isVi ? "Mở Facebook ->" : "Open Facebook ->"}
-            </a>
-          </div>
-
-          <div className={styles.ugcCard}>
-            <div className={styles.ugcTitle}>{isVi ? "Ảnh thật" : "Photo proof"}</div>
-            <p className={styles.ugcText}>
-              {isVi
-                ? "Gửi ảnh unboxing/feedback cho tụi mình — tụi mình dùng làm social proof (ẩn thông tin nếu cần)."
-                : "Send us an unboxing/feedback photo — we can use it as social proof (we can hide details if needed)."}
-            </p>
-            <a className={styles.ugcLink} href="#contact">
-              {isVi ? "Gửi qua Contact ->" : "Send via Contact ->"}
-            </a>
-          </div>
-
-          <div className={styles.ugcCard}>
-            <div className={styles.ugcTitle}>Chat</div>
-            <p className={styles.ugcText}>
-              {isVi
-                ? "Gửi feedback qua chat, tụi mình phản hồi nhanh."
-                : "Send feedback via chat and we reply quickly."}
-            </p>
-            <a className={styles.ugcLink} href="#reviews">
-              {isVi ? "Quay lại đánh giá ->" : "Back to reviews ->"}
-            </a>
-          </div>
         </div>
       </section>
     </div>

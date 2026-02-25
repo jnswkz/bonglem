@@ -156,7 +156,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({
           </h1>
 
           <p className="text-sm font-medium italic" style={{ color: "rgba(20,19,24,0.55)" }}>
-            {language === "vi" ? "Chờ một chút nhé..." : "Just a sec..."}{" "}
+            {language === "vi" ? "Chờ xí nhaaa^^..." : "Just a sec^^..."}{" "}
             <span style={{ color: MASCOT.petalPink }}>✿</span>
           </p>
 

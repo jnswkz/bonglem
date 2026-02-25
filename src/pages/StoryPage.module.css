@@ -5,251 +5,310 @@
   color: #3f2f26;
 }
 
-.hero {
-  background: linear-gradient(135deg, rgba(244, 163, 180, 0.22), rgba(255, 255, 255, 0.8));
-  border: 1px solid rgba(92, 64, 51, 0.1);
+/* Section 1: Bông Lém bắt đầu từ đâu? */
+.heroSection {
+  background: transparent;
   border-radius: 30px;
-  padding: 34px 30px;
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  margin-bottom: 24px;
 }
 
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border-radius: 999px;
-  padding: 6px 12px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(92, 64, 51, 0.12);
-}
-
-.title {
-  margin: 14px 0 10px;
-  font-size: clamp(34px, 6vw, 54px);
-  line-height: 1.05;
-  color: #5c4033;
-}
-
-.lead {
-  margin: 0;
-  max-width: 860px;
-  line-height: 1.75;
-  color: rgba(92, 64, 51, 0.82);
-  font-size: 17px;
-}
-
-.section {
-  margin-top: 22px;
-  border-radius: 26px;
-  border: 1px solid rgba(92, 64, 51, 0.1);
-  background: rgba(255, 255, 255, 0.75);
-  padding: 26px;
-}
-
-.sectionTitle {
-  margin: 0 0 12px;
-  font-size: 28px;
-  color: #5c4033;
-}
-
-.body {
-  margin: 0;
-  white-space: pre-line;
-  line-height: 1.9;
-  color: rgba(63, 47, 38, 0.86);
-  font-size: 16px;
-}
-
-.quote {
-  margin-top: 18px;
-  border-left: 4px solid #e79eb0;
-  background: rgba(244, 163, 180, 0.14);
-  border-radius: 16px;
-  padding: 14px 16px;
-  font-style: italic;
-  color: #5c4033;
-  line-height: 1.8;
-}
-
-.visionGrid {
-  margin-top: 22px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.card {
-  border-radius: 20px;
-  border: 1px solid rgba(92, 64, 51, 0.12);
-  background: #fff;
-  padding: 18px;
-}
-
-.cardLabel {
-  margin: 0;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(92, 64, 51, 0.65);
-}
-
-.cardTitle {
-  margin: 8px 0 8px;
-  font-size: 22px;
-  color: #5c4033;
-}
-
-.cardText {
-  margin: 0;
-  color: rgba(63, 47, 38, 0.82);
-  line-height: 1.75;
-}
-
-.emoji {
-  width: 100px;
-  height: 100px;
-  margin: 0 12px;
-  vertical-align: middle;
-  object-fit: contain;
-}
-
-.blackBand {
-  margin-top: 24px;
-  background: #1a1a1a;
-  padding: 20px 30px;
-  border-radius: 24px;
-}
-
-.bandTitle {
-  margin: 0;
-  color: #fff;
-  font-size: 24px;
-  font-weight: 700;
-  text-align: center;
-}
-
-.storySection {
-  margin-top: 0;
-  padding: 30px;
-  background: #fff;
-  border: 1px solid rgba(92, 64, 51, 0.1);
-  border-radius: 24px;
-}
-
-.storyRow {
+.heroContent {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
-}
-
-.storyTextBox {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
-  padding: 20px;
 }
 
-.storyHeading {
-  margin: 0 0 16px;
-  font-size: 20px;
+.heroTextSide {
   color: #3f2f26;
 }
 
-.storyEmoji {
-  width: 200px;
-  height: 200px;
-  object-fit: contain;
+.heroTitle {
+  font-size: clamp(36px, 5.5vw, 54px);
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 20px;
+  white-space: pre-line;
+  color: #5c4033;
 }
 
-.quoteSection {
-  margin-top: 40px;
-  background: #FFF8E7;
-  padding: 40px 30px;
-  border-radius: 24px;
+.heroText {
+  font-size: 18px;
+  line-height: 1.8;
+  margin: 0;
+  white-space: pre-line;
+  color: rgba(63, 47, 38, 0.85);
+}
+
+.heroImageSide {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
+}
+
+.heroMascot {
+  width: 280px;
+  height: 280px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.1));
+}
+
+/* Section 2: Vì sao Bông Lém ra đời? */
+.fishSection {
+  background: transparent;
+  border-radius: 30px;
+  padding: 40px;
+  margin-bottom: 24px;
+}
+
+.fishContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: center;
+}
+
+.fishImageSide {
+  display: flex;
+  justify-content: center;
+}
+
+.fishMascot {
+  width: 240px;
+  height: 240px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.1));
+}
+
+.fishTextSide {
+  color: #3f2f26;
+  text-align: right;
+}
+
+.fishTitle {
+  font-size: clamp(32px, 4.6vw, 48px);
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 16px;
+  white-space: pre-line;
+  color: #5c4033;
+}
+
+.fishSubtitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 16px;
+  font-style: italic;
+  color: rgba(63, 47, 38, 0.8);
+}
+
+.fishText {
+  font-size: 17px;
+  line-height: 1.8;
+  margin: 0;
+  white-space: pre-line;
+  color: rgba(63, 47, 38, 0.85);
+}
+
+/* About Us Section */
+.aboutSection {
+  background: transparent;
+  border-radius: 30px;
+  padding: 40px;
+  margin-bottom: 24px;
+}
+
+.aboutContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: center;
+}
+
+.aboutTextSide {
+  color: #3f2f26;
+}
+
+.aboutTitle {
+  font-size: clamp(32px, 4.6vw, 48px);
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 20px;
+  color: #5c4033;
+}
+
+.aboutText {
+  font-size: 17px;
+  line-height: 1.8;
+  margin: 0 0 24px;
+  white-space: pre-line;
+  color: rgba(63, 47, 38, 0.85);
+}
+
+.aboutCta {
+  background: linear-gradient(135deg, #F8A5B8 0%, #F48FB1 100%);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.aboutCta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(244, 143, 177, 0.4);
+}
+
+.aboutImageSide {
+  display: flex;
+  justify-content: center;
+}
+
+.teamImage {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+}
+
+/* Vision & Mission Section */
+.vmSection {
+  background: transparent;
+  border-radius: 30px;
+  padding: 40px 0;
+  margin-bottom: 24px;
+}
+
+.vmSectionTitle {
+  text-align: center;
+  font-size: clamp(28px, 4.4vw, 42px);
+  font-weight: 800;
+  color: #5c4033;
+  margin: 0 0 30px;
+  letter-spacing: 0.03em;
+}
+
+.vmGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 
-.quoteContent {
+.vmCard {
+  border-radius: 24px;
+  padding: 30px;
+  position: relative;
+  min-height: 200px;
   display: flex;
-  align-items: flex-start;
-  gap: 16px;
+  flex-direction: column;
+  backdrop-filter: blur(10px);
 }
 
-.quoteEmoji {
-  width: 100px;
-  height: 100px;
+.visionCard {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.missionCard {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.vmLabel {
+  font-size: 18px;
+  font-weight: 800;
+  color: #E91E63;
+  margin: 0 0 12px;
+  letter-spacing: 0.02em;
+}
+
+.vmText {
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(63, 47, 38, 0.85);
+  margin: 0;
+  flex: 1;
+}
+
+.vmEmoji {
+  width: 70px;
+  height: 70px;
   object-fit: contain;
-  flex-shrink: 0;
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+}
+
+/* Quote Section */
+.quoteSection {
+  background: transparent;
+  padding: 40px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .quoteText {
   margin: 0;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
-  color: #3f2f26;
+  color: #5c4033;
   line-height: 1.6;
+  font-style: italic;
+  text-align: center;
 }
 
-.quoteMascot {
-  width: 200px;
-  height: 200px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
+/* Mobile Responsive */
 @media (max-width: 900px) {
-  .hero {
-    padding: 24px 20px;
-  }
-
-  .section {
-    padding: 20px;
-  }
-
-  .visionGrid {
+  .heroContent,
+  .fishContent,
+  .aboutContent {
     grid-template-columns: 1fr;
-  }
-
-  .storyRow {
-    grid-template-columns: 1fr;
-  }
-
-  .quoteSection {
-    flex-direction: column;
     text-align: center;
   }
 
-  .quoteContent {
-    flex-direction: column;
-    align-items: center;
+  .heroSection,
+  .fishSection,
+  .aboutSection,
+  .vmSection {
+    padding: 30px 20px;
   }
 
-  .emoji {
-    width: 80px;
-    height: 80px;
+  .heroText,
+  .fishText,
+  .aboutText,
+  .vmText {
+    font-size: 16px;
+    line-height: 1.75;
   }
 
-  .storyEmoji {
-    width: 160px;
-    height: 160px;
+  .quoteText {
+    font-size: 21px;
   }
 
-  .quoteMascot {
-    width: 160px;
-    height: 160px;
+  .heroMascot,
+  .fishMascot {
+    width: 200px;
+    height: 200px;
   }
 
-  .quoteEmoji {
-    width: 80px;
-    height: 80px;
+  .fishTextSide {
+    text-align: center;
+    order: -1;
+  }
+
+  .vmGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .vmEmoji {
+    width: 50px;
+    height: 50px;
   }
 }

@@ -3,7 +3,6 @@ import styles from "./HomePage.module.css";
 import Hero from "../components/home/Hero";
 import ProductGrid from "../components/home/ProductGrid";
 import QuoteBand from "../components/home/QuoteBand";
-import SocialProof from "../components/home/SocialProof";
 import { useLanguage } from "../i18n/LanguageContext";
 
 export type PageKey =
@@ -81,51 +80,6 @@ export default function HomePage({ onNavigate }: HomePageProps) {
           />
         </section>
 
-        <section className={styles.section}>
-          <SocialProof
-            heading={isVi ? "Khách iu nói gì về bé Bông?" : "What do customers say about Bong?"}
-            emojiSrc="/emoji/sad 2.png"
-            subheading={
-              isVi
-                ? "Feedback thật - vibe dễ thương, đóng gói xinh, giao nhanh."
-                : "Real feedback: cute vibe, beautiful wrapping, and fast delivery."
-            }
-            reviews={
-              isVi
-                ? [
-                    {
-                      name: "Linh",
-                      text: "Gói quà siêu xinh, nhận là muốn tặng liền. Shop rep nhanh nữa!",
-                    },
-                    {
-                      name: "Minh",
-                      text: "Set vừa đẹp vừa thơm, phù hợp tặng bạn gái. 10/10!",
-                    },
-                    {
-                      name: "An",
-                      text: "Mua lần 2 rồi. Đóng gói cẩn thận, vibe dễ thương cực.",
-                    },
-                  ]
-                : [
-                    {
-                      name: "Linh",
-                      text: "Super cute packaging, ready to gift right away. Fast support too!",
-                    },
-                    {
-                      name: "Minh",
-                      text: "Beautiful and fragrant set, perfect for gifting. 10/10!",
-                    },
-                    {
-                      name: "An",
-                      text: "Second purchase already. Careful packing and a very cute vibe.",
-                    },
-                  ]
-            }
-            socials={[
-              { label: "Facebook", href: "https://facebook.com/" },
-            ]}
-          />
-        </section>
       </main>
     </div>
   );

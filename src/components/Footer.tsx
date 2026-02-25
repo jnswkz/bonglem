@@ -218,20 +218,6 @@ export const Footer: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-2">
-              <span style={chipStyle}>
-                <Sparkles size={16} />
-                {t.chip1}
-              </span>
-              <span style={chipStyle}>
-                <ShieldCheck size={16} />
-                {t.chip2}
-              </span>
-              <span style={chipStyle}>
-                <Truck size={16} />
-                {t.chip3}
-              </span>
-            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
