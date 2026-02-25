@@ -5,9 +5,6 @@ import {
   MapPin,
   Phone,
   ArrowRight,
-  ShieldCheck,
-  Sparkles,
-  Truck,
   PackageOpen,
   Lock,
   HeartHandshake,
@@ -96,19 +93,6 @@ export const Footer: React.FC = () => {
   };
 
   // ---- styles ----
-  const chipStyle: React.CSSProperties = {
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: '8px',
-    padding: '10px 12px',
-    borderRadius: '999px',
-    border: `1px solid ${TEXT_BROWN}1A`,
-    backgroundColor: 'rgba(255,255,255,0.74)',
-    color: `${TEXT_BROWN}CC`,
-    fontSize: '14px',
-    boxShadow: '0 8px 18px rgba(0,0,0,0.04)',
-  };
-
   const socialBtnStyle: React.CSSProperties = {
     width: '48px',
     height: '48px',
