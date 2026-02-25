@@ -74,12 +74,12 @@ export default function FeedbackPage() {
 
   return (
     <div className={styles.page}>
-      <section className={styles.hero}>
+      <section className={styles.hero} data-reveal="up">
         <div className={styles.heroInner}>
-          <div className={styles.heroEmoji}>
+          <div className={styles.heroEmoji} data-reveal="left" data-reveal-delay="40">
             <img src="/emoji/sad 2.png" alt="" className={styles.emojiLarge} />
           </div>
-          <div className={styles.heroTitle}>
+          <div className={styles.heroTitle} data-reveal="right" data-reveal-delay="90">
             <h1 className={styles.h1}>
               {isVi
                 ? "Khách iu nói gì về bé Bông?"
@@ -125,7 +125,7 @@ export default function FeedbackPage() {
         </div>
       </section>
 
-      <section id="reviews" className={styles.section}>
+      <section id="reviews" className={styles.section} data-reveal="up">
         <div className={styles.sectionHead}>
           <h2 className={styles.h2}>
             {isVi ? "Đánh giá khách hàng" : "Customer reviews"}
@@ -134,7 +134,12 @@ export default function FeedbackPage() {
 
         <div className={styles.grid}>
           {REVIEWS.map((r, idx) => (
-            <article key={idx} className={styles.card}>
+            <article
+              key={idx}
+              className={styles.card}
+              data-reveal="up"
+              data-reveal-delay={String(Math.min(280, 40 + idx * 60))}
+            >
               <div className={styles.cardTop}>
                 <div>
                   <div className={styles.nameRow}>

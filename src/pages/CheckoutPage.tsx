@@ -252,7 +252,7 @@ export default function CheckoutPage({ onNavigate }: CheckoutPageProps) {
             {items.map((item) => (
               <div key={item.product._id} className={styles.orderItem}>
                 <span className={styles.itemName}>
-                  {isVi ? item.product.name : (item.product.nameEn || item.product.name)}
+                  {item.product.name}
                   <span className={styles.itemQty}>× {item.quantity}</span>
                 </span>
                 <span>{formatPrice(item.product.price * item.quantity)}đ</span>

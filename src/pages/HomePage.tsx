@@ -26,7 +26,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <section id="home" className={styles.section}>
+        <section id="home" className={styles.section} data-reveal="up">
           <Hero
             brand="BÔNG LÉM"
             headline={
@@ -57,7 +57,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
           />
         </section>
 
-        <section id="products" className={styles.section}>
+        <section id="products" className={styles.section} data-reveal="up" data-reveal-delay="80">
           <ProductGrid
             heading={isVi ? "Bông Lém có gì?" : "What does Bong Lem have?"}
             emojiSrc="/emoji/hello 2.png"
@@ -67,7 +67,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
           />
         </section>
 
-        <section id="story" className={styles.section}>
+        <section id="story" className={styles.section} data-reveal="up" data-reveal-delay="120">
           <QuoteBand
             quote={
               isVi

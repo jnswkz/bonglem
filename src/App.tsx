@@ -3,6 +3,7 @@ import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { SplashScreen } from "./components/SplashScreen";
 import { motion, AnimatePresence } from "motion/react";
+import { Loader2 } from "lucide-react";
 
 import HomePage from "./pages/HomePage";
 import FeedbackPage from "./pages/FeedbackPage";
@@ -19,6 +20,7 @@ import { useCart } from "./store/CartContext";
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [isPageLoading, setIsPageLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState<Page>("home");
   const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
 
@@ -26,17 +28,99 @@ const App: React.FC = () => {
   const { totalItems } = useCart();
 
   const handleNavigate = (page: string) => {
-    if (page.startsWith("product/")) {
-      const productId = page.replace("product/", "");
-      setSelectedProductId(productId);
-      setCurrentPage("detail" as Page);
-    } else {
-      setCurrentPage(page as Page);
-    }
+    if (isPageLoading) return;
+
+    const isDetailTarget = page.startsWith("product/");
+    const nextPage = isDetailTarget ? ("detail" as Page) : (page as Page);
+    const nextProductId = isDetailTarget ? page.replace("product/", "") : null;
+
+    const isSamePage =
+      nextPage === currentPage &&
+      (nextPage !== "detail" || nextProductId === selectedProductId);
+
+    if (isSamePage) return;
+
+    setIsPageLoading(true);
+
+    window.setTimeout(() => {
+      if (isDetailTarget) {
+        setSelectedProductId(nextProductId);
+        setCurrentPage("detail");
+      } else {
+        setCurrentPage(nextPage);
+      }
+    }, 220);
   };
 
   useEffect(() => {
     if (!isLoading) window.scrollTo(0, 0);
+  }, [currentPage, isLoading]);
+
+  useEffect(() => {
+    if (!isPageLoading) return;
+    const timer = window.setTimeout(() => setIsPageLoading(false), 850);
+    return () => window.clearTimeout(timer);
+  }, [currentPage, isPageLoading]);
+
+  useEffect(() => {
+    if (isLoading) return;
+
+    const revealElements = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-reveal]")
+    );
+
+    if (revealElements.length === 0) return;
+
+    if (typeof window === "undefined" || !("IntersectionObserver" in window)) {
+      revealElements.forEach((el) => {
+        el.classList.remove("reveal-pending");
+        el.classList.add("is-revealed");
+        el.style.setProperty("--reveal-delay", "0ms");
+      });
+      return;
+    }
+
+    const rafIds: number[] = [];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target as HTMLElement;
+          const delay = Number(el.dataset.revealDelay || 0);
+          const rafA = window.requestAnimationFrame(() => {
+            const rafB = window.requestAnimationFrame(() => {
+              el.style.setProperty("--reveal-delay", `${delay}ms`);
+              el.classList.remove("reveal-pending");
+              el.classList.add("is-revealed");
+            });
+            rafIds.push(rafB);
+          });
+          rafIds.push(rafA);
+          observer.unobserve(el);
+        });
+      },
+      {
+        threshold: 0.3,
+        rootMargin: "0px 0px -16% 0px",
+      }
+    );
+
+    revealElements.forEach((el) => {
+      el.classList.add("reveal-pending");
+      el.classList.remove("is-revealed");
+      el.style.setProperty("--reveal-delay", "0ms");
+    });
+
+    const rafObserve = window.requestAnimationFrame(() => {
+      revealElements.forEach((el) => observer.observe(el));
+    });
+    rafIds.push(rafObserve);
+
+    return () => {
+      rafIds.forEach((id) => window.cancelAnimationFrame(id));
+      observer.disconnect();
+    };
   }, [currentPage, isLoading]);
 
   const cartCount = totalItems;
@@ -60,6 +144,25 @@ const App: React.FC = () => {
           currentPage={currentPage}
           cartCount={cartCount}
         />
+
+        <AnimatePresence>
+          {!isLoading && isPageLoading && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-40 flex items-center justify-center bg-white/35 backdrop-blur-[2px]"
+            >
+              <div className="flex items-center gap-2 rounded-full border border-[#5C4033]/15 bg-white/85 px-5 py-3 text-[#5C4033] shadow-lg">
+                <Loader2 size={18} className="animate-spin" />
+                <span className="text-sm font-semibold">
+                  {language === "vi" ? "Đang chuyển trang..." : "Loading page..."}
+                </span>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <main className="bg-transparent">
           <AnimatePresence mode="wait">

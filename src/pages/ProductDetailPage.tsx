@@ -119,7 +119,7 @@ export default function ProductDetailPage({ productId, onNavigate }: ProductDeta
         {/* Product Info */}
         <div className={styles.infoSection}>
           <h1 className={styles.productName}>
-            {isVi ? product.name : (product.nameEn || product.name)}
+            {product.name}
           </h1>
 
           <div className={styles.priceRow}>

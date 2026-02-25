@@ -1,9 +1,24 @@
 import styles from "./StoryPage.module.css";
 import { useLanguage } from "../i18n/LanguageContext";
+import { useEffect } from "react";
 
 export default function StoryPage() {
   const { language } = useLanguage();
   const isVi = language === "vi";
+
+  useEffect(() => {
+    const preloadList = [
+      "/emoji/hello 2.png",
+      "/emoji/actually 2.png",
+      "/emoji/love 2.png",
+      "/emoji/hug 2.png",
+    ];
+
+    preloadList.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
 
   const content = isVi
     ? {
@@ -81,25 +96,32 @@ Bông Lém: Dress up your charger - Life will smell sweeter.`,
   return (
     <div className={styles.page}>
       {/* Section 1: Bông Lém bắt đầu từ đâu? - Blue background */}
-      <section className={styles.heroSection}>
+      <section className={styles.heroSection} data-reveal="up">
         <div className={styles.heroContent}>
-          <div className={styles.heroTextSide}>
+          <div className={styles.heroTextSide} data-reveal="left" data-reveal-delay="40">
             <h1 className={styles.heroTitle}>{content.section1Title}</h1>
             <p className={styles.heroText}>{content.section1Text}</p>
           </div>
-          <div className={styles.heroImageSide}>
+          <div className={styles.heroImageSide} data-reveal="right" data-reveal-delay="90">
             <img src="/emoji/hello 2.png" alt="Mascot" className={styles.heroMascot} />
           </div>
         </div>
       </section>
 
       {/* Section 2: Vì sao Bông Lém ra đời? - Blue background */}
-      <section className={styles.fishSection}>
+      <section className={styles.fishSection} data-reveal="up">
         <div className={styles.fishContent}>
-          <div className={styles.fishImageSide}>
-            <img src="/emoji/actually 2.png" alt="Mascot" className={styles.fishMascot} />
+          <div className={styles.fishImageSide} data-reveal="left" data-reveal-delay="50">
+            <img
+              src="/emoji/actually 2.png"
+              alt="Mascot"
+              className={styles.fishMascot}
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+            />
           </div>
-          <div className={styles.fishTextSide}>
+          <div className={styles.fishTextSide} data-reveal="right" data-reveal-delay="100">
             <h2 className={styles.fishTitle}>{content.section2Title}</h2>
             <p className={styles.fishText}>{content.section2Text}</p>
           </div>
@@ -107,34 +129,34 @@ Bông Lém: Dress up your charger - Life will smell sweeter.`,
       </section>
 
       {/* About Us Section */}
-      <section className={styles.aboutSection}>
+      <section className={styles.aboutSection} data-reveal="up">
         <div className={styles.aboutContent}>
-          <div className={styles.aboutTextSide}>
+          <div className={styles.aboutTextSide} data-reveal="left" data-reveal-delay="50">
             <h2 className={styles.aboutTitle}>{content.aboutTitle}</h2>
             <p className={styles.aboutText}>{content.aboutText}</p>
             {/* <button className={styles.aboutCta}>{content.aboutCta}</button> */}
           </div>
-          <div className={styles.aboutImageSide}>
+          <div className={styles.aboutImageSide} data-reveal="right" data-reveal-delay="100">
             <img src="/images/team.jpg" alt="Team" className={styles.teamImage} />
           </div>
         </div>
       </section>
 
       {/* Quote Section */}
-      <section className={styles.quoteSection}>
+      <section className={styles.quoteSection} data-reveal="zoom">
         <p className={styles.quoteText}>"{content.quote}"</p>
       </section>
 
       {/* Vision & Mission Section */}
-      <section className={styles.vmSection}>
+      <section className={styles.vmSection} data-reveal="up">
         <h2 className={styles.vmSectionTitle}>{isVi ? "TẦM NHÌN & SỨ MỆNH" : "VISION & MISSION"}</h2>
         <div className={styles.vmGrid}>
-          <div className={`${styles.vmCard} ${styles.visionCard}`}>
+          <div className={`${styles.vmCard} ${styles.visionCard}`} data-reveal="left" data-reveal-delay="40">
             <p className={styles.vmLabel}>{content.visionLabel}</p>
             <p className={styles.vmText}>{content.visionTitle}</p>
             <img src="/emoji/love 2.png" alt="" className={styles.vmEmoji} />
           </div>
-          <div className={`${styles.vmCard} ${styles.missionCard}`}>
+          <div className={`${styles.vmCard} ${styles.missionCard}`} data-reveal="right" data-reveal-delay="90">
             <p className={styles.vmLabel}>{content.missionLabel}</p>
             <p className={styles.vmText}>{content.missionTitle}</p>
             <img src="/emoji/hug 2.png" alt="" className={styles.vmEmoji} />

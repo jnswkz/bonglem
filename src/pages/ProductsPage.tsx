@@ -109,7 +109,7 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
             <ProductCard
               key={product._id}
               image={product.imageUrl || "/images/placeholder.jpg"}
-              name={isVi ? product.name : (product.nameEn || product.name)}
+              name={product.name}
               price={formatPrice(product.price)}
               onViewDetail={() => onNavigate?.(`product/${product._id}`)}
               onAddToCart={() => handleAddToCart(product)}

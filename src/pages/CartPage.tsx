@@ -55,7 +55,7 @@ export default function CartPage({ onNavigate }: CartPageProps) {
 
               <div className={styles.itemDetails}>
                 <h3 className={styles.itemName}>
-                  {isVi ? item.product.name : (item.product.nameEn || item.product.name)}
+                  {item.product.name}
                 </h3>
                 <p className={styles.itemPrice}>{formatPrice(item.product.price)}đ</p>
               </div>
