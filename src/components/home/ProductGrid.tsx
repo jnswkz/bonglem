@@ -2,7 +2,8 @@
 import styles from "./ProductGrid.module.css";
 import { productApi, Product } from "../../api";
 import { useLanguage } from "../../i18n/LanguageContext";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useCart } from "../../store/CartContext";
+import { ChevronLeft, ChevronRight, ShoppingCart } from "lucide-react";
 
 export type ProductGridProps = {
   heading: string;
@@ -20,6 +21,7 @@ export default function ProductGrid({
   onNavigate,
 }: ProductGridProps) {
   const { language } = useLanguage();
+  const { addItem } = useCart();
   const isVi = language === "vi";
 
   const [products, setProducts] = useState<Product[]>([]);
@@ -88,6 +90,7 @@ export default function ProductGrid({
           {heading}
           {emojiSrc && <img src={emojiSrc} alt="" className={styles.emoji} />}
         </h2>
+
         {viewAllHref && (
           <button className={styles.viewAll} onClick={() => onNavigate?.("products")}>
             {viewAllLabel || (isVi ? "Xem tất cả" : "View all")}
@@ -111,17 +114,6 @@ export default function ProductGrid({
             <ChevronLeft size={20} />
           </button>
 
-          <div
-            className={`${styles.edgeFade} ${styles.edgeFadeLeft} ${
-              canScrollPrev ? styles.edgeFadeVisible : ""
-            }`}
-          />
-          <div
-            className={`${styles.edgeFade} ${styles.edgeFadeRight} ${
-              canScrollNext ? styles.edgeFadeVisible : ""
-            }`}
-          />
-
           <div className={styles.grid} ref={trackRef}>
             {products.map((product, idx) => {
               const displayName = product.name;
@@ -136,10 +128,21 @@ export default function ProductGrid({
                 >
                   <div className={styles.imgWrap}>
                     <img className={styles.img} src={product.imageUrl} alt={displayName} />
+                    <button
+                      type="button"
+                      className={styles.addBtn}
+                      aria-label={isVi ? "Thêm vào giỏ" : "Add to cart"}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        addItem(product, 1);
+                      }}
+                    >
+                      <ShoppingCart size={16} />
+                    </button>
                   </div>
                   <div className={styles.info}>
                     <div className={styles.name}>{displayName}</div>
-                    <div className={styles.price}>{product.formattedPrice}</div>
+                    <div className={styles.priceBadge}>{product.formattedPrice}</div>
                   </div>
                 </div>
               );
