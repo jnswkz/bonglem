@@ -26,13 +26,7 @@ export const Footer: React.FC = () => {
       {/* white separator */}
       <div className="h-px w-full bg-white" />
 
-      <div
-        className="w-full"
-        style={{
-          background:
-            'linear-gradient(180deg, rgba(255,233,242,0.92) 0%, rgba(247,204,220,0.9) 45%, rgba(238,188,207,0.9) 100%)',
-        }}
-      >
+      <div className="w-full bg-white">
         <div className="mx-auto max-w-7xl px-6 md:px-10 py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
             <section className="flex flex-col items-center md:items-start gap-4">
