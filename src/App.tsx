@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Analytics } from '@vercel/analytics/react';
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { SplashScreen } from "./components/SplashScreen";
@@ -197,6 +198,7 @@ const App: React.FC = () => {
 
         <Footer />
       </motion.div>
+      <Analytics />
     </div>
   );
 };
