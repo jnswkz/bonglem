@@ -76,6 +76,9 @@ export default function ProductGrid({
       left: direction === "next" ? amount : -amount,
       behavior: "smooth",
     });
+
+    window.requestAnimationFrame(() => updateScrollState());
+    window.setTimeout(() => updateScrollState(), 220);
   };
 
   return (
@@ -100,10 +103,10 @@ export default function ProductGrid({
         <div className={styles.carousel}>
           <button
             type="button"
-            className={`${styles.navBtn} ${styles.prevBtn}`}
+            className={`${styles.navBtn} ${styles.prevBtn} ${!canScrollPrev ? styles.navBtnDisabled : ""}`}
             onClick={() => scrollByDirection("prev")}
-            disabled={!canScrollPrev}
             aria-label={isVi ? "Sản phẩm trước" : "Previous products"}
+            aria-disabled={!canScrollPrev}
           >
             <ChevronLeft size={20} />
           </button>
@@ -145,10 +148,10 @@ export default function ProductGrid({
 
           <button
             type="button"
-            className={`${styles.navBtn} ${styles.nextBtn}`}
+            className={`${styles.navBtn} ${styles.nextBtn} ${!canScrollNext ? styles.navBtnDisabled : ""}`}
             onClick={() => scrollByDirection("next")}
-            disabled={!canScrollNext}
             aria-label={isVi ? "Sản phẩm tiếp theo" : "Next products"}
+            aria-disabled={!canScrollNext}
           >
             <ChevronRight size={20} />
           </button>

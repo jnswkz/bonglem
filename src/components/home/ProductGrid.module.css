@@ -121,7 +121,7 @@
   box-shadow: 0 12px 22px rgba(0, 0, 0, 0.16);
 }
 
-.navBtn:disabled {
+.navBtnDisabled {
   opacity: 0.35;
   cursor: not-allowed;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
