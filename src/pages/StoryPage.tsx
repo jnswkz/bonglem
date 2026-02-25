@@ -149,7 +149,7 @@ Bông Lém: Dress up your charger - Life will smell sweeter.`,
 
       {/* Vision & Mission Section */}
       <section className={styles.vmSection} data-reveal="up">
-        <h2 className={styles.vmSectionTitle}>{isVi ? "TẦM NHÌN & SỨ MỆNH" : "VISION & MISSION"}</h2>
+        <h2 className={styles.vmSectionTitle}>{isVi ? "Giá trị Bông Lém gửi gắm" : "The Values Bông Lém Shares"}</h2>
         <div className={styles.vmGrid}>
           <div className={`${styles.vmCard} ${styles.visionCard}`} data-reveal="left" data-reveal-delay="40">
             <p className={styles.vmLabel}>{content.visionLabel}</p>
