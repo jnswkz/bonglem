@@ -3,7 +3,7 @@ import { productApi, clickApi, type Product } from "../api";
 import { useLanguage } from "../i18n/LanguageContext";
 import { useCart } from "../store/CartContext";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-import { Loader2, ArrowLeft, ShoppingCart, Plus, Minus, Check } from "lucide-react";
+import { Loader2, ArrowLeft, ShoppingCart, Plus, Minus, Check, ChevronLeft, ChevronRight } from "lucide-react";
 import styles from "./ProductDetailPage.module.css";
 
 interface ProductDetailPageProps {
@@ -21,6 +21,7 @@ export default function ProductDetailPage({ productId, onNavigate }: ProductDeta
   const [error, setError] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [addedToCart, setAddedToCart] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   useEffect(() => {
     loadProduct();
@@ -35,6 +36,7 @@ export default function ProductDetailPage({ productId, onNavigate }: ProductDeta
 
     setLoading(true);
     setError(null);
+    setSelectedImageIndex(0);
     try {
       const data = await productApi.getById(productId);
       setProduct(data);
@@ -92,6 +94,22 @@ export default function ProductDetailPage({ productId, onNavigate }: ProductDeta
 
   const isOutOfStock = product.stock <= 0;
 
+  // Get all product images - use images array if available, fallback to single imageUrl
+  const productImages = product.images && product.images.length > 0 
+    ? product.images 
+    : [product.imageUrl || "/images/placeholder.jpg"];
+  
+  const currentImage = productImages[selectedImageIndex] || productImages[0];
+  const hasMultipleImages = productImages.length > 1;
+
+  const handlePrevImage = () => {
+    setSelectedImageIndex((prev) => (prev === 0 ? productImages.length - 1 : prev - 1));
+  };
+
+  const handleNextImage = () => {
+    setSelectedImageIndex((prev) => (prev === productImages.length - 1 ? 0 : prev + 1));
+  };
+
   return (
     <div className={styles.page}>
       <button onClick={() => onNavigate?.("products")} className={styles.backLink}>
@@ -104,7 +122,7 @@ export default function ProductDetailPage({ productId, onNavigate }: ProductDeta
         <div className={styles.imageSection}>
           <div className={styles.mainImage}>
             <ImageWithFallback
-              src={product.imageUrl || "/images/placeholder.jpg"}
+              src={currentImage}
               alt={product.name}
               className={styles.productImage}
             />
@@ -113,7 +131,43 @@ export default function ProductDetailPage({ productId, onNavigate }: ProductDeta
                 <span>{isVi ? "Hết hàng" : "Out of stock"}</span>
               </div>
             )}
+            {hasMultipleImages && (
+              <>
+                <button 
+                  onClick={handlePrevImage} 
+                  className={`${styles.imageNavBtn} ${styles.imageNavPrev}`}
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+                <button 
+                  onClick={handleNextImage} 
+                  className={`${styles.imageNavBtn} ${styles.imageNavNext}`}
+                  aria-label="Next image"
+                >
+                  <ChevronRight size={24} />
+                </button>
+              </>
+            )}
           </div>
+          {/* Thumbnail Gallery */}
+          {hasMultipleImages && (
+            <div className={styles.thumbnailGallery}>
+              {productImages.map((img, index) => (
+                <button
+                  key={index}
+                  onClick={() => setSelectedImageIndex(index)}
+                  className={`${styles.thumbnail} ${index === selectedImageIndex ? styles.thumbnailActive : ""}`}
+                >
+                  <ImageWithFallback
+                    src={img}
+                    alt={`${product.name} - ${index + 1}`}
+                    className={styles.thumbnailImage}
+                  />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Product Info */}
