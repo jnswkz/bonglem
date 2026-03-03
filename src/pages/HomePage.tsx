@@ -52,7 +52,10 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                 ? ["Handmade", "Gói quà đẹp", "Chat nhanh"]
                 : ["Handmade", "Gift-ready", "Fast chat"]
             }
-            heroImage={{ src: "/images/hero.jpg", alt: "Bông Lém hero image" }}
+            heroImage={{
+              src: "/banner/bonglem_banner.png",
+              alt: "Bong Lem hero banner",
+            }}
             mascotSticker={{ src: "/images/mascot-sticker.png", alt: "Mascot" }}
           />
         </section>

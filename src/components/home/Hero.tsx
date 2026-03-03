@@ -30,12 +30,12 @@ export default function Hero({ heroImage }: HeroProps) {
                 }}
               />
 
-              <div className={styles.imageFallback}>
+              {/* <div className={styles.imageFallback}>
                 <div className={styles.fallbackTitle}>Poster</div>
                 <div className={styles.fallbackText}>
-                  Thêm ảnh vào <b>public/images/hero.jpg</b>
+                  Thêm ảnh vào <b>public/banner/bonglem_banner.png</b>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

@@ -30,14 +30,16 @@ export const Footer: React.FC = () => {
         <div className="mx-auto max-w-7xl px-6 md:px-10 py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
             <section className="flex flex-col items-center md:items-start gap-4">
-              <img
+              {/* <img
                 src="/emoji/1.png"
                 alt="Bông Lém mascot"
                 className="w-[180px] h-[180px] object-contain"
+              /> */}
+              <img
+                src="/banner/text.png"
+                alt={t.brand}
+                className="w-[220px] h-auto object-contain"
               />
-              <div className="text-[44px] font-extrabold leading-none" style={{ color: TEXT_BROWN, fontFamily: FONT_TITLE }}>
-                {t.brand}
-              </div>
             </section>
 
             <section className="flex flex-col gap-3 text-neutral-800">
