@@ -40,14 +40,9 @@ Khi kết hợp lại, Bông Lém trở thành một bông hoa nhỏ tinh nghị
 
         // About us section
         aboutTitle: "Về chúng mình",
-        aboutText: `Bạn thích phong cách quần áo nào? Y2K? Streetwear? Coquette?
-Dù là gì thì bạn cũng đang mặc cái gì đó ra đường.
+        aboutText: `Bông Lém là nơi gom góp những điều dễ thương nhất của ngày xưa: gắn bó, hoài niệm và những niềm vui bé xíu. Những ký ức tưởng đã rất xa, nhưng thật ra vẫn ở đó, nằm yên và nguyên vẹn trong tim.
 
-Vậy mà bạn chưa từng hỏi cục sạc của bạn có muốn hay không!
-
-Cũng như sinh viên muốn có bảng điểm full 4.0, cục sạc cũng muốn có full coverage. Cục sạc được ăn no mặc ấm sẽ mang lại sức mạnh biến mọi nguyện vọng của bạn thành sự thật.
-
-Bông chăm khô: Khoác lông bào cho cục sạc - Đời bạc sẽ lên hương.`,
+Các tổng tài nhà Bông sẽ luôn đồng hành và hỗ trợ bạn trên hành trình tìm về những điều thân thương ấy, để mỗi món quà nhỏ, mỗi khoảnh khắc ghé thăm đều trở thành một kỷ niệm dịu dàng được nâng niu và trọn vẹn.`,
         // aboutCta: "Tổng đài nhà Bông luôn sẵn sàng",
 
         // Vision & Mission
@@ -75,14 +70,9 @@ Bông Lém was born from those memories.`,
 Together, Bông Lém becomes a mischievous little flower that embodies innocence, joy, and carefree fun.`,
 
         aboutTitle: "About Us",
-        aboutText: `What is your fashion style? Y2K? Streetwear? Coquette?
-Whatever it is, you are wearing something out there.
+        aboutText: `Bông Lém is a place that gathers the sweetest pieces of yesterday—connection, nostalgia, and tiny, simple joys. The memories you thought were far away are still there, quiet and whole, resting in your heart.
 
-But have you ever asked your charger if it wants to dress up too?
-
-Just like students want a full 4.0 GPA, chargers want full coverage too. A well-dressed charger will give you the power to make all your wishes come true.
-
-Bông Lém: Dress up your charger - Life will smell sweeter.`,
+At Bông, our team will always be by your side, accompanying and supporting you on your journey back to those cherished feelings—so that every little gift and every visit becomes a gentle, treasured memory, held with care and made complete.`,
         // aboutCta: "Bông hotline is always ready",
 
         visionLabel: "VISION",
@@ -137,7 +127,7 @@ Bông Lém: Dress up your charger - Life will smell sweeter.`,
             {/* <button className={styles.aboutCta}>{content.aboutCta}</button> */}
           </div>
           <div className={styles.aboutImageSide} data-reveal="right" data-reveal-delay="100">
-            <img src="/images/team.jpg" alt="Team" className={styles.teamImage} />
+            <img src="/public/banner/bong.png" alt="Team" className={styles.teamImage} />
           </div>
         </div>
       </section>
