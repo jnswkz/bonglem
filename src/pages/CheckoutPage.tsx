@@ -235,6 +235,18 @@ export default function CheckoutPage({ onNavigate }: CheckoutPageProps) {
             </label>
           </div>
 
+          <h2 className={styles.sectionTitle}>
+            {isVi ? "Địa chỉ giao hàng" : "Shipping Address"}
+          </h2>
+
+          <div className={styles.shippingAddress}>
+            <p>
+              {isVi
+                ? "Cơ sở B, 279 Nguyễn Tri Phương, Phường Điện Hồng, Quận 10, TP. Hồ Chí Minh"
+                : "Campus B, 279 Nguyen Tri Phuong, Dien Hong Ward, District 10, Ho Chi Minh City"}
+            </p>
+          </div>
+
           {error && (
             <div className={styles.errorMessage}>
               <AlertCircle size={18} />

@@ -146,6 +146,21 @@
   opacity: 0.7;
 }
 
+/* Shipping Address */
+.shippingAddress {
+  background: #F9F7F4;
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid #E8E4DD;
+}
+
+.shippingAddress p {
+  color: #5C4033;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
 /* Summary */
 .summary {
   background: white;
