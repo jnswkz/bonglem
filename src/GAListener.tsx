@@ -1,15 +1,24 @@
 // src/GAListener.tsx
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import type { Page } from "./pageTypes";
 import { pageview } from "./ga";
 
-export function GAListener() {
-  const location = useLocation();
+type GAListenerProps = {
+  page: Page;
+  productId?: string | null;
+};
 
+export function GAListener({ page, productId }: GAListenerProps) {
   useEffect(() => {
-    const path = location.pathname + location.search;
+    const path =
+      page === "home"
+        ? "/"
+        : page === "detail" && productId
+          ? `/product/${productId}`
+          : `/${page}`;
+
     pageview(path);
-  }, [location]);
+  }, [page, productId]);
 
   return null;
 }

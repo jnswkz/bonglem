@@ -200,7 +200,7 @@ const App: React.FC = () => {
         <Footer />
       </motion.div>
       <Analytics />
-      <GAListener />
+      <GAListener page={currentPage} productId={selectedProductId} />
     </div>
   );
 };
