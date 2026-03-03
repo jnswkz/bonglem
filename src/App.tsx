@@ -18,6 +18,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import type { Page } from "./pageTypes";
 import { useLanguage } from "./i18n/LanguageContext";
 import { useCart } from "./store/CartContext";
+import { GAListener } from "./GAListener";
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -199,6 +200,7 @@ const App: React.FC = () => {
         <Footer />
       </motion.div>
       <Analytics />
+      <GAListener />
     </div>
   );
 };
