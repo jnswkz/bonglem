@@ -54,6 +54,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             }
             heroImage={{
               src: "/banner/bonglem_banner.png",
+              mobileSrc: "/banner/bonglem_banner_mobile.png",
               alt: "Bong Lem hero banner",
             }}
             mascotSticker={{ src: "/images/mascot-sticker.png", alt: "Mascot" }}

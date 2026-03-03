@@ -48,7 +48,7 @@ export const Header: React.FC<HeaderProps> = ({
     language === "vi" ? "Bông Lém chào bạn" : "Welcome to Bong Lem";
 
   return (
-    <header className="sticky top-0 z-50 w-full" style={{ fontFamily: 'var(--font-display)' }}>
+    <header className="sticky top-0 z-50 w-full overflow-x-hidden" style={{ fontFamily: 'var(--font-display)' }}>
       <div
         className="text-white font-medium overflow-hidden whitespace-nowrap relative flex items-center"
         style={{
@@ -84,22 +84,22 @@ export const Header: React.FC<HeaderProps> = ({
           borderColor: `${TEXT_BROWN}20`,
         }}
       >
-        <div className="mx-auto max-w-7xl px-6 md:px-10 py-6">
-          <div className="flex items-center justify-between gap-4">
+        <div className="mx-auto max-w-7xl px-4 md:px-10 py-4 md:py-6">
+          <div className="flex items-center justify-between gap-2 md:gap-4">
             <div className="relative">
               <button
                 onClick={() => onNavigate("home")}
                 className="cursor-pointer select-none"
                 aria-label={language === "vi" ? "Về trang chủ" : "Go to home"}
                 style={{
-                  paddingLeft: "clamp(38px, 7vw, 0px)",
+                  paddingLeft: "clamp(0px, 7vw, 38px)",
                 }}
               >
                 <span
                   className="font-serif font-bold tracking-wider transition-colors"
                   style={{
                     color: TEXT_BROWN,
-                    fontSize: "44px",
+                    fontSize: "clamp(28px, 6vw, 44px)",
                     lineHeight: 1,
                     whiteSpace: "nowrap",
                   }}

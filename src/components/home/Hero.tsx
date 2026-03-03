@@ -1,7 +1,7 @@
 ﻿import styles from "./Hero.module.css";
 
 type Cta = { label: string; href: string };
-type Img = { src: string; alt?: string };
+type Img = { src: string; mobileSrc?: string; alt?: string };
 
 export type HeroProps = {
   brand: string;
@@ -21,14 +21,22 @@ export default function Hero({ heroImage }: HeroProps) {
         <div className={styles.right}>
           <div className={styles.imageCard}>
             <div className={styles.imageFrame}>
-              <img
-                className={styles.image}
-                src={heroImage?.src}
-                alt={heroImage?.alt || "Poster"}
-                onError={(e) => {
-                  (e.currentTarget as HTMLImageElement).style.display = "none";
-                }}
-              />
+              <picture>
+                {heroImage?.mobileSrc && (
+                  <source
+                    media="(max-width: 640px)"
+                    srcSet={heroImage.mobileSrc}
+                  />
+                )}
+                <img
+                  className={styles.image}
+                  src={heroImage?.src}
+                  alt={heroImage?.alt || "Poster"}
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).style.display = "none";
+                  }}
+                />
+              </picture>
 
               {/* <div className={styles.imageFallback}>
                 <div className={styles.fallbackTitle}>Poster</div>
