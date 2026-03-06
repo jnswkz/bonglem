@@ -245,19 +245,10 @@ export default function ProductDetailPage({ productId, onNavigate }: ProductDeta
 
           {/* Product Details */}
           <div className={styles.details}>
-            <h3>{isVi ? "Thông tin sản phẩm" : "Product details"}</h3>
-            <div className={styles.detailRow}>
-              <span className={styles.detailLabel}>SKU</span>
-              <span className={styles.detailValue}>{product.sku || "N/A"}</span>
-            </div>
-            <div className={styles.detailRow}>
-              <span className={styles.detailLabel}>{isVi ? "Tình trạng" : "Availability"}</span>
-              <span className={`${styles.detailValue} ${isOutOfStock ? styles.outOfStock : styles.inStock}`}>
-                {isOutOfStock
-                  ? (isVi ? "Hết hàng" : "Out of stock")
-                  : (isVi ? "Còn hàng" : "In stock")}
-              </span>
-            </div>
+            <h3>{isVi ? "Mô tả sản phẩm" : "Product description"}</h3>
+            <p className={styles.detailValue}>
+              {isVi ? product.description : (product.descriptionEn || product.description)}
+            </p>
           </div>
         </div>
       </div>
