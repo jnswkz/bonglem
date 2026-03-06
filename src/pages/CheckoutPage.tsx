@@ -42,6 +42,13 @@ export default function CheckoutPage({ onNavigate }: CheckoutPageProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const email = formData.customerEmail.trim();
+
+    if (!email) {
+      setError(isVi ? "Vui lòng nhập email" : "Please enter email");
+      return;
+    }
+
     setLoading(true);
     setError(null);
 
@@ -49,7 +56,7 @@ export default function CheckoutPage({ onNavigate }: CheckoutPageProps) {
       const orderData = {
         customerName: formData.customerName,
         customerPhone: formData.customerPhone,
-        customerEmail: formData.customerEmail || undefined,
+        customerEmail: email,
         facebookLink: formData.facebookLink || undefined,
         note: formData.note || undefined,
         paymentMethod: formData.paymentMethod,
@@ -159,11 +166,12 @@ export default function CheckoutPage({ onNavigate }: CheckoutPageProps) {
             </div>
 
             <div className={styles.formGroup}>
-              <label htmlFor="customerEmail">Email</label>
+              <label htmlFor="customerEmail">Email *</label>
               <input
                 id="customerEmail"
                 name="customerEmail"
                 type="email"
+                required
                 value={formData.customerEmail}
                 onChange={handleChange}
                 placeholder="email@example.com"

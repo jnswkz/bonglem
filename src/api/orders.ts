@@ -11,7 +11,7 @@ export interface OrderItem {
 export interface CreateOrderRequest {
   customerName: string;
   customerPhone: string;
-  customerEmail?: string;
+  customerEmail: string;
   facebookLink?: string;
   items: Array<{
     productId: string;
