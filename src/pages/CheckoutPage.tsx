@@ -42,11 +42,56 @@ export default function CheckoutPage({ onNavigate }: CheckoutPageProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const customerName = formData.customerName.trim();
+    const customerPhone = formData.customerPhone.trim();
     const email = formData.customerEmail.trim();
+    const facebookLink = formData.facebookLink.trim();
+    const note = formData.note.trim();
+    const validPaymentMethods: PaymentMethod[] = ["cod", "bank_transfer"];
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9+\s().-]{8,20}$/;
+
+    if (!customerName) {
+      setError(isVi ? "Vui lòng nhập họ và tên" : "Please enter your full name");
+      return;
+    }
+
+    if (!customerPhone) {
+      setError(isVi ? "Vui lòng nhập số điện thoại" : "Please enter your phone number");
+      return;
+    }
+
+    if (!phoneRegex.test(customerPhone)) {
+      setError(isVi ? "Số điện thoại không hợp lệ" : "Phone number format is invalid");
+      return;
+    }
 
     if (!email) {
       setError(isVi ? "Vui lòng nhập email" : "Please enter email");
       return;
+    }
+
+    if (!emailRegex.test(email)) {
+      setError(isVi ? "Email không hợp lệ" : "Email format is invalid");
+      return;
+    }
+
+    if (!validPaymentMethods.includes(formData.paymentMethod)) {
+      setError(isVi ? "Phương thức thanh toán không hợp lệ" : "Invalid payment method");
+      return;
+    }
+
+    if (facebookLink) {
+      try {
+        const parsedFacebookLink = new URL(facebookLink);
+        if (parsedFacebookLink.protocol !== "http:" && parsedFacebookLink.protocol !== "https:") {
+          setError(isVi ? "Link Facebook không hợp lệ" : "Facebook link is invalid");
+          return;
+        }
+      } catch {
+        setError(isVi ? "Link Facebook không hợp lệ" : "Facebook link is invalid");
+        return;
+      }
     }
 
     setLoading(true);
@@ -54,11 +99,11 @@ export default function CheckoutPage({ onNavigate }: CheckoutPageProps) {
 
     try {
       const orderData = {
-        customerName: formData.customerName,
-        customerPhone: formData.customerPhone,
+        customerName,
+        customerPhone,
         customerEmail: email,
-        facebookLink: formData.facebookLink || undefined,
-        note: formData.note || undefined,
+        facebookLink: facebookLink || undefined,
+        note: note || undefined,
         paymentMethod: formData.paymentMethod,
         items: items.map((item) => ({
           productId: item.product._id,
