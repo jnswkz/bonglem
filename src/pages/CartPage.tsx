@@ -47,7 +47,7 @@ export default function CartPage({ onNavigate }: CartPageProps) {
             <div key={item.product._id} className={styles.cartItem}>
               <div className={styles.itemImage}>
                 <ImageWithFallback
-                  src={item.product.imageUrl || "/images/placeholder.jpg"}
+                  src={(item.product.images && item.product.images[0]) || item.product.imageUrl || "/images/placeholder.jpg"}
                   alt={item.product.name}
                   className={styles.productImage}
                 />
