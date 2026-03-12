@@ -103,7 +103,7 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
           {filteredProducts.map((product) => (
             <ProductCard
               key={product._id}
-              image={product.imageUrl || "/images/placeholder.jpg"}
+              image={(product.images && product.images[0]) || product.imageUrl || "/images/placeholder.jpg"}
               name={product.name}
               price={formatPrice(product.price)}
               onViewDetail={() => onNavigate?.(`product/${product._id}`)}

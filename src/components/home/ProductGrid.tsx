@@ -127,7 +127,7 @@ export default function ProductGrid({
                   style={{ cursor: "pointer" }}
                 >
                   <div className={styles.imgWrap}>
-                    <img className={styles.img} src={product.imageUrl} alt={displayName} />
+                    <img className={styles.img} src={(product.images && product.images[0]) || product.imageUrl} alt={displayName} />
                     <button
                       type="button"
                       className={styles.addBtn}
