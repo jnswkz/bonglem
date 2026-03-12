@@ -146,6 +146,19 @@
   opacity: 0.7;
 }
 
+/* Bank transfer info */
+.bankInfo {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid #E8E4DD;
+}
+
+.bankImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* Shipping Address */
 .shippingAddress {
   background: #F9F7F4;

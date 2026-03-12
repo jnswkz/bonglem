@@ -9,7 +9,7 @@ interface CheckoutPageProps {
   onNavigate?: (page: string) => void;
 }
 
-type PaymentMethod = "cod";
+type PaymentMethod = "cod" | "bank_transfer";
 
 export default function CheckoutPage({ onNavigate }: CheckoutPageProps) {
   const { language } = useLanguage();
@@ -47,7 +47,7 @@ export default function CheckoutPage({ onNavigate }: CheckoutPageProps) {
     const email = formData.customerEmail.trim();
     const facebookLink = formData.facebookLink.trim();
     const note = formData.note.trim();
-    const validPaymentMethods: PaymentMethod[] = ["cod"];
+    const validPaymentMethods: PaymentMethod[] = ["cod", "bank_transfer"];
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^[0-9+\s().-]{8,20}$/;
 
@@ -269,6 +269,29 @@ export default function CheckoutPage({ onNavigate }: CheckoutPageProps) {
               </span>
             </label>
 
+            <label className={styles.paymentOption}>
+              <input
+                type="radio"
+                name="paymentMethod"
+                value="bank_transfer"
+                checked={formData.paymentMethod === "bank_transfer"}
+                onChange={handleChange}
+              />
+              <span className={styles.paymentLabel}>
+                <strong>{isVi ? "Chuyển khoản ngân hàng" : "Bank Transfer"}</strong>
+                <small>{isVi ? "Chuyển khoản qua tài khoản ngân hàng" : "Transfer via bank account"}</small>
+              </span>
+            </label>
+
+            {formData.paymentMethod === "bank_transfer" && (
+              <div className={styles.bankInfo}>
+                <img
+                  src="/banks.jpg"
+                  alt={isVi ? "Thông tin ngân hàng" : "Bank transfer details"}
+                  className={styles.bankImage}
+                />
+              </div>
+            )}
 
           </div>
 
