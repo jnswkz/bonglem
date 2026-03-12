@@ -1,5 +1,6 @@
 import { createContext, useContext, useReducer, useEffect, ReactNode } from "react";
 import type { Product } from "../api/products";
+import { productApi } from "../api/products";
 
 export interface CartItem {
   product: Product;
@@ -99,15 +100,40 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   // Load cart from localStorage on mount
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem(CART_STORAGE_KEY);
-      if (saved) {
-        const items = JSON.parse(saved) as CartItem[];
-        dispatch({ type: "LOAD_CART", items });
+    const loadCart = async () => {
+      try {
+        const saved = localStorage.getItem(CART_STORAGE_KEY);
+        if (!saved) return;
+
+        const savedItems = JSON.parse(saved) as CartItem[];
+        if (!savedItems.length) return;
+
+        // Load with saved items first for fast display
+        dispatch({ type: "LOAD_CART", items: savedItems });
+
+        // Then re-fetch all products to get fresh prices
+        try {
+          const freshProducts = await productApi.getAll();
+          const freshMap = new Map(freshProducts.map((p) => [p._id, p]));
+
+          const refreshedItems = savedItems
+            .map((item) => {
+              const fresh = freshMap.get(item.product._id);
+              if (!fresh) return null; // Product no longer exists
+              return { ...item, product: fresh };
+            })
+            .filter(Boolean) as CartItem[];
+
+          dispatch({ type: "LOAD_CART", items: refreshedItems });
+        } catch {
+          // If API fails, keep using saved items as fallback
+        }
+      } catch {
+        // Ignore localStorage parse errors
       }
-    } catch {
-      // Ignore errors
-    }
+    };
+
+    loadCart();
   }, []);
 
   // Save cart to localStorage on change
