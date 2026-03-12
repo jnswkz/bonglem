@@ -104,6 +104,7 @@ export const Header: React.FC<HeaderProps> = ({
                     lineHeight: 1,
                     whiteSpace: "nowrap",
                     display: "block",
+                    transform: "translateY(2px)",
                   }}
                 >
                   BÔNG LÉM
