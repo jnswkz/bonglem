@@ -4,6 +4,7 @@ import { productApi, Product } from "../../api";
 import { useLanguage } from "../../i18n/LanguageContext";
 import { useCart } from "../../store/CartContext";
 import { ChevronLeft, ChevronRight, ShoppingCart } from "lucide-react";
+import { ImageWithFallback } from "../figma/ImageWithFallback";
 
 export type ProductGridProps = {
   heading: string;
@@ -127,7 +128,7 @@ export default function ProductGrid({
                   style={{ cursor: "pointer" }}
                 >
                   <div className={styles.imgWrap}>
-                    <img className={styles.img} src={(product.images && product.images[0]) || product.imageUrl} alt={displayName} />
+                    <ImageWithFallback className={styles.img} src={(product.images && product.images[0]) || product.imageUrl} alt={displayName} />
                     <button
                       type="button"
                       className={styles.addBtn}
