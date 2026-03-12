@@ -40,11 +40,11 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
 
   const filteredProducts = searchQuery
     ? products.filter(
-        (p) =>
-          p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          p.nameEn?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          p.description.toLowerCase().includes(searchQuery.toLowerCase())
-      )
+      (p) =>
+        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.nameEn?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.description.toLowerCase().includes(searchQuery.toLowerCase())
+    )
     : products;
 
   const handleAddToCart = (product: Product) => {
@@ -61,11 +61,6 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
         <h1 className={styles.title}>
           {isVi ? "Sản phẩm" : "Products"}
         </h1>
-        <p className={styles.subtitle}>
-          {isVi
-            ? "Những món quà handmade được làm bằng cả tình yêu"
-            : "Handmade gifts made with all our love"}
-        </p>
       </div>
 
       {/* Search */}
