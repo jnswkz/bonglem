@@ -89,10 +89,11 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="relative">
               <button
                 onClick={() => onNavigate("home")}
-                className="cursor-pointer select-none"
+                className="cursor-pointer select-none flex items-center"
                 aria-label={language === "vi" ? "Về trang chủ" : "Go to home"}
                 style={{
                   paddingLeft: "clamp(0px, 7vw, 38px)",
+                  height: "54px",
                 }}
               >
                 <span
@@ -102,6 +103,7 @@ export const Header: React.FC<HeaderProps> = ({
                     fontSize: "clamp(28px, 6vw, 44px)",
                     lineHeight: 1,
                     whiteSpace: "nowrap",
+                    display: "block",
                   }}
                 >
                   BÔNG LÉM
