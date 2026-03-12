@@ -302,8 +302,8 @@ export default function CheckoutPage({ onNavigate }: CheckoutPageProps) {
           <div className={styles.shippingAddress}>
             <p>
               {isVi
-                ? "Cơ sở B, 279 Nguyễn Tri Phương, Phường Diên Hồng, Quận 10, TP. Hồ Chí Minh"
-                : "Campus B, 279 Nguyen Tri Phuong, Dien Hong Ward, District 10, Ho Chi Minh City"}
+                ? "Cơ sở B, 279 Nguyễn Tri Phương, Phường Diên Hồng, TP. Hồ Chí Minh"
+                : "Campus B, 279 Nguyen Tri Phuong, Dien Hong Ward, Ho Chi Minh City"}
             </p>
           </div>
 
