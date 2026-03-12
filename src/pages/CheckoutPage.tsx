@@ -115,8 +115,8 @@ export default function CheckoutPage({ onNavigate }: CheckoutPageProps) {
       setOrderSuccess({ orderId: response.orderId });
       clearCart();
     } catch (err: unknown) {
-      const errorMessage = err && typeof err === "object" && "message" in err 
-        ? (err as { message: string }).message 
+      const errorMessage = err && typeof err === "object" && "message" in err
+        ? (err as { message: string }).message
         : (isVi ? "Đã xảy ra lỗi khi đặt hàng" : "An error occurred while placing order");
       setError(errorMessage);
     } finally {
@@ -302,7 +302,7 @@ export default function CheckoutPage({ onNavigate }: CheckoutPageProps) {
           <div className={styles.shippingAddress}>
             <p>
               {isVi
-                ? "Cơ sở B, 279 Nguyễn Tri Phương, Phường Điện Hồng, Quận 10, TP. Hồ Chí Minh"
+                ? "Cơ sở B, 279 Nguyễn Tri Phương, Phường Diên Hồng, Quận 10, TP. Hồ Chí Minh"
                 : "Campus B, 279 Nguyen Tri Phuong, Dien Hong Ward, District 10, Ho Chi Minh City"}
             </p>
           </div>

@@ -14,9 +14,9 @@ export default function ContactPage() {
   const isVi = language === "vi";
 
   const info: ContactInfo = {
-    address: "279 Nguyễn Tri Phương, Phường 5, Quận 10, TP. Hồ Chí Minh",
-    phone: "+84 987 654 321",
-    email: "hello@bonglem.vn",
+    address: "Cơ sở B, 279 Nguyễn Tri Phương, Phường Diên Hồng, Quận 10, TP. Hồ Chí Minh",
+    phone: "082 888 7696",
+    email: "boong.lemm@gmail.com",
     hoursVi: "Thứ 2 - Thứ 7: 9:00 - 19:00",
     hoursEn: "Mon - Sat: 9:00 - 19:00",
   };
