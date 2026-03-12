@@ -26,19 +26,19 @@ export const Header: React.FC<HeaderProps> = ({
   const navItems: { name: string; id: Page }[] =
     language === "vi"
       ? [
-          { name: "Trang chủ", id: "home" },
-          { name: "Câu chuyện", id: "story" },
-          { name: "Sản phẩm", id: "products" },
-          { name: "Đánh giá", id: "feedback" },
-          { name: "Liên hệ", id: "contact" },
-        ]
+        { name: "Trang chủ", id: "home" },
+        { name: "Câu chuyện", id: "story" },
+        { name: "Sản phẩm", id: "products" },
+        { name: "Đánh giá", id: "feedback" },
+        { name: "Liên hệ", id: "contact" },
+      ]
       : [
-          { name: "Home", id: "home" },
-          { name: "Story", id: "story" },
-          { name: "Products", id: "products" },
-          { name: "Feedback", id: "feedback" },
-          { name: "Contact", id: "contact" },
-        ];
+        { name: "Home", id: "home" },
+        { name: "Story", id: "story" },
+        { name: "Products", id: "products" },
+        { name: "Feedback", id: "feedback" },
+        { name: "Contact", id: "contact" },
+      ];
 
   const marqueePrimary =
     language === "vi"
@@ -62,18 +62,18 @@ export const Header: React.FC<HeaderProps> = ({
           transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
           className="flex whitespace-nowrap absolute"
         >
-                  <div className="flex gap-14 items-center px-8" style={{ fontFamily: 'var(--font-body)' }}>
-                    <span>{marqueePrimary}</span>
-                    <span>{marqueeSecondary}</span>
-                    <span>{marqueePrimary}</span>
-                    <span>{marqueeSecondary}</span>
-                  </div>
-                  <div className="flex gap-14 items-center px-8" style={{ fontFamily: 'var(--font-body)' }}>
-                    <span>{marqueePrimary}</span>
-                    <span>{marqueeSecondary}</span>
-                    <span>{marqueePrimary}</span>
-                    <span>{marqueeSecondary}</span>
-                  </div>
+          <div className="flex gap-14 items-center px-8" style={{ fontFamily: 'var(--font-body)' }}>
+            <span>{marqueePrimary}</span>
+            <span>{marqueeSecondary}</span>
+            <span>{marqueePrimary}</span>
+            <span>{marqueeSecondary}</span>
+          </div>
+          <div className="flex gap-14 items-center px-8" style={{ fontFamily: 'var(--font-body)' }}>
+            <span>{marqueePrimary}</span>
+            <span>{marqueeSecondary}</span>
+            <span>{marqueePrimary}</span>
+            <span>{marqueeSecondary}</span>
+          </div>
         </motion.div>
       </div>
 
@@ -238,7 +238,7 @@ export const Header: React.FC<HeaderProps> = ({
               >
                 <Facebook size={30} />
               </button>
-              
+
               <button
                 type="button"
                 className="hidden sm:flex items-center justify-center rounded-full border transition"
@@ -254,7 +254,7 @@ export const Header: React.FC<HeaderProps> = ({
                 onMouseLeave={(e) =>
                   (e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`)
                 }
-                onClick={() => window.open("https://www.instagram.com/bonglemm_/?theme=dark", "_blank")}
+                onClick={() => window.open("https://www.instagram.com/bonglemm_/", "_blank")}
                 aria-label="Instagram"
               >
                 <Instagram size={30} />

@@ -62,8 +62,11 @@ export default function ContactPage() {
             <div className={styles.card}>
               <div className={styles.cardTitle}>{isVi ? "Mạng xã hội" : "Social"}</div>
               <div className={styles.socials}>
-                <a className={styles.pill} href="https://facebook.com/" target="_blank" rel="noreferrer">
+                <a className={styles.pill} href="https://www.facebook.com/profile.php?id=61588450784283" target="_blank" rel="noreferrer">
                   Facebook
+                </a>
+                <a className={styles.pill} href="https://www.instagram.com/bonglemm_/" target="_blank" rel="noreferrer">
+                  Instagram
                 </a>
               </div>
             </div>
