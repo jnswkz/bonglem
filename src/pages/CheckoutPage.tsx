@@ -23,6 +23,7 @@ export default function CheckoutPage({ onNavigate }: CheckoutPageProps) {
     facebookLink: "",
     note: "",
     paymentMethod: "cod" as PaymentMethod,
+    _hp: "", // Honeypot field - bots will fill this
   });
 
   const [loading, setLoading] = useState(false);
@@ -109,6 +110,7 @@ export default function CheckoutPage({ onNavigate }: CheckoutPageProps) {
           productId: item.product._id,
           quantity: item.quantity,
         })),
+        _hp: formData._hp || undefined, // Honeypot
       };
 
       const response = await orderApi.create(orderData);
@@ -313,6 +315,20 @@ export default function CheckoutPage({ onNavigate }: CheckoutPageProps) {
               {error}
             </div>
           )}
+
+          {/* Honeypot field - hidden from real users, bots will fill it */}
+          <div style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, overflow: 'hidden' }} aria-hidden="true">
+            <label htmlFor="_hp">Leave this empty</label>
+            <input
+              type="text"
+              id="_hp"
+              name="_hp"
+              value={formData._hp}
+              onChange={handleChange}
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </div>
         </form>
 
         <div className={styles.summary}>

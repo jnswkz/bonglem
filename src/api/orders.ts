@@ -19,6 +19,7 @@ export interface CreateOrderRequest {
   }>;
   note?: string;
   paymentMethod?: "cod" | "bank_transfer";
+  _hp?: string; // Honeypot field for spam protection
 }
 
 export interface Order {
