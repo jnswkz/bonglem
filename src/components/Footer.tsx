@@ -1,5 +1,5 @@
-﻿import React from 'react';
-import { Facebook, MapPin, Phone } from 'lucide-react';
+import React from 'react';
+import { Facebook, Instagram, MapPin, Phone } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
 
 const TEXT_BROWN = '#5C4033';
@@ -60,19 +60,34 @@ export const Footer: React.FC = () => {
                   {t.phone}
                 </a>
               </div>
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Facebook"
-                className="mt-4 inline-flex h-16 w-16 items-center justify-center rounded-full text-[#d44f8d] shadow-[0_10px_20px_rgba(0,0,0,0.02)] border transition hover:scale-[1.05]"
-                style={{
-                  background: 'rgba(255, 255, 255, 0)',
-                  borderColor: 'rgba(255, 255, 255, 0)',
-                }}
-              >
-                <Facebook size={26} strokeWidth={1.4} />
-              </a>
+              <div className="flex items-center gap-4 mt-4">
+                <a
+                  href="https://www.facebook.com/profile.php?id=61588450784283"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Facebook"
+                  className="inline-flex h-16 w-16 items-center justify-center rounded-full text-[#d44f8d] shadow-[0_10px_20px_rgba(0,0,0,0.02)] border transition hover:scale-[1.05]"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0)',
+                    borderColor: 'rgba(255, 255, 255, 0)',
+                  }}
+                >
+                  <Facebook size={26} strokeWidth={1.4} />
+                </a>
+                <a
+                  href="https://www.instagram.com/bonglemm_/?theme=dark"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Instagram"
+                  className="inline-flex h-16 w-16 items-center justify-center rounded-full text-[#d44f8d] shadow-[0_10px_20px_rgba(0,0,0,0.02)] border transition hover:scale-[1.05]"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0)',
+                    borderColor: 'rgba(255, 255, 255, 0)',
+                  }}
+                >
+                  <Instagram size={26} strokeWidth={1.4} />
+                </a>
+              </div>
             </section>
 
             <section className="flex flex-col justify-between gap-4 text-neutral-800">

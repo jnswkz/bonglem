@@ -1,4 +1,4 @@
-﻿import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./ProductGrid.module.css";
 import { productApi, Product } from "../../api";
 import { useLanguage } from "../../i18n/LanguageContext";

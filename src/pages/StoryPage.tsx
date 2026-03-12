@@ -127,7 +127,7 @@ At Bông, our team will always be by your side, accompanying and supporting you 
             {/* <button className={styles.aboutCta}>{content.aboutCta}</button> */}
           </div>
           <div className={styles.aboutImageSide} data-reveal="right" data-reveal-delay="100">
-            <img src="/public/banner/bong.png" alt="Team" className={styles.teamImage} />
+            <img src="/team.png" alt="Team" className={styles.teamImage} />
           </div>
         </div>
       </section>

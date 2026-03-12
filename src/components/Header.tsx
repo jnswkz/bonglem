@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
-import { Facebook, ShoppingCart, Menu, X } from "lucide-react";
+import { Facebook, Instagram, ShoppingCart, Menu, X } from "lucide-react";
 import type { Page } from "../pageTypes";
 import { useLanguage } from "../i18n/LanguageContext";
 
@@ -233,10 +233,31 @@ export const Header: React.FC<HeaderProps> = ({
                 onMouseLeave={(e) =>
                   (e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`)
                 }
-                onClick={() => window.open("https://facebook.com", "_blank")}
+                onClick={() => window.open("https://www.facebook.com/profile.php?id=61588450784283", "_blank")}
                 aria-label="Facebook"
               >
                 <Facebook size={30} />
+              </button>
+              
+              <button
+                type="button"
+                className="hidden sm:flex items-center justify-center rounded-full border transition"
+                style={{
+                  width: "54px",
+                  height: "54px",
+                  backgroundColor: "rgba(255,255,255,0.9)",
+                  borderColor: `${TEXT_BROWN}1A`,
+                }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.borderColor = ACCENT_PINK)
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.borderColor = `${TEXT_BROWN}1A`)
+                }
+                onClick={() => window.open("https://www.instagram.com/bonglemm_/?theme=dark", "_blank")}
+                aria-label="Instagram"
+              >
+                <Instagram size={30} />
               </button>
 
               <button
