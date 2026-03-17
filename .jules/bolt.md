@@ -1,0 +1,3 @@
+## 2024-05-18 - String Lowercasing inside Iterations & Context API Updates
+**Learning:** Performing `string.toLowerCase()` inside a filtering loop (e.g., `products.filter(...)`) causes redundant string allocations and significant overhead, especially when checking multiple fields per object. Additionally, without `useMemo`, these expensive operations re-run on every component render, such as when `CartContext` updates trigger re-renders upon adding an item to the cart.
+**Action:** Always extract invariant transformations like `searchQuery.toLowerCase()` outside of iteration loops. Wrap expensive computations in `useMemo` when they reside in components that consume frequently updating contexts.
