@@ -20,10 +20,19 @@ import { useLanguage } from "./i18n/LanguageContext";
 import { useCart } from "./store/CartContext";
 import { GAListener } from "./GAListener";
 
+function getInitialPage(): Page {
+  if (typeof window === "undefined") {
+    return "home";
+  }
+
+  const page = new URLSearchParams(window.location.search).get("page");
+  return page === "checkout" ? "checkout" : "home";
+}
+
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isPageLoading, setIsPageLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState<Page>("home");
+  const [currentPage, setCurrentPage] = useState<Page>(getInitialPage);
   const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
 
   const { language } = useLanguage();
