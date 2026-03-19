@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { productApi, type Product } from "../api";
 import { ProductCard } from "../components/ProductCard";
 import { useLanguage } from "../i18n/LanguageContext";
@@ -38,14 +38,25 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
     }
   }
 
-  const filteredProducts = searchQuery
-    ? products.filter(
-      (p) =>
-        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.nameEn?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.description.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-    : products;
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState(searchQuery);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearchQuery(searchQuery);
+    }, 300);
+    return () => clearTimeout(handler);
+  }, [searchQuery]);
+
+  const filteredProducts = React.useMemo(() => {
+    if (!debouncedSearchQuery) return products;
+
+    const query = debouncedSearchQuery.toLowerCase();
+    return products.filter((p) =>
+      p.name.toLowerCase().includes(query) ||
+      p.nameEn?.toLowerCase().includes(query) ||
+      p.description.toLowerCase().includes(query)
+    );
+  }, [products, debouncedSearchQuery]);
 
   const handleAddToCart = (product: Product) => {
     addItem(product, 1);
