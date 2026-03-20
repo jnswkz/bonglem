@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { productApi, type Product } from "../api";
 import { ProductCard } from "../components/ProductCard";
 import { useLanguage } from "../i18n/LanguageContext";
@@ -9,6 +9,12 @@ import styles from "./ProductsPage.module.css";
 interface ProductsPageProps {
   onNavigate?: (page: string) => void;
 }
+
+// Performance optimization: Move utility function outside of component
+// to prevent recreating it on every render
+const formatPrice = (price: number) => {
+  return price.toLocaleString("vi-VN");
+};
 
 export default function ProductsPage({ onNavigate }: ProductsPageProps) {
   const { language } = useLanguage();
@@ -38,21 +44,23 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
     }
   }
 
-  const filteredProducts = searchQuery
-    ? products.filter(
+  const filteredProducts = useMemo(() => {
+    if (!searchQuery) return products;
+
+    // Performance optimization: Extract searchQuery.toLowerCase() outside the filter loop
+    // This avoids calling toLowerCase() 3 times per product
+    const query = searchQuery.toLowerCase();
+
+    return products.filter(
       (p) =>
-        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.nameEn?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.description.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-    : products;
+        p.name.toLowerCase().includes(query) ||
+        p.nameEn?.toLowerCase().includes(query) ||
+        p.description.toLowerCase().includes(query)
+    );
+  }, [searchQuery, products]);
 
   const handleAddToCart = (product: Product) => {
     addItem(product, 1);
-  };
-
-  const formatPrice = (price: number) => {
-    return price.toLocaleString("vi-VN");
   };
 
   return (
