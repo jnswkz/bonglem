@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { productApi, type Product } from "../api";
 import { ProductCard } from "../components/ProductCard";
 import { useLanguage } from "../i18n/LanguageContext";
@@ -19,6 +19,15 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
+
+  // Debounce search query to prevent frequent filtering and re-rendering while typing
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedQuery(searchQuery);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
 
   useEffect(() => {
     loadProducts();
@@ -38,14 +47,19 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
     }
   }
 
-  const filteredProducts = searchQuery
-    ? products.filter(
-      (p) =>
-        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.nameEn?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.description.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-    : products;
+  // Memoize filtered products to prevent recalculation on every render
+  const filteredProducts = useMemo(() => {
+    if (!debouncedQuery) return products;
+
+    // Extract toLowerCase outside the loop to avoid redundant string allocations
+    const query = debouncedQuery.toLowerCase();
+
+    return products.filter((p) => {
+      return p.name.toLowerCase().includes(query) ||
+             (p.nameEn && p.nameEn.toLowerCase().includes(query)) ||
+             p.description.toLowerCase().includes(query);
+    });
+  }, [products, debouncedQuery]);
 
   const handleAddToCart = (product: Product) => {
     addItem(product, 1);

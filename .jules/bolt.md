@@ -1,0 +1,3 @@
+## 2024-05-24 - [Debounce and Memoize Client-Side Search Filters]
+**Learning:** Performing case-insensitive substring search (e.g. `toLowerCase().includes()`) across multiple fields on an entire list of products during every keystroke can block the main thread and cause sluggish typing, especially as the product list grows. Re-rendering a complex product grid on every keystroke compounds the problem.
+**Action:** Always wrap search input state that triggers filtering in a debounce (e.g., using `useEffect` with `setTimeout`), and memoize the filtered results using `useMemo`. Furthermore, extract repeated string allocations like `.toLowerCase()` outside of iteration loops to minimize garbage collection overhead.
