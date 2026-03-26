@@ -6,14 +6,20 @@ import { SplashScreen } from "./components/SplashScreen";
 import { motion, AnimatePresence } from "motion/react";
 import { Loader2 } from "lucide-react";
 
-import HomePage from "./pages/HomePage";
-import FeedbackPage from "./pages/FeedbackPage";
-import ContactPage from "./pages/ContactPage";
-import StoryPage from "./pages/StoryPage";
-import ProductsPage from "./pages/ProductsPage";
-import ProductDetailPage from "./pages/ProductDetailPage";
-import CartPage from "./pages/CartPage";
-import CheckoutPage from "./pages/CheckoutPage";
+import { lazy, Suspense } from "react";
+
+// ⚡ Bolt: Performance optimization
+// Using React.lazy for route-level code splitting to reduce the initial JavaScript bundle size.
+// This ensures that users only download the code needed for the current page, significantly
+// improving the First Contentful Paint (FCP) and Time to Interactive (TTI) metrics.
+const HomePage = lazy(() => import("./pages/HomePage"));
+const FeedbackPage = lazy(() => import("./pages/FeedbackPage"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
+const StoryPage = lazy(() => import("./pages/StoryPage"));
+const ProductsPage = lazy(() => import("./pages/ProductsPage"));
+const ProductDetailPage = lazy(() => import("./pages/ProductDetailPage"));
+const CartPage = lazy(() => import("./pages/CartPage"));
+const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
 
 import type { Page } from "./pageTypes";
 import { useLanguage } from "./i18n/LanguageContext";
@@ -175,34 +181,40 @@ const App: React.FC = () => {
           )}
         </AnimatePresence>
 
-        <main className="bg-transparent">
+        <main className="bg-transparent min-h-[50vh] relative">
           <AnimatePresence mode="wait">
-            <motion.div
-              key={currentPage}
-              initial={{ opacity: 0, x: 8 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -8 }}
-              transition={{ duration: 0.2 }}
-              className="bg-transparent"
-            >
-              {currentPage === "home" && <HomePage onNavigate={handleNavigate} />}
-              {currentPage === "feedback" && <FeedbackPage />}
-              {currentPage === "contact" && <ContactPage />}
-              {currentPage === "story" && <StoryPage />}
-              {currentPage === "products" && (
-                <ProductsPage onNavigate={handleNavigate} />
-              )}
-              {currentPage === "detail" && selectedProductId && (
-                <ProductDetailPage
-                  productId={selectedProductId}
-                  onNavigate={handleNavigate}
-                />
-              )}
-              {currentPage === "cart" && <CartPage onNavigate={handleNavigate} />}
-              {currentPage === "checkout" && (
-                <CheckoutPage onNavigate={handleNavigate} />
-              )}
-            </motion.div>
+            <Suspense fallback={
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Loader2 size={32} className="animate-spin text-[#808000]" />
+              </div>
+            } key={`suspense-${currentPage}`}>
+              <motion.div
+                key={currentPage}
+                initial={{ opacity: 0, x: 8 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -8 }}
+                transition={{ duration: 0.2 }}
+                className="bg-transparent"
+              >
+                {currentPage === "home" && <HomePage onNavigate={handleNavigate} />}
+                {currentPage === "feedback" && <FeedbackPage />}
+                {currentPage === "contact" && <ContactPage />}
+                {currentPage === "story" && <StoryPage />}
+                {currentPage === "products" && (
+                  <ProductsPage onNavigate={handleNavigate} />
+                )}
+                {currentPage === "detail" && selectedProductId && (
+                  <ProductDetailPage
+                    productId={selectedProductId}
+                    onNavigate={handleNavigate}
+                  />
+                )}
+                {currentPage === "cart" && <CartPage onNavigate={handleNavigate} />}
+                {currentPage === "checkout" && (
+                  <CheckoutPage onNavigate={handleNavigate} />
+                )}
+              </motion.div>
+            </Suspense>
           </AnimatePresence>
         </main>
 
