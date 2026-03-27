@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { productApi, type Product } from "../api";
 import { ProductCard } from "../components/ProductCard";
 import { useLanguage } from "../i18n/LanguageContext";
@@ -38,14 +38,20 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
     }
   }
 
-  const filteredProducts = searchQuery
-    ? products.filter(
+  // ⚡ Bolt: Memoize product filtering to prevent O(N) recalculations on unrelated renders (e.g. cart updates).
+  // Also hoisted searchQuery.toLowerCase() outside the filter loop to avoid redundant string allocations.
+  // Impact: O(1) instead of O(N) string conversions per render when searchQuery is unchanged.
+  const filteredProducts = useMemo(() => {
+    if (!searchQuery) return products;
+
+    const lowerQuery = searchQuery.toLowerCase();
+    return products.filter(
       (p) =>
-        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.nameEn?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.description.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-    : products;
+        p.name.toLowerCase().includes(lowerQuery) ||
+        p.nameEn?.toLowerCase().includes(lowerQuery) ||
+        p.description.toLowerCase().includes(lowerQuery)
+    );
+  }, [products, searchQuery]);
 
   const handleAddToCart = (product: Product) => {
     addItem(product, 1);
