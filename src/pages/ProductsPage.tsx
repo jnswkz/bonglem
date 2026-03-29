@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { productApi, type Product } from "../api";
 import { ProductCard } from "../components/ProductCard";
 import { useLanguage } from "../i18n/LanguageContext";
@@ -19,6 +19,17 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedQuery(searchQuery);
+    }, 300);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchQuery]);
 
   useEffect(() => {
     loadProducts();
@@ -38,14 +49,22 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
     }
   }
 
-  const filteredProducts = searchQuery
-    ? products.filter(
-      (p) =>
-        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.nameEn?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.description.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-    : products;
+  const filteredProducts = useMemo(() => {
+    if (!debouncedQuery) return products;
+
+    const lowerQuery = debouncedQuery.toLowerCase();
+
+    return products.filter((p) => {
+      // Add performance optimization comments
+      // ⚡ Bolt: Hoisted debouncedQuery.toLowerCase() outside the loop to avoid redundant calculations.
+      // ⚡ Bolt: Added early returns to skip unnecessary processing.
+      if (p.name.toLowerCase().includes(lowerQuery)) return true;
+      if (p.nameEn?.toLowerCase().includes(lowerQuery)) return true;
+      if (p.description.toLowerCase().includes(lowerQuery)) return true;
+
+      return false;
+    });
+  }, [products, debouncedQuery]);
 
   const handleAddToCart = (product: Product) => {
     addItem(product, 1);
